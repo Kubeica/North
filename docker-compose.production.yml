@@ -1,0 +1,73 @@
+# Production-oriented compose stack.
+# Usage:
+#   cp .env.example .env.production   # fill real secrets
+#   docker compose -f docker-compose.production.yml --env-file .env.production up -d --build
+#
+# Do NOT use demo seed passwords in production.
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: northern-meteor-db-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-northern}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-northern_meteor}
+    volumes:
+      - nm_pg_data_prod:/var/lib/postgresql/data
+      - nm_pg_backups:/backups
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-northern} -d ${POSTGRES_DB:-northern_meteor}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - nm_prod
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: northern-meteor-app-prod
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-northern}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-northern_meteor}?schema=public
+      AUTH_SECRET: ${AUTH_SECRET:?Set AUTH_SECRET}
+      AUTH_URL: ${AUTH_URL:?Set AUTH_URL}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?Set NEXT_PUBLIC_SITE_URL}
+      NEXT_PUBLIC_DEFAULT_LOCALE: ${NEXT_PUBLIC_DEFAULT_LOCALE:-ar}
+      STORAGE_PROVIDER: ${STORAGE_PROVIDER:-local}
+      STORAGE_LOCAL_DIR: public/uploads
+      STORAGE_MAX_FILE_SIZE_MB: ${STORAGE_MAX_FILE_SIZE_MB:-5}
+      RATE_LIMIT_CONTACT_MAX: ${RATE_LIMIT_CONTACT_MAX:-5}
+      RATE_LIMIT_CONTACT_WINDOW_MS: ${RATE_LIMIT_CONTACT_WINDOW_MS:-900000}
+      RATE_LIMIT_QUOTE_MAX: ${RATE_LIMIT_QUOTE_MAX:-5}
+      RATE_LIMIT_QUOTE_WINDOW_MS: ${RATE_LIMIT_QUOTE_WINDOW_MS:-900000}
+      RATE_LIMIT_LOGIN_MAX: ${RATE_LIMIT_LOGIN_MAX:-10}
+      RATE_LIMIT_LOGIN_WINDOW_MS: ${RATE_LIMIT_LOGIN_WINDOW_MS:-900000}
+      NOTIFICATION_PROVIDER: ${NOTIFICATION_PROVIDER:-noop}
+      QUOTE_ATTACHMENT_PROVIDER: ${QUOTE_ATTACHMENT_PROVIDER:-stub}
+      NODE_ENV: production
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      - nm_uploads_prod:/app/public/uploads
+    networks:
+      - nm_prod
+
+volumes:
+  nm_pg_data_prod:
+  nm_pg_backups:
+  nm_uploads_prod:
+
+networks:
+  nm_prod:
+    driver: bridge

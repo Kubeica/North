@@ -1,0 +1,341 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum ProjectStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  ON_HOLD
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+enum QuoteRequestStatus {
+  NEW
+  IN_REVIEW
+  CONTACTED
+  WON
+  LOST
+  ARCHIVED
+}
+
+model User {
+  id           String     @id @default(cuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  role         Role       @default(EDITOR)
+  active       Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+
+  @@index([role])
+  @@index([active])
+}
+
+model ProjectCategory {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  nameAr      String
+  nameEn      String
+  descriptionAr String?
+  descriptionEn String?
+  sortOrder   Int       @default(0)
+  published   Boolean   @default(true)
+  archivedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  projects    Project[]
+
+  @@index([published, sortOrder])
+}
+
+model Client {
+  id            String    @id @default(cuid())
+  name          String
+  logoUrl       String?
+  websiteUrl    String?
+  descriptionAr String?
+  descriptionEn String?
+  sortOrder     Int       @default(0)
+  published     Boolean   @default(true)
+  archivedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  projects      Project[]
+
+  @@index([published, sortOrder])
+}
+
+model Project {
+  id              String           @id @default(cuid())
+  slug            String           @unique
+  titleAr         String
+  titleEn         String
+  summaryAr       String?
+  summaryEn       String?
+  descriptionAr   String
+  descriptionEn   String
+  locationAr      String?
+  locationEn      String?
+  coverImageUrl   String?
+  clientId        String?
+  categoryId      String?
+  status          ProjectStatus    @default(PLANNED)
+  startDate       DateTime?
+  completionDate  DateTime?
+  featured        Boolean          @default(false)
+  published       Boolean          @default(false)
+  seoTitleAr      String?
+  seoTitleEn      String?
+  seoDescriptionAr String?
+  seoDescriptionEn String?
+  scopeAr         String?
+  scopeEn         String?
+  isDemo          Boolean          @default(true)
+  archivedAt      DateTime?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  client          Client?          @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  category        ProjectCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  images          ProjectImage[]
+
+  @@index([published, featured])
+  @@index([status])
+  @@index([categoryId])
+  @@index([clientId])
+  @@index([archivedAt])
+}
+
+model ProjectImage {
+  id        String   @id @default(cuid())
+  projectId String
+  url       String
+  altAr     String?
+  altEn     String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, sortOrder])
+}
+
+model Service {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  nameAr        String
+  nameEn        String
+  descriptionAr String
+  descriptionEn String
+  icon          String?
+  imageUrl      String?
+  sortOrder     Int       @default(0)
+  published     Boolean   @default(true)
+  isDemo        Boolean   @default(true)
+  archivedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([published, sortOrder])
+  @@index([archivedAt])
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  subject   String
+  message   String
+  status    MessageStatus @default(UNREAD)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+}
+
+model QuoteRequest {
+  id            String             @id @default(cuid())
+  company       String
+  name          String
+  email         String
+  phone         String?
+  projectType   String
+  budget        String?
+  location      String?
+  timeline      String?
+  message       String
+  attachmentUrl String?
+  status        QuoteRequestStatus @default(NEW)
+  notes         String?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@index([status, createdAt])
+  @@index([createdAt])
+  @@index([email])
+}
+
+model CompanyProfile {
+  id                   String   @id @default(cuid())
+  nameAr               String
+  nameEn               String
+  shortNameAr          String?
+  shortNameEn          String?
+  shortDescriptionAr   String
+  shortDescriptionEn   String
+  aboutAr              String
+  aboutEn              String
+  visionAr             String
+  visionEn             String
+  missionAr            String
+  missionEn            String
+  valuesAr             String?
+  valuesEn             String?
+  experienceAr         String?
+  experienceEn         String?
+  capabilitiesAr       String?
+  capabilitiesEn       String?
+  safetyAr             String?
+  safetyEn             String?
+  qualityAr            String?
+  qualityEn            String?
+  whyUsAr              String?
+  whyUsEn              String?
+  processAr            String?
+  processEn            String?
+  phone                String?
+  email                String?
+  addressAr            String?
+  addressEn            String?
+  latitude             Float?
+  longitude            Float?
+  logoUrl              String?
+  faviconUrl           String?
+  linkedinUrl          String?
+  facebookUrl          String?
+  instagramUrl         String?
+  youtubeUrl           String?
+  heroImageUrl         String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model Statistic {
+  id        String    @id @default(cuid())
+  labelAr   String
+  labelEn   String
+  value     String
+  sortOrder Int       @default(0)
+  published Boolean   @default(true)
+  archivedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model TeamMember {
+  id          String    @id @default(cuid())
+  nameAr      String
+  nameEn      String
+  positionAr  String
+  positionEn  String
+  bioAr       String?
+  bioEn       String?
+  imageUrl    String?
+  linkedin    String?
+  email       String?
+  sortOrder   Int       @default(0)
+  published   Boolean   @default(true)
+  isDemo      Boolean   @default(true)
+  archivedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model CompanyMilestone {
+  id             String   @id @default(cuid())
+  year           Int
+  titleAr        String
+  titleEn        String
+  descriptionAr  String?
+  descriptionEn  String?
+  sortOrder      Int      @default(0)
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([published, sortOrder])
+  @@index([year, sortOrder])
+}
+
+model Media {
+  id         String    @id @default(cuid())
+  fileName   String
+  url        String
+  mimeType   String
+  size       Int
+  altAr      String?
+  altEn      String?
+  archivedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([createdAt])
+  @@index([archivedAt])
+}
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  entity    String?
+  entityId  String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([userId])
+  @@index([entity, entityId])
+  @@index([action])
+}
+
+model RateLimitBucket {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  count       Int      @default(0)
+  windowStart DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([windowStart])
+}

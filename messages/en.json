@@ -1,0 +1,692 @@
+{
+  "brand": {
+    "name": "Northern Meteor Construction",
+    "nameAr": "شركة النيزك الشمالي للمقاولات العامة",
+    "nameEn": "Northern Meteor Construction",
+    "short": "Northern Meteor",
+    "tagline": "We Build Today What Will Stand Tomorrow"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "clients": "Clients",
+    "team": "Team",
+    "contact": "Contact",
+    "language": "Language",
+    "mainNav": "Main navigation",
+    "switchToArabic": "Switch to Arabic",
+    "switchToEnglish": "Switch to English",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "breadcrumb": "Breadcrumb"
+  },
+  "cta": {
+    "contactUs": "Contact Us",
+    "viewProjects": "Explore Our Projects",
+    "exploreServices": "Explore Services",
+    "learnMore": "Learn More",
+    "getInTouch": "Get in Touch",
+    "requestQuote": "Request a Quote",
+    "backHome": "Back to Home",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "sendMessage": "Send Message",
+    "download": "Download",
+    "callUs": "Call Us",
+    "emailUs": "Email Us"
+  },
+  "home": {
+    "heroTitle": "We Build Today What Will Stand Tomorrow",
+    "heroSubtitle": "General contracting, engineering, and construction delivery built on quality, reliability, and disciplined project management.",
+    "introEyebrow": "Who we are",
+    "introTitle": "A serious partner for complex construction",
+    "scrollHint": "Scroll",
+    "featuredProjects": "Featured Projects",
+    "featuredProjectsSubtitle": "Selected sample portfolio entries that demonstrate scope, clarity, and delivery standards.",
+    "ourServices": "Featured Services",
+    "ourServicesSubtitle": "Capabilities spanning contracting, civil works, infrastructure, and project controls.",
+    "trustedClients": "Clients & Partners",
+    "trustedClientsSubtitle": "Sample partners shown for demonstration — replace with your approved client list.",
+    "statisticsTitle": "By the Numbers",
+    "statisticsSubtitle": "Editable company metrics managed from the CMS.",
+    "whyUsTitle": "Why Northern Meteor",
+    "whyUsSubtitle": "Six principles that guide how we plan, build, and hand over.",
+    "whyUs": {
+      "quality": { "title": "Quality", "body": "Materials, workmanship, and inspection discipline that protect long-term performance." },
+      "safety": { "title": "Safety", "body": "Site practices that prioritize people, compliance, and controlled operations." },
+      "reliability": { "title": "Reliability", "body": "Clear commitments, transparent reporting, and dependable follow-through." },
+      "onTime": { "title": "On-Time Delivery", "body": "Schedules managed with realistic planning and proactive risk control." },
+      "team": { "title": "Experienced Team", "body": "Engineers and site leaders with multi-discipline construction fluency." },
+      "solutions": { "title": "Integrated Solutions", "body": "From consultation through handover — one accountable delivery chain." }
+    },
+    "processTitle": "How We Deliver",
+    "processSubtitle": "A clear methodology from first conversation to final handover.",
+    "process": {
+      "consultation": "Consultation",
+      "planning": "Planning",
+      "engineering": "Engineering",
+      "execution": "Execution",
+      "quality": "Quality Control",
+      "handover": "Handover"
+    },
+    "contactPreviewTitle": "Let's discuss your project",
+    "contactPreviewSubtitle": "Reach our team or send a message — we respond with clarity and care.",
+    "mapPlaceholder": "Map location",
+    "mapUnavailable": "Map preview available once coordinates are configured in settings.",
+    "ctaTitle": "Let's Build Your Next Project Together",
+    "ctaSubtitle": "Share your requirements and our team will respond promptly."
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "A disciplined general contractor built for complex delivery, accountable leadership, and structures that endure.",
+    "seoDescription": "Learn about Northern Meteor Construction — our company, leadership, engineering capabilities, safety culture, and commitment to long-term reliability.",
+    "breadcrumb": "Breadcrumb",
+    "vision": "Vision",
+    "mission": "Mission",
+    "values": "Values",
+    "experience": "Experience",
+    "capabilities": "Capabilities",
+    "safety": "Safety",
+    "quality": "Quality",
+    "process": "Our Process",
+    "whyUs": "Why Us",
+    "whoWeAre": {
+      "eyebrow": "Who we are",
+      "title": "Engineering credibility, delivered with discipline"
+    },
+    "visionMissionTitle": "Vision, Mission & Philosophy",
+    "visionMissionSubtitle": "The principles that shape how we plan, build, and hand over.",
+    "philosophy": {
+      "title": "Engineering Philosophy",
+      "body": "We treat every project as a controlled system: clear scope, verified design intent, sequenced execution, and documented quality. Decisions are evidence-based, interfaces are managed early, and delivery remains accountable from first briefing to final handover."
+    },
+    "valuesTitle": "Core Values",
+    "valuesSubtitle": "Standards that govern conduct on site, in the office, and with every client partnership.",
+    "coreValues": {
+      "integrity": {
+        "title": "Integrity",
+        "body": "Transparent reporting, honest forecasts, and commitments we are prepared to stand behind."
+      },
+      "quality": {
+        "title": "Quality",
+        "body": "Materials, workmanship, and inspection regimes that protect performance over the asset lifecycle."
+      },
+      "safety": {
+        "title": "Safety",
+        "body": "Controlled operations that put people first and treat compliance as non-negotiable."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "body": "Practical methods and tools that reduce risk, improve coordination, and sharpen delivery."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "body": "Predictable progress, disciplined follow-through, and communication clients can trust."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "body": "Responsible construction practices that respect resources, communities, and long-term value."
+      }
+    },
+    "leadershipTitle": "Leadership",
+    "leadershipSubtitle": "Experienced professionals accountable for delivery standards across every engagement.",
+    "capabilitiesTitle": "Capabilities",
+    "capabilitiesSubtitle": "Multi-discipline construction capacity spanning buildings, infrastructure, and project controls.",
+    "capabilityItems": {
+      "commercial": {
+        "title": "Commercial",
+        "body": "Office, mixed-use, and institutional buildings delivered with coordinated finishes and systems."
+      },
+      "industrial": {
+        "title": "Industrial",
+        "body": "Production facilities and industrial environments requiring rigorous sequencing and controls."
+      },
+      "infrastructure": {
+        "title": "Infrastructure",
+        "body": "Civil infrastructure works planned for durability, maintainability, and operational continuity."
+      },
+      "civil": {
+        "title": "Civil",
+        "body": "Earthworks, structures, and site development executed to engineering specifications."
+      },
+      "roads": {
+        "title": "Roads",
+        "body": "Roadworks and related civil packages delivered with traffic, safety, and quality oversight."
+      },
+      "mep": {
+        "title": "MEP",
+        "body": "Mechanical, electrical, and plumbing coordination integrated into the construction programme."
+      },
+      "maintenance": {
+        "title": "Maintenance",
+        "body": "Post-handover support and maintenance planning that protect asset performance."
+      },
+      "projectManagement": {
+        "title": "Project Management",
+        "body": "Schedule, cost, risk, and stakeholder control across the full project lifecycle."
+      }
+    },
+    "trustTitle": "Why Clients Trust Us",
+    "trustSubtitle": "Measured indicators of experience and delivery capacity — managed from the CMS.",
+    "safetyQualityTitle": "Safety & Quality",
+    "safetyQualitySubtitle": "A controlled approach to HSE, assurance, and continuous improvement on every site.",
+    "safetyPillars": {
+      "hse": {
+        "title": "HSE",
+        "body": "Site procedures, training, and supervision that keep people, plant, and the public protected."
+      },
+      "qa": {
+        "title": "Quality Assurance",
+        "body": "Inspection points, material control, and documented verification throughout execution."
+      },
+      "risk": {
+        "title": "Risk Management",
+        "body": "Early identification of interfaces, hazards, and programme risks with clear mitigation ownership."
+      },
+      "improvement": {
+        "title": "Continuous Improvement",
+        "body": "Lessons captured, methods refined, and standards raised after every delivery cycle."
+      }
+    },
+    "timelineTitle": "Our Journey",
+    "timelineSubtitle": "Key milestones in building a capable, reliable contracting organization.",
+    "timelineEmpty": "Milestones will be published soon.",
+    "certificationsTitle": "Certifications",
+    "certificationsSubtitle": "Official credentials and accreditations will appear here when verified and approved for publication.",
+    "certificationsPlaceholder": "Certifications will be published soon.",
+    "ctaTitle": "Let's Build the Future Together.",
+    "ctaSubtitle": "Share your requirements with our team — we respond with clarity, structure, and care."
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Full-service engineering and construction capability across buildings, infrastructure, and project delivery.",
+    "seoDescription": "Explore Northern Meteor Construction services — general contracting, civil works, infrastructure, MEP, project management, and disciplined delivery systems.",
+    "empty": "No services are published yet.",
+    "details": "Service details",
+    "introEyebrow": "Capabilities",
+    "introTitle": "Engineering and construction under one accountable delivery chain",
+    "introLead": "Northern Meteor provides integrated contracting capacity — from planning and engineering coordination through execution, quality assurance, and handover.",
+    "featuredTitle": "Featured Services",
+    "featuredSubtitle": "Published service lines managed from the CMS — each representing a core delivery capability.",
+    "disciplinesTitle": "Engineering Disciplines",
+    "disciplinesSubtitle": "Multi-discipline coverage spanning commercial, industrial, civil, and infrastructure environments.",
+    "methodology": {
+      "title": "Work Methodology",
+      "subtitle": "A controlled sequence from planning through delivery — designed for clarity, quality, and schedule discipline.",
+      "steps": {
+        "planning": {
+          "title": "Planning",
+          "body": "Scope definition, programme structure, and interface mapping before mobilisation."
+        },
+        "engineering": {
+          "title": "Engineering",
+          "body": "Design coordination and technical reviews that protect constructability and compliance."
+        },
+        "execution": {
+          "title": "Execution",
+          "body": "Site delivery with sequenced work packages, supervision, and progress control."
+        },
+        "qa": {
+          "title": "QA",
+          "body": "Inspection regimes, material verification, and documented quality checkpoints."
+        },
+        "delivery": {
+          "title": "Delivery",
+          "body": "Structured handover, close-out documentation, and accountable completion."
+        }
+      }
+    },
+    "equipment": {
+      "title": "Technology & Equipment",
+      "subtitle": "Plant, tools, and technical systems supporting safe and efficient site operations.",
+      "placeholder": "Equipment details will be published soon."
+    },
+    "safetyTitle": "Safety Commitment",
+    "safetySubtitle": "HSE, quality assurance, and risk control embedded in every service engagement.",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Clear answers on how we scope, deliver, and protect quality across our service lines.",
+      "items": {
+        "scope": {
+          "question": "What scope of work does Northern Meteor typically deliver?",
+          "answer": "We deliver general contracting and multi-discipline construction packages spanning commercial, industrial, civil, and infrastructure works — coordinated under a single project control framework."
+        },
+        "sectors": {
+          "question": "Which sectors do you serve?",
+          "answer": "Our capabilities cover commercial buildings, industrial facilities, infrastructure, roads, civil works, MEP packages, maintenance, and project management support."
+        },
+        "quality": {
+          "question": "How is quality controlled during execution?",
+          "answer": "Quality is managed through inspection points, material control, documented verification, and continuous alignment with design intent throughout the programme."
+        },
+        "safety": {
+          "question": "How do you manage health, safety, and environment (HSE)?",
+          "answer": "HSE procedures, site supervision, and risk reviews are embedded in planning and daily operations — protecting people, plant, and the public."
+        },
+        "engagement": {
+          "question": "How do engagements typically begin?",
+          "answer": "We start with a clear brief and scope discussion, then structure planning, interfaces, and delivery controls before mobilisation — so expectations and accountability are aligned early."
+        },
+        "timeline": {
+          "question": "How are schedules and interfaces managed?",
+          "answer": "Programmes are sequenced with realistic planning, proactive risk identification, and transparent progress reporting so interfaces are resolved before they affect the critical path."
+        }
+      }
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A portfolio that demonstrates scale, discipline, and delivery across complex construction environments.",
+    "seoDescription": "Explore Northern Meteor Construction projects — featured works, sectors, locations, and delivery status across our published portfolio.",
+    "empty": "No projects match your filters.",
+    "featured": "Featured",
+    "statusLabel": "Status",
+    "status": {
+      "PLANNED": "Planned",
+      "IN_PROGRESS": "In Progress",
+      "COMPLETED": "Completed",
+      "ON_HOLD": "On Hold"
+    },
+    "location": "Location",
+    "client": "Client",
+    "category": "Category",
+    "scope": "Scope",
+    "startDate": "Start date",
+    "completionDate": "Completion date",
+    "gallery": "Gallery",
+    "filterAll": "All",
+    "related": "Related projects",
+    "overviewEyebrow": "Portfolio",
+    "overviewTitle": "Evidence of delivery at scale",
+    "overviewLead": "Selected works that reflect planning rigor, field execution, and accountable handover across commercial, civil, and infrastructure scopes.",
+    "gridTitle": "Project Portfolio",
+    "gridSubtitle": "Filter by sector, status, location, or featured works — every card is driven by published CMS data.",
+    "filtersLabel": "Project filters",
+    "searchPlaceholder": "Search projects, clients, locations…",
+    "applyFilters": "Apply filters",
+    "featuredShowcaseTitle": "Featured Project",
+    "featuredShowcaseSubtitle": "A CMS-selected showcase of delivery quality and project leadership.",
+    "statsTitle": "Portfolio at a Glance",
+    "statsSubtitle": "Key indicators of experience, partnerships, and delivery capacity — managed from the CMS.",
+    "ctaTitle": "Ready to discuss your next project?",
+    "ctaSubtitle": "Share your requirements with our team — we respond with clarity, structure, and care.",
+    "paginationLabel": "Project pagination",
+    "previousPage": "Previous",
+    "nextPage": "Next",
+    "pageOf": "Page {page} of {total}",
+    "detail": {
+      "overviewEyebrow": "Case study",
+      "overviewTitle": "Project overview",
+      "engineeringSummary": "Engineering summary",
+      "engineeringSummaryFallback": "Additional engineering notes will be published when available.",
+      "keyFactsTitle": "Key facts",
+      "keyFactsSubtitle": "Core project attributes managed from the CMS.",
+      "gallerySubtitle": "Selected project imagery — open any frame for a larger view.",
+      "galleryImageAlt": "{title} — gallery image {index}",
+      "viewImage": "View image",
+      "closeLightbox": "Close image viewer",
+      "lightboxLabel": "Project image viewer",
+      "scopeSubtitle": "Work packages and delivery scope recorded for this project.",
+      "scopePlaceholder": "Additional scope details will be published later.",
+      "highlightsTitle": "Engineering highlights",
+      "highlightsSubtitle": "Delivery themes that guide how Northern Meteor plans and executes complex work.",
+      "highlightsNote": "Project-specific highlight fields are not yet available in the CMS. The cards below are general delivery themes — not invented technical claims for this project.",
+      "highlightPlaceholders": {
+        "coordination": {
+          "title": "Multi-discipline coordination",
+          "body": "Interfaces managed early so design intent, site sequencing, and package handoffs remain aligned."
+        },
+        "quality": {
+          "title": "Quality assurance",
+          "body": "Inspection points, material control, and documented verification across the execution cycle."
+        },
+        "safety": {
+          "title": "Controlled site operations",
+          "body": "HSE procedures and supervision that protect people, plant, and the public throughout delivery."
+        }
+      },
+      "relatedSubtitle": "Other published works in the same category.",
+      "ctaTitle": "Discuss a project of similar scope",
+      "ctaSubtitle": "Share your requirements with our team — we respond with clarity, structure, and care.",
+      "exploreMore": "Explore more projects"
+    }
+  },
+  "clients": {
+    "title": "Clients",
+    "subtitle": "Organizations we are proud to partner with.",
+    "empty": "No clients are published yet."
+  },
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Experienced professionals driving every project forward.",
+    "empty": "No team members are published yet."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Reach Northern Meteor Construction — we are ready to discuss your project.",
+    "seoDescription": "Contact Northern Meteor Construction for project inquiries, quote requests, and partnership discussions. Phone, email, office location, and quote form.",
+    "formTitle": "Send a message",
+    "success": "Thank you. Your message has been sent.",
+    "error": "Something went wrong. Please try again.",
+    "rateLimited": "Too many requests. Please wait and try again.",
+    "infoTitle": "Contact information",
+    "infoSubtitle": "Reach our team by phone, email, or visit the office during business hours.",
+    "mapTitle": "Office location",
+    "mapSubtitle": "Find us using the map coordinates managed in the CMS.",
+    "hoursValue": "Sunday – Thursday · 8:00 AM – 5:00 PM",
+    "ctaTitle": "Ready to start the conversation?",
+    "ctaSubtitle": "Share your requirements and our team will respond with clarity and structure.",
+    "fields": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "placeholders": {
+      "name": "Your name",
+      "email": "you@example.com",
+      "phone": "+966 …",
+      "company": "Company name (optional)",
+      "subject": "How can we help?",
+      "message": "Tell us about your project or inquiry"
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Working hours"
+    },
+    "quote": {
+      "title": "Request a quote",
+      "subtitle": "Tell us about your project. Our team will review your request and follow up promptly.",
+      "submit": "Submit quote request",
+      "success": "Thank you. Your quote request has been received.",
+      "attachmentHint": "Optional — file storage will be enabled later. You may select a file; it is not uploaded yet.",
+      "privacyNote": "We use your details only to respond to this inquiry.",
+      "fields": {
+        "company": "Company",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "projectType": "Project type",
+        "budget": "Budget",
+        "location": "Location",
+        "timeline": "Timeline",
+        "message": "Message",
+        "attachment": "Attachment"
+      },
+      "placeholders": {
+        "company": "Company or organization",
+        "name": "Your full name",
+        "email": "you@example.com",
+        "phone": "+966 …",
+        "projectType": "e.g. Commercial fit-out",
+        "budget": "Approximate budget (optional)",
+        "location": "City or site location",
+        "timeline": "Desired start or completion",
+        "message": "Describe scope, constraints, and priorities"
+      }
+    },
+    "faq": {
+      "title": "Contact FAQ",
+      "subtitle": "Answers to common questions before you reach out.",
+      "items": {
+        "response": {
+          "question": "How quickly will you respond?",
+          "answer": "We aim to acknowledge quote requests within one business day and schedule a follow-up once the brief is clear."
+        },
+        "info": {
+          "question": "What information should I include?",
+          "answer": "Share project type, location, timeline, and any constraints. The more specific the brief, the faster we can advise."
+        },
+        "visit": {
+          "question": "Can we schedule a site or office visit?",
+          "answer": "Yes — after an initial review we can arrange a meeting or site walk when it helps clarify scope."
+        },
+        "languages": {
+          "question": "Do you communicate in Arabic and English?",
+          "answer": "Yes. Our public site and team support both Arabic and English."
+        },
+        "attachments": {
+          "question": "Can I attach drawings or documents?",
+          "answer": "Attachment storage is being prepared. For now, describe the documents in your message and we will request files securely when needed."
+        }
+      }
+    }
+  },
+  "forms": {
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email address",
+    "optional": "Optional",
+    "saving": "Saving…",
+    "saved": "Saved successfully",
+    "deleting": "Deleting…",
+    "deleted": "Deleted successfully",
+    "uploading": "Uploading…",
+    "uploaded": "Upload complete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "search": "Search",
+    "reset": "Reset",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "archive": "Archive",
+    "restore": "Restore",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading…",
+    "tryAgain": "Try again"
+  },
+  "auth": {
+    "loginTitle": "Sign in to CMS",
+    "loginSubtitle": "Northern Meteor Construction administration",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "signOut": "Sign out",
+    "invalidCredentials": "Invalid email or password",
+    "sessionExpired": "Your session has expired. Please sign in again.",
+    "unauthorized": "You do not have permission to access this page."
+  },
+  "admin": {
+    "title": "Admin",
+    "dashboard": "Dashboard",
+    "overview": "Overview",
+    "welcome": "Welcome back, {name}",
+    "nav": {
+      "dashboard": "Dashboard",
+      "projects": "Projects",
+      "services": "Services",
+      "clients": "Clients",
+      "team": "Team",
+      "milestones": "Milestones",
+      "statistics": "Statistics",
+      "media": "Media",
+      "messages": "Messages",
+      "company": "Company profile",
+      "users": "Users",
+      "settings": "Settings",
+      "audit": "Audit log",
+      "viewSite": "View site"
+    },
+    "dashboardCards": {
+      "projects": "Projects",
+      "services": "Services",
+      "messages": "Unread messages",
+      "media": "Media files"
+    },
+    "projects": {
+      "title": "Projects",
+      "create": "New project",
+      "edit": "Edit project",
+      "empty": "No projects yet. Create your first project.",
+      "fields": {
+        "titleAr": "Title (Arabic)",
+        "titleEn": "Title (English)",
+        "slug": "Slug",
+        "summaryAr": "Summary (Arabic)",
+        "summaryEn": "Summary (English)",
+        "descriptionAr": "Description (Arabic)",
+        "descriptionEn": "Description (English)",
+        "status": "Status",
+        "featured": "Featured",
+        "published": "Published",
+        "coverImage": "Cover image",
+        "client": "Client",
+        "category": "Category",
+        "locationAr": "Location (Arabic)",
+        "locationEn": "Location (English)",
+        "seoTitleAr": "SEO title (Arabic)",
+        "seoTitleEn": "SEO title (English)",
+        "seoDescriptionAr": "SEO description (Arabic)",
+        "seoDescriptionEn": "SEO description (English)"
+      }
+    },
+    "services": {
+      "title": "Services",
+      "create": "New service",
+      "edit": "Edit service",
+      "empty": "No services yet. Create your first service."
+    },
+    "clients": {
+      "title": "Clients",
+      "create": "New client",
+      "edit": "Edit client",
+      "empty": "No clients yet. Add a client logo or profile."
+    },
+    "team": {
+      "title": "Team members",
+      "create": "New team member",
+      "edit": "Edit team member",
+      "empty": "No team members yet."
+    },
+    "milestones": {
+      "title": "Milestones",
+      "create": "New milestone",
+      "edit": "Edit milestone",
+      "empty": "No milestones yet."
+    },
+    "statistics": {
+      "title": "Statistics",
+      "create": "New statistic",
+      "edit": "Edit statistic",
+      "empty": "No statistics yet. Add key metrics for the homepage."
+    },
+    "media": {
+      "title": "Media library",
+      "upload": "Upload files",
+      "empty": "No media uploaded yet.",
+      "fileName": "File name",
+      "size": "Size",
+      "type": "Type",
+      "altAr": "Alt text (Arabic)",
+      "altEn": "Alt text (English)"
+    },
+    "messages": {
+      "title": "Contact messages",
+      "empty": "No messages yet.",
+      "unread": "Unread",
+      "read": "Read",
+      "archived": "Archived",
+      "markRead": "Mark as read",
+      "markUnread": "Mark as unread",
+      "archive": "Archive",
+      "from": "From",
+      "receivedAt": "Received"
+    },
+    "company": {
+      "title": "Company profile",
+      "subtitle": "Manage public company information shown across the site.",
+      "empty": "Company profile has not been configured yet."
+    },
+    "users": {
+      "title": "Users",
+      "create": "New user",
+      "edit": "Edit user",
+      "empty": "No users found.",
+      "role": "Role",
+      "active": "Active",
+      "roles": {
+        "ADMIN": "Admin",
+        "EDITOR": "Editor"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Site-wide configuration.",
+      "empty": "No settings configured yet."
+    },
+    "audit": {
+      "title": "Audit log",
+      "empty": "No audit events recorded yet.",
+      "action": "Action",
+      "entity": "Entity",
+      "user": "User",
+      "when": "When"
+    },
+    "table": {
+      "name": "Name",
+      "status": "Status",
+      "published": "Published",
+      "updated": "Updated",
+      "created": "Created",
+      "sortOrder": "Order",
+      "actions": "Actions"
+    },
+    "confirmDelete": {
+      "title": "Delete item?",
+      "description": "This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "emptyStates": {
+      "generic": "Nothing here yet.",
+      "noResults": "No results match your search.",
+      "noPermission": "You do not have permission to view this section."
+    }
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page you are looking for does not exist or has been moved.",
+    "serverErrorTitle": "Something went wrong",
+    "serverErrorDescription": "An unexpected error occurred. Please try again later.",
+    "forbiddenTitle": "Access denied",
+    "forbiddenDescription": "You are not allowed to access this resource."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "company": "Northern Meteor Construction",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "followUs": "Follow us"
+  },
+  "seo": {
+    "homeTitle": "Northern Meteor Construction",
+    "homeDescription": "Northern Meteor Construction — We Build Today What Will Stand Tomorrow.",
+    "defaultDescription": "General contracting and construction services by Northern Meteor Construction."
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Error",
+    "success": "Success",
+    "demoBadge": "Demo content",
+    "localeName": {
+      "ar": "Arabic",
+      "en": "English"
+    }
+  }
+}
