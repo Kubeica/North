@@ -42,6 +42,15 @@ function resolveKeyPath(key: string): string {
   return absolute;
 }
 
+/**
+ * Resolve a public `/uploads/...` relative key to an absolute path under
+ * `public/uploads`. Used by the runtime uploads route (Next.js production
+ * does not serve files written to `public/` after build).
+ */
+export function resolveLocalUploadAbsolutePath(key: string): string {
+  return resolveKeyPath(key);
+}
+
 export class LocalStorageProvider implements StorageProvider {
   async upload(input: UploadInput): Promise<UploadResult> {
     const folder = input.folder
