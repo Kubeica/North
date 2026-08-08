@@ -27,7 +27,51 @@ export default async function AdminSettingsPage() {
         description="Company profile, social links, SEO defaults, and general site options."
       />
       <SettingsForm
-        company={company}
+        company={
+          company
+            ? {
+                nameEn: company.nameEn,
+                nameAr: company.nameAr,
+                shortNameEn: company.shortNameEn,
+                shortNameAr: company.shortNameAr,
+                shortDescriptionEn: company.shortDescriptionEn,
+                shortDescriptionAr: company.shortDescriptionAr,
+                aboutEn: company.aboutEn,
+                aboutAr: company.aboutAr,
+                visionEn: company.visionEn,
+                visionAr: company.visionAr,
+                missionEn: company.missionEn,
+                missionAr: company.missionAr,
+                valuesEn: company.valuesEn,
+                valuesAr: company.valuesAr,
+                experienceEn: company.experienceEn,
+                experienceAr: company.experienceAr,
+                capabilitiesEn: company.capabilitiesEn,
+                capabilitiesAr: company.capabilitiesAr,
+                safetyEn: company.safetyEn,
+                safetyAr: company.safetyAr,
+                qualityEn: company.qualityEn,
+                qualityAr: company.qualityAr,
+                whyUsEn: company.whyUsEn,
+                whyUsAr: company.whyUsAr,
+                processEn: company.processEn,
+                processAr: company.processAr,
+                phone: company.phone,
+                email: company.email,
+                addressEn: company.addressEn,
+                addressAr: company.addressAr,
+                latitude: company.latitude,
+                longitude: company.longitude,
+                logoUrl: company.logoUrl,
+                faviconUrl: company.faviconUrl,
+                heroImageUrl: company.heroImageUrl,
+                linkedinUrl: company.linkedinUrl,
+                facebookUrl: company.facebookUrl,
+                instagramUrl: company.instagramUrl,
+                youtubeUrl: company.youtubeUrl,
+              }
+            : null
+        }
         settings={{
           defaultLanguage: map[SITE_SETTING_KEYS.defaultLanguage] ?? "en",
           maintenanceMode:

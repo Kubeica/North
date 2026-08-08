@@ -1,38 +1,28 @@
 /**
  * Northern Meteor — Public Design System tokens.
- *
- * CSS variable counterparts (see `app/globals.css`):
- * - colors → --background, --surface, --surface-2, --foreground, --muted-foreground,
- *   --gold, --gold-light, --navy, --border (+ --nm-* aliases where noted)
- * - spacing → --nm-section-y, --nm-section-y-md, --nm-gutter, --nm-gap
- * - radii → --nm-radius-sm|md|lg
- * - shadows → --nm-shadow-subtle, --nm-shadow-elevate
- * - typography → --nm-text-display|h1|h2|h3|h4|lead|body|caption
- * - containers → --nm-container-sm|md|lg|xl (and --nm-container for lg)
- * - motion → --nm-duration-fast|base|slow, --nm-ease-out-expo
- * - zIndex → --nm-z-nav, --nm-z-overlay
+ * Tuned to the Design D reference: cinematic charcoal, graphite, construction gold.
  */
 
 export const colors = {
-  background: "#0B0D0F",
-  surface: "#12161A",
-  surface2: "#181D22",
-  text: "#F5F5F5",
-  muted: "#A7ADB4",
+  background: "#0A0C0E",
+  surface: "#111418",
+  surface2: "#171C21",
+  text: "#F4F2ED",
+  muted: "#8B93A0",
   gold: "#C9A227",
-  goldLight: "#E0BD4F",
-  navy: "#0F1A2B",
-  border: "rgb(255 255 255 / 0.1)",
+  goldLight: "#DDBB4A",
+  navy: "#0C1522",
+  border: "rgb(255 255 255 / 0.08)",
 } as const;
 
 export const spacing = {
-  sectionY: "4rem",
-  sectionYMd: "6rem",
-  gutter: "1.5rem",
-  gap: "1.5rem",
+  sectionY: "3.5rem",
+  sectionYMd: "5.5rem",
+  gutter: "1.25rem",
+  gap: "1.25rem",
 } as const;
 
-/** Architectural radii — restrained, not pill-like. */
+/** Architectural radii — sharp, corporate (≈4–6px). */
 export const radii = {
   none: "0",
   sm: "0.125rem",
@@ -41,31 +31,31 @@ export const radii = {
 } as const;
 
 export const shadows = {
-  subtle: "0 1px 2px rgb(0 0 0 / 0.24)",
-  elevate: "0 12px 40px rgb(0 0 0 / 0.35)",
+  subtle: "0 1px 0 rgb(255 255 255 / 0.04)",
+  elevate: "0 24px 64px rgb(0 0 0 / 0.45)",
 } as const;
 
 export const typography = {
   display: {
-    fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
-    lineHeight: "1.1",
-    letterSpacing: "-0.02em",
-    fontWeight: "600",
+    fontSize: "clamp(2.35rem, 5.5vw, 4.5rem)",
+    lineHeight: "1.08",
+    letterSpacing: "-0.025em",
+    fontWeight: "700",
   },
   h1: {
-    fontSize: "clamp(2rem, 4vw, 3rem)",
-    lineHeight: "1.15",
+    fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
+    lineHeight: "1.12",
     letterSpacing: "-0.02em",
-    fontWeight: "600",
+    fontWeight: "700",
   },
   h2: {
-    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-    lineHeight: "1.2",
+    fontSize: "clamp(1.55rem, 3vw, 2.5rem)",
+    lineHeight: "1.18",
     letterSpacing: "-0.015em",
     fontWeight: "600",
   },
   h3: {
-    fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
+    fontSize: "clamp(1.2rem, 1.8vw, 1.5rem)",
     lineHeight: "1.3",
     letterSpacing: "-0.01em",
     fontWeight: "600",
@@ -78,12 +68,12 @@ export const typography = {
   },
   lead: {
     fontSize: "1.125rem",
-    lineHeight: "1.65",
+    lineHeight: "1.7",
     fontWeight: "400",
   },
   body: {
     fontSize: "1rem",
-    lineHeight: "1.7",
+    lineHeight: "1.75",
     fontWeight: "400",
   },
   caption: {
@@ -96,16 +86,15 @@ export const typography = {
 export const containers = {
   sm: "40rem",
   md: "48rem",
-  lg: "64rem",
-  xl: "80rem",
+  lg: "68rem",
+  xl: "84rem",
   full: "100%",
 } as const;
 
 export const motion = {
   durationFast: 0.2,
-  durationBase: 0.45,
-  durationSlow: 0.7,
-  /** cubic-bezier(0.22, 1, 0.36, 1) */
+  durationBase: 0.5,
+  durationSlow: 0.8,
   easeOutExpo: [0.22, 1, 0.36, 1] as const,
 } as const;
 

@@ -11,6 +11,8 @@ const EDITOR_ALLOWED: Permission[] = [
   "clients:write",
   "team:read",
   "team:write",
+  "milestones:read",
+  "milestones:write",
   "statistics:read",
   "statistics:write",
   "media:read",

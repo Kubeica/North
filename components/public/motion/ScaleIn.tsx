@@ -16,16 +16,14 @@ type ScaleInProps = {
 export function ScaleIn({ children, className, delay = 0 }: ScaleInProps) {
   const reduceMotion = useReducedMotion();
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={cn(className)}
       initial={{ opacity: 0, scale: scaleFrom }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={transition("base", delay)}
+      transition={
+        reduceMotion ? { duration: 0 } : transition("base", delay)
+      }
     >
       {children}
     </motion.div>

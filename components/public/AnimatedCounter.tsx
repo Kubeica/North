@@ -19,19 +19,17 @@ function parseStat(value: string) {
 
 /**
  * Animates numeric portions of CMS statistic values (e.g. "320+" → count up).
- * Non-numeric strings render as-is. Respects prefers-reduced-motion.
+ * SSR and first client paint always show the final value to avoid hydration mismatches.
  */
 export function AnimatedCounter({ value, className }: AnimatedCounterProps) {
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
   const { target, suffix } = useMemo(() => parseStat(value), [value]);
-  const canAnimate = !reduceMotion && Number.isFinite(target);
-
-  const [display, setDisplay] = useState(canAnimate ? `0${suffix}` : value);
+  const [display, setDisplay] = useState(value);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    if (!canAnimate) return;
+    if (reduceMotion || !Number.isFinite(target)) return;
 
     const node = ref.current;
     if (!node) return;
@@ -47,16 +45,17 @@ export function AnimatedCounter({ value, className }: AnimatedCounterProps) {
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [canAnimate]);
+  }, [reduceMotion, target]);
 
   useEffect(() => {
-    if (!started || !canAnimate) return;
+    if (!started || reduceMotion || !Number.isFinite(target)) return;
 
     const duration = 1200;
-    const start = performance.now();
     let frame = 0;
+    let start = 0;
 
     const tick = (now: number) => {
+      if (!start) start = now;
       const progress = Math.min(1, (now - start) / duration);
       const eased = 1 - (1 - progress) ** 3;
       const current = Math.round(target * eased);
@@ -70,11 +69,11 @@ export function AnimatedCounter({ value, className }: AnimatedCounterProps) {
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [started, canAnimate, target, suffix, value]);
+  }, [started, reduceMotion, target, suffix, value]);
 
   return (
     <span ref={ref} className={className}>
-      {canAnimate ? display : value}
+      {display}
     </span>
   );
 }

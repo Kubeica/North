@@ -1,4 +1,4 @@
-import { LazyImage } from "./LazyImage";
+import { ArchitecturalImage } from "@/components/public/media/ArchitecturalImage";
 import { cn } from "@/components/public/theme/utils";
 
 type GalleryImageProps = {
@@ -17,15 +17,13 @@ export function GalleryImage({
   priority = false,
 }: GalleryImageProps) {
   return (
-    <div className={cn("relative aspect-[4/3] overflow-hidden bg-surface-2", className)}>
-      <LazyImage
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className="object-cover"
-      />
-    </div>
+    <ArchitecturalImage
+      src={src}
+      alt={alt}
+      seed={alt}
+      sizes={sizes}
+      priority={priority}
+      className={cn("aspect-[4/3]", className)}
+    />
   );
 }

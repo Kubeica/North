@@ -1,0 +1,215 @@
+warning: in the working copy of 'app/[locale]/about/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/contact/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/projects/[slug]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/projects/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/services/[slug]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/[locale]/services/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/actions/media.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/actions/settings.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/clients/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/dashboard/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/milestones/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/projects/[id]/edit/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/projects/new/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/projects/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/services/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/settings/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/admin/team/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/ActionMenu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/AdminNav.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/ConfirmDialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/CrudDialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/RowActions.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/forms/ClientForm.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/forms/ServiceForm.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/forms/SettingsForm.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/forms/TeamForm.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/layout/Logo.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutCapabilities.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutCertifications.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutLeadership.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutMilestones.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutSafetyQuality.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutValues.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutVisionMission.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AboutWhoWeAre.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/AnimatedCounter.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ClientLogo.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ClientsMarquee.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ContactCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ContactTeaser.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/CtaSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/FeaturedProjects.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/Footer.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/Hero.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/HeroBackground.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/IntroSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/LanguageSwitcher.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/MapPlaceholder.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/Navbar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/PageHero.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ProcessSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ProjectCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ProjectsFeaturedShowcase.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ProjectsFilter.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ServiceCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ServicesEquipment.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ServicesFeatured.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ServicesIntro.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/ServicesSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/StatisticCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/StatsSection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/TeamMemberCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/Timeline.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/WhyUs.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/buttons/PublicButton.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/media/GalleryImage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/media/HeroImage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/media/LazyImage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/media/ProjectCover.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/media/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/FadeIn.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/FadeUp.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/Reveal.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/ScaleIn.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/Stagger.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/motion/config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/sections/CTASection.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/theme/tokens.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/public/typography/Heading.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/seo/JsonLd.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/alert-dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/button.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ui/sheet.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'i18n/request.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/audit/actions.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/data/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/data/projects.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/seo/metadata.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/ar.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/en.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'next.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/seed.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/client/validation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/service/validation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/settings/service.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/settings/validation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/statistic/repository.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/statistic/service.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/domain/team/validation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/permissions/permissions.test.ts', LF will be replaced by CRLF the next time Git touches it
+ app/[locale]/about/page.tsx                    |  24 [32m+[m[31m-[m
+ app/[locale]/contact/page.tsx                  |  92 [32m++++[m[31m---[m
+ app/[locale]/layout.tsx                        |   2 [32m+[m[31m-[m
+ app/[locale]/page.tsx                          |  87 [32m++++[m[31m--[m
+ app/[locale]/projects/[slug]/page.tsx          |  21 [32m+[m[31m-[m
+ app/[locale]/projects/page.tsx                 |  30 [32m++[m[31m-[m
+ app/[locale]/services/[slug]/page.tsx          |  49 [32m++[m[31m--[m
+ app/[locale]/services/page.tsx                 |  27 [32m+[m[31m-[m
+ app/actions/media.ts                           |  17 [32m++[m
+ app/actions/settings.ts                        |   5 [32m+[m
+ app/admin/clients/page.tsx                     |   3 [32m+[m[31m-[m
+ app/admin/dashboard/page.tsx                   |   2 [32m+[m[31m-[m
+ app/admin/login/page.tsx                       |   2 [32m+[m[31m-[m
+ app/admin/milestones/page.tsx                  |   3 [32m+[m[31m-[m
+ app/admin/projects/[id]/edit/page.tsx          |   3 [32m+[m[31m-[m
+ app/admin/projects/new/page.tsx                |   4 [32m+[m[31m-[m
+ app/admin/projects/page.tsx                    |   7 [32m+[m[31m-[m
+ app/admin/services/page.tsx                    |   3 [32m+[m[31m-[m
+ app/admin/settings/page.tsx                    |  46 [32m+++[m[31m-[m
+ app/admin/team/page.tsx                        |   3 [32m+[m[31m-[m
+ app/globals.css                                |  98 [32m++++[m[31m---[m
+ app/layout.tsx                                 |  67 [32m++++[m[31m-[m
+ components/admin/ActionMenu.tsx                |  69 [32m++[m[31m---[m
+ components/admin/AdminNav.tsx                  |  14 [32m+[m
+ components/admin/ConfirmDialog.tsx             |   5 [32m+[m[31m-[m
+ components/admin/CrudDialog.tsx                |   9 [32m+[m[31m-[m
+ components/admin/RowActions.tsx                |  48 [32m++[m[31m--[m
+ components/admin/forms/ClientForm.tsx          |  15 [32m+[m[31m-[m
+ components/admin/forms/ServiceForm.tsx         |  15 [32m+[m[31m-[m
+ components/admin/forms/SettingsForm.tsx        |  46 [32m++[m[31m--[m
+ components/admin/forms/TeamForm.tsx            |  15 [32m+[m[31m-[m
+ components/layout/Logo.tsx                     |  49 [32m+++[m[31m-[m
+ components/public/AboutCapabilities.tsx        |  54 [32m+[m[31m---[m
+ components/public/AboutCertifications.tsx      |  34 [32m+[m[31m--[m
+ components/public/AboutLeadership.tsx          |  38 [32m++[m[31m-[m
+ components/public/AboutMilestones.tsx          |  18 [32m+[m[31m-[m
+ components/public/AboutSafetyQuality.tsx       |  33 [32m+[m[31m--[m
+ components/public/AboutValues.tsx              |  45 [32m+[m[31m---[m
+ components/public/AboutVisionMission.tsx       |  17 [32m+[m[31m-[m
+ components/public/AboutWhoWeAre.tsx            |  45 [32m++[m[31m--[m
+ components/public/AnimatedCounter.tsx          |  19 [32m+[m[31m-[m
+ components/public/ClientLogo.tsx               |  25 [32m+[m[31m-[m
+ components/public/ClientsMarquee.tsx           | 101 [32m+++[m[31m----[m
+ components/public/ContactCard.tsx              |  26 [32m+[m[31m-[m
+ components/public/ContactTeaser.tsx            |  40 [32m++[m[31m-[m
+ components/public/CtaSection.tsx               |   5 [32m+[m[31m-[m
+ components/public/FeaturedProjects.tsx         |  54 [32m++[m[31m--[m
+ components/public/Footer.tsx                   |  59 [32m++[m[31m--[m
+ components/public/Hero.tsx                     | 157 [32m++++++[m[31m-----[m
+ components/public/HeroBackground.tsx           |  34 [32m++[m[31m-[m
+ components/public/IntroSection.tsx             |  56 [32m++[m[31m--[m
+ components/public/LanguageSwitcher.tsx         |   2 [32m+[m[31m-[m
+ components/public/MapPlaceholder.tsx           |  17 [32m+[m[31m-[m
+ components/public/Navbar.tsx                   | 108 [32m++++++[m[31m--[m
+ components/public/PageHero.tsx                 |  34 [32m++[m[31m-[m
+ components/public/ProcessSection.tsx           |  26 [32m+[m[31m-[m
+ components/public/ProjectCard.tsx              | 161 [32m++++++++[m[31m---[m
+ components/public/ProjectsFeaturedShowcase.tsx |  24 [32m+[m[31m-[m
+ components/public/ProjectsFilter.tsx           |   4 [32m+[m[31m-[m
+ components/public/ServiceCard.tsx              |  85 [32m+++[m[31m---[m
+ components/public/ServicesEquipment.tsx        |  35 [32m+[m[31m--[m
+ components/public/ServicesFeatured.tsx         |  16 [32m+[m[31m-[m
+ components/public/ServicesIntro.tsx            |  10 [32m+[m[31m-[m
+ components/public/ServicesSection.tsx          |  26 [32m+[m[31m-[m
+ components/public/StatisticCard.tsx            |   9 [32m+[m[31m-[m
+ components/public/StatsSection.tsx             |  23 [32m+[m[31m-[m
+ components/public/TeamMemberCard.tsx           |  25 [32m+[m[31m-[m
+ components/public/Timeline.tsx                 |  16 [32m+[m[31m-[m
+ components/public/WhyUs.tsx                    |  83 [32m++++[m[31m--[m
+ components/public/buttons/PublicButton.tsx     |   2 [32m+[m[31m-[m
+ components/public/index.ts                     |   1 [32m+[m
+ components/public/media/GalleryImage.tsx       |  20 [32m+[m[31m-[m
+ components/public/media/HeroImage.tsx          |   2 [32m+[m[31m-[m
+ components/public/media/LazyImage.tsx          |   2 [32m+[m[31m-[m
+ components/public/media/ProjectCover.tsx       |  34 [32m+[m[31m--[m
+ components/public/media/index.ts               |   1 [32m+[m
+ components/public/motion/FadeIn.tsx            |   8 [32m+[m[31m-[m
+ components/public/motion/FadeUp.tsx            |  27 [32m+[m[31m-[m
+ components/public/motion/Reveal.tsx            |  30 [32m+[m[31m--[m
+ components/public/motion/ScaleIn.tsx           |   8 [32m+[m[31m-[m
+ components/public/motion/Stagger.tsx           |  21 [32m+[m[31m-[m
+ components/public/motion/config.ts             |   9 [32m+[m[31m-[m
+ components/public/sections/CTASection.tsx      |  39 [32m++[m[31m-[m
+ components/public/theme/tokens.ts              |  75 [32m+++[m[31m---[m
+ components/public/typography/Heading.tsx       |   6 [32m+[m[31m-[m
+ components/seo/JsonLd.tsx                      |   4 [32m+[m[31m-[m
+ components/ui/alert-dialog.tsx                 |  18 [32m+[m[31m-[m
+ components/ui/button.tsx                       |   8 [32m+[m
+ components/ui/dialog.tsx                       |  42 [32m++[m[31m-[m
+ components/ui/sheet.tsx                        |  37 [32m++[m[31m-[m
+ i18n/request.ts                                |   9 [32m+[m[31m-[m
+ lib/audit/actions.ts                           |  10 [32m+[m
+ lib/data/index.ts                              |   1 [32m+[m
+ lib/data/projects.ts                           | 186 [32m++++++++++++[m[31m-[m
+ lib/seo/metadata.ts                            |   2 [32m+[m[31m-[m
+ messages/ar.json                               | 116 [32m++++[m[31m----[m
+ messages/en.json                               | 110 [32m++++[m[31m----[m
+ next.config.ts                                 |   6 [32m+[m[31m-[m
+ prisma/seed.ts                                 | 359 [32m++++++++++++++[m[31m-----------[m
+ src/domain/client/validation.ts                |  15 [32m+[m[31m-[m
+ src/domain/service/validation.ts               |  15 [32m+[m[31m-[m
+ src/domain/settings/service.ts                 |  21 [32m++[m
+ src/domain/settings/validation.ts              |  24 [32m+[m[31m-[m
+ src/domain/statistic/repository.ts             |  98 [32m+++++++[m
+ src/domain/statistic/service.ts                | 118 [32m+++++++[m[31m-[m
+ src/domain/team/validation.ts                  |  15 [32m+[m[31m-[m
+ tests/permissions/permissions.test.ts          |   2 [32m+[m
+ 107 files changed, 2489 insertions(+), 1456 deletions(-)

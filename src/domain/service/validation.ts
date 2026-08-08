@@ -3,9 +3,22 @@ import { z } from "zod";
 const optionalUrl = z
   .string()
   .trim()
-  .url("Invalid URL")
   .optional()
   .or(z.literal(""))
+  .refine(
+    (value) =>
+      !value ||
+      value.startsWith("/") ||
+      (() => {
+        try {
+          const parsed = new URL(value);
+          return parsed.protocol === "http:" || parsed.protocol === "https:";
+        } catch {
+          return false;
+        }
+      })(),
+    { message: "Invalid URL" },
+  )
   .transform((value) => (value ? value : undefined));
 
 const optionalString = (max: number) =>

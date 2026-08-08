@@ -3,6 +3,7 @@ import { Caption } from "@/components/public/typography/Caption";
 import { Heading } from "@/components/public/typography/Heading";
 import { Paragraph } from "@/components/public/typography/Paragraph";
 import { cn } from "@/components/public/theme/utils";
+import { resolveOptionalCmsImageUrl } from "@/lib/media/public-assets";
 
 type TeamMemberCardProps = {
   name: string;
@@ -15,6 +16,17 @@ type TeamMemberCardProps = {
   emailLabel?: string;
   className?: string;
 };
+
+function initials(name: string): string {
+  const parts = name
+    .replace(/\(.*?\)/g, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (parts.length === 0) return "NM";
+  if (parts.length === 1) return parts[0]!.slice(0, 2).toUpperCase();
+  return `${parts[0]![0] ?? ""}${parts[1]![0] ?? ""}`.toUpperCase();
+}
 
 /** Presentational leadership / team card (no data fetching). */
 export function TeamMemberCard({
@@ -29,6 +41,7 @@ export function TeamMemberCard({
   className,
 }: TeamMemberCardProps) {
   const hasContacts = Boolean(linkedInUrl || email);
+  const resolved = resolveOptionalCmsImageUrl(imageUrl);
 
   return (
     <article
@@ -38,9 +51,9 @@ export function TeamMemberCard({
       )}
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-surface-2">
-        {imageUrl ? (
+        {resolved ? (
           <LazyImage
-            src={imageUrl}
+            src={resolved}
             alt={name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -48,9 +61,13 @@ export function TeamMemberCard({
           />
         ) : (
           <div
-            className="absolute inset-0 bg-gradient-to-br from-navy via-surface to-background"
+            className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_30%_20%,color-mix(in_srgb,var(--gold)_18%,transparent),transparent_55%),linear-gradient(160deg,var(--navy),var(--surface))]"
             aria-hidden
-          />
+          >
+            <span className="flex size-20 items-center justify-center border border-gold/50 text-xl font-semibold tracking-[0.18em] text-gold">
+              {initials(name)}
+            </span>
+          </div>
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">

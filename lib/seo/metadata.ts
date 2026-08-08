@@ -35,7 +35,7 @@ function pathWithoutLocale(path?: string): string {
 
 /** Build Next.js Metadata for public pages with Open Graph + Twitter defaults. */
 export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
-  const siteName = input.siteName ?? "Northern Meteor Construction";
+  const siteName = input.siteName ?? "Northern Meteor";
   const locale = input.locale ?? defaultLocale;
   const suffix = pathWithoutLocale(input.path);
   const canonicalPath = `/${locale}${suffix}`;

@@ -22,7 +22,7 @@ export function HeroImage({
       fill
       priority={priority}
       sizes="100vw"
-      quality={80}
+      quality={75}
       className={cn("object-cover object-center", className)}
     />
   );

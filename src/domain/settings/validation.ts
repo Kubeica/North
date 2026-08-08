@@ -3,9 +3,23 @@ import { z } from "zod";
 const optionalUrl = z
   .string()
   .trim()
-  .url("Invalid URL")
   .optional()
   .or(z.literal(""))
+  .refine(
+    (value) =>
+      !value ||
+      value.startsWith("/") ||
+      (() => {
+        try {
+          // Absolute http(s) URLs remain valid for external assets.
+          const parsed = new URL(value);
+          return parsed.protocol === "http:" || parsed.protocol === "https:";
+        } catch {
+          return false;
+        }
+      })(),
+    { message: "Invalid URL" },
+  )
   .transform((value) => (value ? value : undefined));
 
 const optionalString = (max: number) =>
@@ -43,10 +57,10 @@ export const companyProfileSchema = z.object({
     .max(500),
   aboutAr: z.string().trim().min(1, "Arabic about is required").max(20000),
   aboutEn: z.string().trim().min(1, "English about is required").max(20000),
-  visionAr: z.string().trim().min(1, "Arabic vision is required").max(5000),
-  visionEn: z.string().trim().min(1, "English vision is required").max(5000),
-  missionAr: z.string().trim().min(1, "Arabic mission is required").max(5000),
-  missionEn: z.string().trim().min(1, "English mission is required").max(5000),
+  visionAr: z.string().trim().max(5000),
+  visionEn: z.string().trim().max(5000),
+  missionAr: z.string().trim().max(5000),
+  missionEn: z.string().trim().max(5000),
   valuesAr: optionalString(10000),
   valuesEn: optionalString(10000),
   experienceAr: optionalString(10000),

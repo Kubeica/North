@@ -3,10 +3,11 @@ import { getTranslations } from "next-intl/server";
 import { PublicButton } from "@/components/public/buttons/PublicButton";
 import { Container } from "@/components/public/layout/Container";
 import { Section } from "@/components/public/layout/Section";
-import { SectionTitle } from "@/components/public/layout/SectionTitle";
 import { Reveal } from "@/components/public/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/public/motion/Stagger";
 import { ServiceCard } from "@/components/public/ServiceCard";
+import { Heading } from "@/components/public/typography/Heading";
+import { Lead } from "@/components/public/typography/Lead";
 import type { Locale } from "@/lib/i18n/config";
 import type { Service } from "@prisma/client";
 
@@ -30,22 +31,27 @@ export async function ServicesSection({
     <Section tone="dark" id="services" padded={false}>
       <Container className="nm-section">
         <Reveal>
-          <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionTitle
-              title={t("ourServices")}
-              description={t("ourServicesSubtitle")}
-              className="mb-0"
-            />
-            <PublicButton href="/services" variant="link">
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between md:mb-10">
+            <div className="max-w-2xl">
+              <Heading as="h2" size="h2" className="text-balance">
+                {t("ourServices")}
+              </Heading>
+              <Lead className="mt-3 max-w-xl">{t("ourServicesSubtitle")}</Lead>
+            </div>
+            <PublicButton href="/services" variant="link" className="shrink-0">
               {tCta("exploreServices")}
             </PublicButton>
           </div>
         </Reveal>
 
-        <Stagger className="nm-grid-features">
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5">
           {featured.map((service) => (
             <StaggerItem key={service.id}>
-              <ServiceCard locale={locale} service={service} />
+              <ServiceCard
+                locale={locale}
+                service={service}
+                variant="default"
+              />
             </StaggerItem>
           ))}
         </Stagger>

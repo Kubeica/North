@@ -9,15 +9,18 @@ type MapPlaceholderProps = {
   label: string;
   unavailableLabel: string;
   className?: string;
+  /** When false, hide the block entirely if coordinates are missing. */
+  showUnavailable?: boolean;
 };
 
-/** Non-interactive map preview. Uses OSM embed when coordinates exist. */
+/** Non-interactive map preview. Collapses when coordinates are absent. */
 export function MapPlaceholder({
   latitude,
   longitude,
   label,
   unavailableLabel,
   className,
+  showUnavailable = false,
 }: MapPlaceholderProps) {
   const hasCoords =
     latitude != null &&
@@ -26,17 +29,19 @@ export function MapPlaceholder({
     Number.isFinite(longitude);
 
   if (!hasCoords) {
+    if (!showUnavailable) return null;
+
     return (
       <div
         className={cn(
-          "flex min-h-[240px] flex-col items-center justify-center gap-3 border border-border/60 bg-surface-2/40 p-8 text-center",
+          "flex items-center gap-3 border border-border/50 bg-surface-2/30 px-4 py-4",
           className,
         )}
-        role="img"
+        role="status"
         aria-label={label}
       >
-        <MapPin className="size-6 text-gold" aria-hidden />
-        <Caption>{unavailableLabel}</Caption>
+        <MapPin className="size-4 shrink-0 text-gold" aria-hidden />
+        <Caption className="text-muted-foreground">{unavailableLabel}</Caption>
       </div>
     );
   }
@@ -53,7 +58,7 @@ export function MapPlaceholder({
   return (
     <div
       className={cn(
-        "relative min-h-[240px] overflow-hidden border border-border/60 bg-surface",
+        "relative h-[220px] overflow-hidden border border-border/50 bg-surface md:h-[260px]",
         className,
       )}
     >

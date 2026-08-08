@@ -53,30 +53,38 @@ export async function Footer({ locale, company, shortName }: FooterProps) {
   const email = company?.email ?? "";
   const phone = company?.phone ?? "";
   const social = companySocialLinks(company);
+  const shortDescription = company
+    ? localized(company, locale, "shortDescription")
+    : "";
 
   return (
-    <footer className="border-t border-border bg-surface">
-      <div className="nm-container nm-section grid gap-12 md:grid-cols-3 md:gap-8">
-        <div className="space-y-4">
-          <Logo shortName={shortName ?? companyName} />
-          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-            {company
-              ? localized(company, locale, "shortDescription")
-              : companyName}
-          </p>
-          <SocialLinks links={social} />
+    <footer className="border-t border-border bg-background">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+      <div className="nm-container grid gap-7 py-6 md:grid-cols-12 md:gap-6 md:py-7">
+        <div className="space-y-2.5 md:col-span-5">
+          <Logo
+            shortName={shortName ?? companyName}
+            logoUrl={company?.logoUrl}
+            className="text-lg"
+          />
+          {shortDescription ? (
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+              {shortDescription}
+            </p>
+          ) : null}
+          {social.length > 0 ? <SocialLinks links={social} /> : null}
         </div>
 
-        <div>
-          <h2 className="mb-4 text-sm font-semibold tracking-wide text-gold">
+        <div className="md:col-span-3">
+          <h2 className="mb-2.5 text-xs font-semibold tracking-[0.18em] text-gold uppercase">
             {t("quickLinks")}
           </h2>
-          <ul className="space-y-2">
+          <ul className="space-y-1.5">
             {QUICK_LINKS.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-sm text-muted-foreground transition-colors hover:text-gold"
                 >
                   {tNav(item.key)}
                 </Link>
@@ -85,19 +93,24 @@ export async function Footer({ locale, company, shortName }: FooterProps) {
           </ul>
         </div>
 
-        <ContactCard
-          title={t("contact")}
-          address={address || null}
-          phone={phone || null}
-          email={email || null}
-          className="border-0 bg-transparent p-0 md:p-0"
-        />
+        <div className="md:col-span-4">
+          <ContactCard
+            title={t("contact")}
+            address={address || null}
+            phone={phone || null}
+            email={email || null}
+            className="border-0 bg-transparent p-0 md:p-0"
+          />
+        </div>
       </div>
 
-      <div className="border-t border-border">
-        <div className="nm-container flex flex-col gap-2 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-border/70">
+        <div className="nm-container flex flex-col gap-1 py-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {companyName}. {t("rights")}
+          </p>
+          <p className="tracking-[0.16em] text-gold/65 uppercase">
+            {locale === "ar" ? "العربية" : "English"}
           </p>
         </div>
       </div>

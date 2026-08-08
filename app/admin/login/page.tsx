@@ -4,7 +4,7 @@ import { LoginForm } from "./login-form";
 
 export const metadata = {
   title: "Admin Login | Northern Meteor",
-  description: "Sign in to the Northern Meteor Construction CMS.",
+  description: "Sign in to the Northern Meteor CMS.",
 };
 
 export default function AdminLoginPage() {

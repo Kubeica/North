@@ -10,6 +10,7 @@ import {
   fieldClassName,
   textareaClassName,
 } from "@/components/admin/FormSection";
+import { MediaPicker } from "@/components/admin/MediaPicker";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { createTeamMember, updateTeamMember } from "@/app/actions/team";
 import type { ActionResult } from "@/lib/admin/action";
@@ -119,14 +120,12 @@ export function TeamForm({ mode, initial }: TeamFormProps) {
             className={fieldClassName}
           />
         </Field>
-        <Field label="Image URL" name="imageUrl" error={errors.imageUrl} full>
-          <input
-            id="imageUrl"
-            name="imageUrl"
-            defaultValue={values.imageUrl ?? ""}
-            className={fieldClassName}
-          />
-        </Field>
+        <MediaPicker
+          name="imageUrl"
+          label="Photo"
+          defaultValue={values.imageUrl ?? ""}
+          error={errors.imageUrl}
+        />
         <Field label="LinkedIn URL" name="linkedin" error={errors.linkedin}>
           <input
             id="linkedin"

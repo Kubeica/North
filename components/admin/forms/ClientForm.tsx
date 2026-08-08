@@ -10,6 +10,7 @@ import {
   fieldClassName,
   textareaClassName,
 } from "@/components/admin/FormSection";
+import { MediaPicker } from "@/components/admin/MediaPicker";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { createClient, updateClient } from "@/app/actions/clients";
 import type { ActionResult } from "@/lib/admin/action";
@@ -89,14 +90,12 @@ export function ClientForm({ mode, initial }: ClientFormProps) {
             className={fieldClassName}
           />
         </Field>
-        <Field label="Logo URL" name="logoUrl" error={errors.logoUrl} full>
-          <input
-            id="logoUrl"
-            name="logoUrl"
-            defaultValue={values.logoUrl ?? ""}
-            className={fieldClassName}
-          />
-        </Field>
+        <MediaPicker
+          name="logoUrl"
+          label="Logo"
+          defaultValue={values.logoUrl ?? ""}
+          error={errors.logoUrl}
+        />
         <Field label="Sort order" name="sortOrder" error={errors.sortOrder}>
           <input
             id="sortOrder"

@@ -13,20 +13,17 @@ type StaggerProps = {
   once?: boolean;
 };
 
+/** Stagger children stay visible — no opacity:0 empty regions. */
 export function Stagger({ children, className, once = true }: StaggerProps) {
   const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
 
   return (
     <motion.div
       className={cn(className)}
       variants={staggerContainer}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ ...viewportOnce, once }}
+      initial={false}
+      whileInView={reduceMotion ? undefined : "show"}
+      viewport={{ ...viewportOnce, once, margin: "0px 0px -8% 0px" }}
     >
       {children}
     </motion.div>
@@ -41,12 +38,12 @@ type StaggerItemProps = {
 export function StaggerItem({ children, className }: StaggerItemProps) {
   const reduceMotion = useReducedMotion();
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div className={cn(className)} variants={staggerItem}>
+    <motion.div
+      className={cn(className)}
+      variants={reduceMotion ? undefined : staggerItem}
+      initial={false}
+    >
       {children}
     </motion.div>
   );

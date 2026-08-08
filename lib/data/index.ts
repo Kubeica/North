@@ -1,4 +1,5 @@
 export { getCompanyProfile } from "./company";
+export { getPublicSiteSeo } from "./site-seo";
 export { getStatistics } from "./statistics";
 export { getTeamMembers } from "./team";
 export { getCompanyMilestones } from "./milestones";

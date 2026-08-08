@@ -61,6 +61,7 @@ export { SocialLinks, type SocialLink } from "./SocialLinks";
 export { Hero } from "./Hero";
 export { HeroBackground } from "./HeroBackground";
 export { PageHero } from "./PageHero";
+export { ValuesStrip } from "./ValuesStrip";
 
 /* Cards / content */
 export { ClientLogo } from "./ClientLogo";

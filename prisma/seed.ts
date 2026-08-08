@@ -52,25 +52,26 @@ const IDS = {
   auditLog: "seed_audit_login_001",
 } as const;
 
-const UNSplash = {
-  hero: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600",
+/** Demo media — avoid broken third-party hotlinks; prefer placehold CMS placeholders. */
+const DEMO_MEDIA = {
+  hero: "https://placehold.co/1600x900/12161A/C9A227?text=Northern+Meteor",
   covers: [
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200",
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200",
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200",
-    "https://images.unsplash.com/photo-1590644365607-1c28f861996a?w=1200",
-    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200",
-    "https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?w=1200",
-    "https://images.unsplash.com/photo-1503386949252-4088990c2c8f?w=1200",
+    "https://placehold.co/1200x800/12161A/C9A227?text=Project+01",
+    "https://placehold.co/1200x800/1A1F24/C9A227?text=Project+02",
+    "https://placehold.co/1200x800/12161A/C9A227?text=Project+03",
+    "https://placehold.co/1200x800/1A1F24/C9A227?text=Project+04",
+    "https://placehold.co/1200x800/12161A/C9A227?text=Project+05",
+    "https://placehold.co/1200x800/1A1F24/C9A227?text=Project+06",
+    "https://placehold.co/1200x800/12161A/C9A227?text=Project+07",
+    "https://placehold.co/1200x800/1A1F24/C9A227?text=Project+08",
   ],
   gallery: [
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1000",
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1000",
-    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1000",
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000",
-    "https://images.unsplash.com/photo-1590644365607-1c28f861996a?w=1000",
-    "https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?w=1000",
+    "https://placehold.co/1000x750/12161A/C9A227?text=Gallery+01",
+    "https://placehold.co/1000x750/1A1F24/C9A227?text=Gallery+02",
+    "https://placehold.co/1000x750/12161A/C9A227?text=Gallery+03",
+    "https://placehold.co/1000x750/1A1F24/C9A227?text=Gallery+04",
+    "https://placehold.co/1000x750/12161A/C9A227?text=Gallery+05",
+    "https://placehold.co/1000x750/1A1F24/C9A227?text=Gallery+06",
   ],
 } as const;
 
@@ -117,67 +118,61 @@ async function seedUsers() {
 
 async function seedCompanyProfile() {
   const data = {
-    nameAr: "شركة النيزك الشمالي للمقاولات العامة",
-    nameEn: "Northern Meteor Construction",
-    shortNameAr: "النيازك الشمالي",
+    nameAr: "النيزك الشمالي للمقاولات العامة والتجارة",
+    nameEn: "Northern Meteor for General Contracting & Trading",
+    shortNameAr: "النيزك الشمالي",
     shortNameEn: "Northern Meteor",
     shortDescriptionAr:
-      "شركة مقاولات عامة تقدم حلولاً إنشائية متكاملة للمشاريع التجارية والمدنية والبنية التحتية — محتوى تعريفي تجريبي.",
+      "شركة متخصصة في تنفيذ مشاريع المقاولات والبناء والتصميم، وتقديم حلول متكاملة للمشاريع السكنية والتجارية والصناعية.",
     shortDescriptionEn:
-      "A general contracting company delivering integrated construction solutions for commercial, civil, and infrastructure projects — sample company profile for demo.",
+      "A construction company specializing in contracting, building, design, and integrated solutions for residential, commercial, and industrial projects.",
     aboutAr:
-      "شركة النيزك الشمالي للمقاولات العامة هي ملف تعريفي تجريبي يعرض هوية الشركة وخدماتها وقدراتها. يهدف هذا المحتوى إلى تشغيل الواجهة ولوحة التحكم أثناء التطوير والاختبار، وليس إلى توثيق مشاريع حقيقية.",
+      "النيزك الشمالي للمقاولات العامة والتجارة شركة متخصصة في تنفيذ مشاريع المقاولات والبناء والتصميم، وتقديم حلول متكاملة تلبي احتياجات المشاريع السكنية والتجارية والصناعية. نعمل وفق منهج يجمع بين الجودة في التنفيذ، الدقة في التخطيط، الالتزام بالمواعيد، والسلامة، مع التركيز على تقديم حلول عملية وموثوقة من مرحلة التصميم والتخطيط وحتى التنفيذ والتسليم.",
     aboutEn:
-      "Northern Meteor Construction is a sample company profile used to present brand identity, services, and capabilities. This content powers the public site and admin demo — it does not represent verified real-world project claims.",
-    visionAr:
-      "أن نكون شريكاً موثوقاً في بناء بيئات عمرانية آمنة ومستدامة — رؤية تجريبية لأغراض العرض.",
-    visionEn:
-      "To be a trusted partner in building safe, durable environments — a demo vision statement for display purposes.",
-    missionAr:
-      "تقديم خدمات مقاولات عامة بجودة عالية مع الالتزام بالسلامة والجداول الزمنية — نص مهمة تجريبي.",
-    missionEn:
-      "Deliver general contracting services with quality focus, safety discipline, and schedule reliability — sample mission copy.",
+      "Northern Meteor for General Contracting & Trading is a construction company specializing in contracting, building, design, and integrated project solutions for residential, commercial, and industrial developments. We combine quality execution, precise planning, commitment to schedules, and safety to deliver practical and reliable solutions from design and planning through construction and final handover.",
+    visionAr: "",
+    visionEn: "",
+    missionAr: "",
+    missionEn: "",
     valuesAr:
-      "السلامة أولاً، الجودة، الشفافية، العمل الجماعي، والالتزام بالمواعيد — قيم تجريبية للعرض.",
+      "الجودة في التنفيذ، الدقة في التخطيط، الالتزام بالمواعيد، والسلامة.",
     valuesEn:
-      "Safety first, quality, transparency, teamwork, and on-time delivery — sample values for the demo site.",
-    experienceAr:
-      "خبرة تجريبية تمتد لسنوات في إدارة وتنفيذ أعمال المقاولات العامة عبر قطاعات متعددة — بيانات عينة.",
-    experienceEn:
-      "Sample experience narrative spanning years of managing and delivering general contracting work across multiple sectors — demo data only.",
+      "Quality execution, precise planning, commitment to schedules, and safety.",
+    experienceAr: null,
+    experienceEn: null,
     capabilitiesAr:
-      "قدرات تجريبية تشمل التخطيط، التنفيذ المدني، البنية التحتية، التنسيق متعدد التخصصات، وإدارة المشاريع.",
+      "المقاولات العامة، البناء، التصميم الهندسي والمعماري، المشاريع السكنية والتجارية والصناعية، التأهيل والتشطيب، وإدارة وتنفيذ المشاريع.",
     capabilitiesEn:
-      "Demo capabilities covering planning, civil works, infrastructure, multi-discipline coordination, and project management.",
+      "General contracting, building construction, architectural and engineering design, residential, commercial and industrial construction, renovation and finishing, and construction / project execution management.",
     safetyAr:
-      "نهج سلامة تجريبي يركز على إجراءات الموقع، التدريب، والامتثال لمعايير السلامة المهنية.",
+      "السلامة جزء أساسي من منهج التنفيذ في كل مراحل العمل.",
     safetyEn:
-      "A sample safety approach emphasizing site procedures, training, and occupational safety standards compliance.",
+      "Safety is a core part of our delivery approach across project stages.",
     qualityAr:
-      "نظام جودة تجريبي يشمل مراجعات التنفيذ، ضبط المواد، والتوثيق طوال دورة المشروع.",
+      "نركز على الجودة في التنفيذ والدقة في التخطيط لضمان حلول عملية وموثوقة.",
     qualityEn:
-      "A demo quality system covering execution reviews, material control, and documentation across the project lifecycle.",
+      "We focus on quality execution and precise planning to deliver practical, reliable solutions.",
     whyUsAr:
-      "لماذا تختارنا (نص تجريبي): تنسيق واضح، تواصل شفاف، وتنفيذ منضبط للجداول والميزانيات.",
+      "منهج يجمع بين الجودة والدقة والالتزام بالمواعيد والسلامة من التصميم حتى التسليم.",
     whyUsEn:
-      "Why choose us (sample copy): clear coordination, transparent communication, and disciplined schedule and budget delivery.",
+      "An approach that combines quality, precision, schedule commitment, and safety from design through handover.",
     processAr:
-      "عملية تجريبية: دراسة الاحتياج → التخطيط → التنفيذ → التسليم مع متابعة الجودة والسلامة.",
+      "التصميم والتخطيط ← التنفيذ ← التسليم، مع متابعة الجودة والسلامة.",
     processEn:
-      "Sample process: needs assessment → planning → execution → handover with ongoing quality and safety oversight.",
-    phone: "+966 11 000 0000",
-    email: "info@example-northernmeteor.com",
-    addressAr: "الرياض، المملكة العربية السعودية — عنوان تجريبي",
-    addressEn: "Riyadh, Saudi Arabia — sample address",
-    latitude: 24.7136,
-    longitude: 46.6753,
-    logoUrl: "https://placehold.co/240x80/12161A/C9A227?text=Northern+Meteor",
-    faviconUrl: "https://placehold.co/64x64/12161A/C9A227?text=NM",
-    linkedinUrl: "https://example.com/linkedin/northern-meteor",
-    facebookUrl: "https://example.com/facebook/northern-meteor",
-    instagramUrl: "https://example.com/instagram/northern-meteor",
-    youtubeUrl: "https://example.com/youtube/northern-meteor",
-    heroImageUrl: UNSplash.hero,
+      "Design and planning → execution → handover, with ongoing quality and safety oversight.",
+    phone: "+964 750 231 1521",
+    email: null,
+    addressAr: "العراق – أربيل – أبراج العدالة – F.-22 – رقم 14",
+    addressEn: "Iraq – Erbil – Justice Towers – F.-22 No.14",
+    latitude: 36.18181364663723,
+    longitude: 43.97890180239019,
+    logoUrl: "/images/logo-northern-meteor.png",
+    faviconUrl: "/images/favicon-northern-meteor.png",
+    linkedinUrl: null,
+    facebookUrl: null,
+    instagramUrl: null,
+    youtubeUrl: null,
+    heroImageUrl: "/images/hero-architecture.png",
   };
 
   return prisma.companyProfile.upsert({
@@ -193,25 +188,25 @@ async function seedSiteSettings() {
     { key: "maintenanceMode", value: "false" },
     {
       key: "seoDefaultTitleAr",
-      value: "شركة النيزك الشمالي للمقاولات العامة | محتوى تجريبي",
+      value: "النيزك الشمالي | مقاولات عامة وتجارة",
     },
     {
       key: "seoDefaultTitleEn",
-      value: "Northern Meteor Construction | Demo Site",
+      value: "Northern Meteor | General Contracting & Trading",
     },
     {
       key: "seoDefaultDescriptionAr",
       value:
-        "موقع تعريفي تجريبي لشركة مقاولات عامة يعرض الخدمات والمشاريع والفريق — بيانات عينة للتطوير.",
+        "النيزك الشمالي للمقاولات العامة والتجارة — مقاولات وبناء وتصميم وحلول متكاملة للمشاريع السكنية والتجارية والصناعية في أربيل، العراق.",
     },
     {
       key: "seoDefaultDescriptionEn",
       value:
-        "Sample marketing site for a general contracting company showcasing services, projects, and team — demo content for development.",
+        "Northern Meteor for General Contracting & Trading — contracting, building, design, and integrated solutions for residential, commercial, and industrial projects in Erbil, Iraq.",
     },
     {
       key: "ogImageUrl",
-      value: UNSplash.hero,
+      value: "/images/logo-northern-meteor.png",
     },
   ];
 
@@ -278,12 +273,12 @@ async function seedStatistics() {
         labelEn: stat.labelEn,
         value: stat.value,
         sortOrder: stat.sortOrder,
-        published: true,
+        published: false,
         archivedAt: null,
       },
       create: {
         ...stat,
-        published: true,
+        published: false,
       },
     });
   }
@@ -424,10 +419,10 @@ async function seedClients() {
         name: client.name,
         logoUrl: client.logoUrl,
         websiteUrl: client.websiteUrl,
-        descriptionAr: "شريك تجريبي لأغراض العرض والتطوير.",
-        descriptionEn: "Sample partner for demo purposes.",
+        descriptionAr: "شريك تجريبي لأغراض العرض والتطوير — غير منشور.",
+        descriptionEn: "Sample partner for demo purposes — unpublished.",
         sortOrder: client.sortOrder,
-        published: true,
+        published: false,
         archivedAt: null,
       },
       create: {
@@ -435,10 +430,10 @@ async function seedClients() {
         name: client.name,
         logoUrl: client.logoUrl,
         websiteUrl: client.websiteUrl,
-        descriptionAr: "شريك تجريبي لأغراض العرض والتطوير.",
-        descriptionEn: "Sample partner for demo purposes.",
+        descriptionAr: "شريك تجريبي لأغراض العرض والتطوير — غير منشور.",
+        descriptionEn: "Sample partner for demo purposes — unpublished.",
         sortOrder: client.sortOrder,
-        published: true,
+        published: false,
       },
     });
     map.set(client.id, record.id);
@@ -453,101 +448,136 @@ async function seedServices() {
       nameAr: "المقاولات العامة",
       nameEn: "General Contracting",
       descriptionAr:
-        "خدمة تجريبية للمقاولات العامة تغطي التخطيط والتنفيذ والتنسيق متعدد التخصصات — محتوى عرض فقط.",
+        "تنفيذ وإدارة أعمال المقاولات العامة للمشاريع السكنية والتجارية والصناعية وفق منهج يجمع الجودة والتخطيط والسلامة.",
       descriptionEn:
-        "Sample general contracting service covering planning, execution, and multi-discipline coordination — demo content only.",
+        "Delivery and management of general contracting works for residential, commercial, and industrial projects with quality, planning, and safety at the core.",
       icon: "Building2",
       sortOrder: 1,
     },
     {
-      slug: "civil-construction",
-      nameAr: "الإنشاءات المدنية",
-      nameEn: "Civil Construction",
+      slug: "building-construction",
+      nameAr: "أعمال البناء والتشييد",
+      nameEn: "Building Construction",
       descriptionAr:
-        "وصف تجريبي لأعمال الإنشاءات المدنية بما في ذلك الأساسات والهياكل الخرسانية.",
+        "أعمال البناء والتشييد من مراحل التنفيذ الإنشائي حتى استكمال الهيكل والتجهيزات الأساسية للمشروع.",
       descriptionEn:
-        "Sample civil construction offering including foundations and concrete structural works.",
+        "Building and construction works from structural execution through core building completion for project delivery.",
       icon: "HardHat",
       sortOrder: 2,
     },
     {
-      slug: "infrastructure",
-      nameAr: "البنية التحتية",
-      nameEn: "Infrastructure",
+      slug: "architectural-design",
+      nameAr: "التصميم المعماري",
+      nameEn: "Architectural Design",
       descriptionAr:
-        "خدمة تجريبية لمشاريع البنية التحتية مثل شبكات المياه والصرف والطرق الداخلية.",
+        "خدمات التصميم المعماري التي تترجم احتياجات المشروع إلى حلول عملية قابلة للتنفيذ.",
       descriptionEn:
-        "Demo infrastructure service for utilities networks, drainage, and internal roads.",
-      icon: "Network",
+        "Architectural design services that translate project needs into practical, buildable solutions.",
+      icon: "PencilRuler",
       sortOrder: 3,
     },
     {
-      slug: "roads-transportation",
-      nameAr: "الطرق والنقل",
-      nameEn: "Roads & Transportation",
+      slug: "engineering-technical-design",
+      nameAr: "التصميم الهندسي والفني",
+      nameEn: "Engineering & Technical Design",
       descriptionAr:
-        "محتوى تجريبي لأعمال الطرق والنقل بما في ذلك الرصف والتحسينات المرورية.",
+        "تصميم هندسي وفني يدعم التخطيط الدقيق والتنفيذ الموثوق عبر مراحل المشروع.",
       descriptionEn:
-        "Sample roads & transportation works including paving and traffic improvements.",
-      icon: "Route",
+        "Engineering and technical design that supports precise planning and reliable execution across project stages.",
+      icon: "DraftingCompass",
       sortOrder: 4,
     },
     {
-      slug: "commercial-buildings",
-      nameAr: "المباني التجارية",
-      nameEn: "Commercial Buildings",
+      slug: "residential-construction",
+      nameAr: "الإنشاءات السكنية",
+      nameEn: "Residential Construction",
       descriptionAr:
-        "خدمة تجريبية لتطوير وتنفيذ المباني التجارية والمكاتب — بيانات عينة.",
+        "حلول إنشائية للمشاريع السكنية مع التركيز على الجودة والالتزام بالمواعيد.",
       descriptionEn:
-        "Demo commercial buildings service for office and retail construction — sample data.",
-      icon: "Building",
+        "Construction solutions for residential developments with a focus on quality and schedule commitment.",
+      icon: "Home",
       sortOrder: 5,
     },
     {
-      slug: "industrial-projects",
-      nameAr: "المشاريع الصناعية",
-      nameEn: "Industrial Projects",
+      slug: "commercial-construction",
+      nameAr: "الإنشاءات التجارية",
+      nameEn: "Commercial Construction",
       descriptionAr:
-        "وصف تجريبي للمنشآت الصناعية والمستودعات وورش التشغيل.",
+        "تنفيذ المشاريع التجارية بما يلبي متطلبات الاستخدام والتشغيل والكفاءة.",
       descriptionEn:
-        "Sample industrial projects service for warehouses, workshops, and plant facilities.",
-      icon: "Factory",
+        "Delivery of commercial construction projects aligned with use, operations, and efficiency requirements.",
+      icon: "Building",
       sortOrder: 6,
     },
     {
-      slug: "mep-works",
-      nameAr: "أعمال الكهروميكانيك",
-      nameEn: "MEP Works",
+      slug: "industrial-construction",
+      nameAr: "الإنشاءات الصناعية",
+      nameEn: "Industrial Construction",
       descriptionAr:
-        "خدمة تجريبية لأعمال الميكانيكا والكهرباء والسباكة والتنسيق مع التنفيذ المدني.",
+        "أعمال إنشائية للمنشآت والمشاريع الصناعية وفق متطلبات السلامة والتنفيذ العملي.",
       descriptionEn:
-        "Demo MEP works covering mechanical, electrical, and plumbing coordination with civil packages.",
-      icon: "Wrench",
+        "Construction works for industrial facilities and projects with practical execution and safety requirements.",
+      icon: "Factory",
       sortOrder: 7,
     },
     {
-      slug: "project-management",
-      nameAr: "إدارة المشاريع",
-      nameEn: "Project Management",
+      slug: "renovation-rehabilitation",
+      nameAr: "التأهيل وإعادة التأهيل",
+      nameEn: "Renovation & Rehabilitation",
       descriptionAr:
-        "محتوى تجريبي لإدارة المشاريع: الجدولة، التكاليف، الجودة، والتواصل مع أصحاب المصلحة.",
+        "تأهيل وإعادة تأهيل المباني والمنشآت القائمة لتحسين الأداء والاستخدام.",
       descriptionEn:
-        "Sample project management service: scheduling, cost control, quality, and stakeholder communication.",
-      icon: "ClipboardList",
+        "Renovation and rehabilitation of existing buildings and facilities to improve performance and use.",
+      icon: "Hammer",
       sortOrder: 8,
     },
     {
-      slug: "maintenance-rehabilitation",
-      nameAr: "الصيانة وإعادة التأهيل",
-      nameEn: "Maintenance & Rehabilitation",
+      slug: "interior-finishing-works",
+      nameAr: "أعمال الداخلية والتشطيبات",
+      nameEn: "Interior & Finishing Works",
       descriptionAr:
-        "خدمة تجريبية للصيانة وإعادة تأهيل المنشآت القائمة وتحسين الأداء التشغيلي.",
+        "أعمال التشطيبات والداخلية التي تكمل مرحلة التنفيذ وتجهّز المشروع للتسليم.",
       descriptionEn:
-        "Demo maintenance & rehabilitation service for existing facilities and performance upgrades.",
-      icon: "Hammer",
+        "Interior and finishing works that complete execution and prepare projects for handover.",
+      icon: "Paintbrush",
       sortOrder: 9,
     },
+    {
+      slug: "construction-management",
+      nameAr: "إدارة الإنشاءات",
+      nameEn: "Construction Management",
+      descriptionAr:
+        "إدارة عمليات الإنشاء والتنسيق الميداني لضمان سير العمل بجودة والتزام بالجداول.",
+      descriptionEn:
+        "Construction management and field coordination to keep delivery on quality and schedule.",
+      icon: "ClipboardList",
+      sortOrder: 10,
+    },
+    {
+      slug: "project-execution",
+      nameAr: "تنفيذ المشاريع",
+      nameEn: "Project Execution",
+      descriptionAr:
+        "تنفيذ المشاريع من التخطيط إلى التسليم مع متابعة الجودة والسلامة في الموقع.",
+      descriptionEn:
+        "Project execution from planning through handover with ongoing quality and site safety oversight.",
+      icon: "Workflow",
+      sortOrder: 11,
+    },
+    {
+      slug: "related-construction-development",
+      nameAr: "خدمات إنشائية وتطويرية ذات صلة",
+      nameEn: "Related Construction & Development Services",
+      descriptionAr:
+        "خدمات إنشائية وتطويرية مساندة تتكامل مع أعمال المقاولات والبناء والتصميم.",
+      descriptionEn:
+        "Related construction and development services that complement contracting, building, and design delivery.",
+      icon: "Layers",
+      sortOrder: 12,
+    },
   ];
+
+  const realSlugs = services.map((service) => service.slug);
 
   for (const service of services) {
     await prisma.service.upsert({
@@ -560,16 +590,21 @@ async function seedServices() {
         icon: service.icon,
         sortOrder: service.sortOrder,
         published: true,
-        isDemo: true,
+        isDemo: false,
         archivedAt: null,
       },
       create: {
         ...service,
         published: true,
-        isDemo: true,
+        isDemo: false,
       },
     });
   }
+
+  await prisma.service.updateMany({
+    where: { slug: { notIn: realSlugs } },
+    data: { published: false, isDemo: true },
+  });
 }
 
 async function seedProjects(
@@ -610,7 +645,7 @@ async function seedProjects(
         "Sample commercial tower description showing how project details appear on the site. All data here is for demo and development only.",
       locationAr: "الرياض (موقع تجريبي)",
       locationEn: "Riyadh (Sample Location)",
-      coverImageUrl: UNSplash.covers[0],
+      coverImageUrl: DEMO_MEDIA.covers[0],
       categorySlug: "commercial",
       clientIndex: 0,
       status: ProjectStatus.COMPLETED,
@@ -621,17 +656,17 @@ async function seedProjects(
       scopeEn: "Concrete structure, facade, interior finishes — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[0],
+          url: DEMO_MEDIA.gallery[0],
           altAr: "صورة موقع تجريبية ١",
           altEn: "Sample site photo 1",
         },
         {
-          url: UNSplash.gallery[1],
+          url: DEMO_MEDIA.gallery[1],
           altAr: "صورة موقع تجريبية ٢",
           altEn: "Sample site photo 2",
         },
         {
-          url: UNSplash.gallery[2],
+          url: DEMO_MEDIA.gallery[2],
           altAr: "صورة موقع تجريبية ٣",
           altEn: "Sample site photo 3",
         },
@@ -649,7 +684,7 @@ async function seedProjects(
         "Sample civil complex content covering foundations and structures. This project is fictional and does not represent completed real work.",
       locationAr: "جدة (موقع تجريبي)",
       locationEn: "Jeddah (Sample Location)",
-      coverImageUrl: UNSplash.covers[1],
+      coverImageUrl: DEMO_MEDIA.covers[1],
       categorySlug: "civil",
       clientIndex: 1,
       status: ProjectStatus.IN_PROGRESS,
@@ -659,12 +694,12 @@ async function seedProjects(
       scopeEn: "Foundations, structure, earthworks — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[1],
+          url: DEMO_MEDIA.gallery[1],
           altAr: "أعمال مدنية تجريبية",
           altEn: "Sample civil works",
         },
         {
-          url: UNSplash.gallery[3],
+          url: DEMO_MEDIA.gallery[3],
           altAr: "مرحلة تنفيذ تجريبية",
           altEn: "Sample construction phase",
         },
@@ -682,7 +717,7 @@ async function seedProjects(
         "Demo infrastructure corridor description including water and drainage networks. Display-only sample data.",
       locationAr: "الدمام (موقع تجريبي)",
       locationEn: "Dammam (Sample Location)",
-      coverImageUrl: UNSplash.covers[2],
+      coverImageUrl: DEMO_MEDIA.covers[2],
       categorySlug: "infrastructure",
       clientIndex: 2,
       status: ProjectStatus.COMPLETED,
@@ -693,17 +728,17 @@ async function seedProjects(
       scopeEn: "Networks, manholes, internal paving — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[2],
+          url: DEMO_MEDIA.gallery[2],
           altAr: "بنية تحتية تجريبية",
           altEn: "Sample infrastructure",
         },
         {
-          url: UNSplash.gallery[4],
+          url: DEMO_MEDIA.gallery[4],
           altAr: "أعمال شبكات تجريبية",
           altEn: "Sample utility works",
         },
         {
-          url: UNSplash.gallery[5],
+          url: DEMO_MEDIA.gallery[5],
           altAr: "تسليم تجريبي",
           altEn: "Sample handover view",
         },
@@ -721,7 +756,7 @@ async function seedProjects(
         "Sample industrial warehouse facility. Not a real Northern Meteor Construction project.",
       locationAr: "ينبع (موقع تجريبي)",
       locationEn: "Yanbu (Sample Location)",
-      coverImageUrl: UNSplash.covers[3],
+      coverImageUrl: DEMO_MEDIA.covers[3],
       categorySlug: "industrial",
       clientIndex: 3,
       status: ProjectStatus.PLANNED,
@@ -731,12 +766,12 @@ async function seedProjects(
       scopeEn: "Steel structure, industrial flooring, basic services — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[3],
+          url: DEMO_MEDIA.gallery[3],
           altAr: "منشأة صناعية تجريبية",
           altEn: "Sample industrial facility",
         },
         {
-          url: UNSplash.gallery[0],
+          url: DEMO_MEDIA.gallery[0],
           altAr: "مخطط موقع تجريبي",
           altEn: "Sample site layout",
         },
@@ -754,7 +789,7 @@ async function seedProjects(
         "Sample highway link content used to demonstrate ON_HOLD status in admin and public views.",
       locationAr: "القصيم (موقع تجريبي)",
       locationEn: "Qassim (Sample Location)",
-      coverImageUrl: UNSplash.covers[4],
+      coverImageUrl: DEMO_MEDIA.covers[4],
       categorySlug: "roads",
       clientIndex: 4,
       status: ProjectStatus.ON_HOLD,
@@ -764,12 +799,12 @@ async function seedProjects(
       scopeEn: "Paving, drainage, wayfinding — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[4],
+          url: DEMO_MEDIA.gallery[4],
           altAr: "طريق تجريبي",
           altEn: "Sample roadway",
         },
         {
-          url: UNSplash.gallery[1],
+          url: DEMO_MEDIA.gallery[1],
           altAr: "أعمال رصف تجريبية",
           altEn: "Sample paving works",
         },
@@ -787,7 +822,7 @@ async function seedProjects(
         "Sample multi-unit retail plaza project. All images and copy are placeholders.",
       locationAr: "الخبر (موقع تجريبي)",
       locationEn: "Khobar (Sample Location)",
-      coverImageUrl: UNSplash.covers[5],
+      coverImageUrl: DEMO_MEDIA.covers[5],
       categorySlug: "commercial",
       clientIndex: 5,
       status: ProjectStatus.COMPLETED,
@@ -798,17 +833,17 @@ async function seedProjects(
       scopeEn: "Structure, finishes, parking — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[5],
+          url: DEMO_MEDIA.gallery[5],
           altAr: "ساحة تجارية تجريبية",
           altEn: "Sample retail plaza",
         },
         {
-          url: UNSplash.gallery[2],
+          url: DEMO_MEDIA.gallery[2],
           altAr: "واجهة تجريبية",
           altEn: "Sample facade",
         },
         {
-          url: UNSplash.gallery[0],
+          url: DEMO_MEDIA.gallery[0],
           altAr: "مساحة داخلية تجريبية",
           altEn: "Sample interior space",
         },
@@ -826,7 +861,7 @@ async function seedProjects(
         "Sample description for upgrading existing utilities and infrastructure. Demo use only.",
       locationAr: "الطائف (موقع تجريبي)",
       locationEn: "Taif (Sample Location)",
-      coverImageUrl: UNSplash.covers[6],
+      coverImageUrl: DEMO_MEDIA.covers[6],
       categorySlug: "infrastructure",
       clientIndex: 6,
       status: ProjectStatus.IN_PROGRESS,
@@ -836,12 +871,12 @@ async function seedProjects(
       scopeEn: "Network replacement, rehabilitation — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[0],
+          url: DEMO_MEDIA.gallery[0],
           altAr: "تحديث مرافق تجريبي",
           altEn: "Sample utility upgrade",
         },
         {
-          url: UNSplash.gallery[3],
+          url: DEMO_MEDIA.gallery[3],
           altAr: "أعمال حفر تجريبية",
           altEn: "Sample excavation works",
         },
@@ -859,7 +894,7 @@ async function seedProjects(
         "Sample civil community center project. Titles and summaries clearly mark this as demo content.",
       locationAr: "أبها (موقع تجريبي)",
       locationEn: "Abha (Sample Location)",
-      coverImageUrl: UNSplash.covers[7],
+      coverImageUrl: DEMO_MEDIA.covers[7],
       categorySlug: "civil",
       clientIndex: 7,
       status: ProjectStatus.PLANNED,
@@ -869,12 +904,12 @@ async function seedProjects(
       scopeEn: "Main building, parking, softscape — sample scope.",
       images: [
         {
-          url: UNSplash.gallery[1],
+          url: DEMO_MEDIA.gallery[1],
           altAr: "مركز مجتمعي تجريبي",
           altEn: "Sample community center",
         },
         {
-          url: UNSplash.gallery[4],
+          url: DEMO_MEDIA.gallery[4],
           altAr: "تصور موقع تجريبي",
           altEn: "Sample site concept",
         },
@@ -903,8 +938,8 @@ async function seedProjects(
         status: project.status,
         startDate: project.startDate,
         completionDate: project.completionDate ?? null,
-        featured: project.featured,
-        published: true,
+        featured: false,
+        published: false,
         isDemo: true,
         scopeAr: project.scopeAr,
         scopeEn: project.scopeEn,
@@ -930,8 +965,8 @@ async function seedProjects(
         status: project.status,
         startDate: project.startDate,
         completionDate: project.completionDate,
-        featured: project.featured,
-        published: true,
+        featured: false,
+        published: false,
         isDemo: true,
         scopeAr: project.scopeAr,
         scopeEn: project.scopeEn,
@@ -1026,13 +1061,13 @@ async function seedTeamMembers() {
         linkedin: member.linkedin,
         email: member.email,
         sortOrder: member.sortOrder,
-        published: true,
+        published: false,
         isDemo: true,
         archivedAt: null,
       },
       create: {
         ...member,
-        published: true,
+        published: false,
         isDemo: true,
       },
     });
@@ -1108,11 +1143,11 @@ async function seedCompanyMilestones() {
         descriptionAr: milestone.descriptionAr,
         descriptionEn: milestone.descriptionEn,
         sortOrder: milestone.sortOrder,
-        published: true,
+        published: false,
       },
       create: {
         ...milestone,
-        published: true,
+        published: false,
       },
     });
   }
@@ -1239,7 +1274,7 @@ async function seedMedia() {
     where: { id: IDS.media },
     update: {
       fileName: "demo-construction-hero.jpg",
-      url: UNSplash.hero,
+      url: DEMO_MEDIA.hero,
       mimeType: "image/jpeg",
       size: 245760,
       altAr: "صورة وسائط تجريبية لموقع إنشائي",
@@ -1249,7 +1284,7 @@ async function seedMedia() {
     create: {
       id: IDS.media,
       fileName: "demo-construction-hero.jpg",
-      url: UNSplash.hero,
+      url: DEMO_MEDIA.hero,
       mimeType: "image/jpeg",
       size: 245760,
       altAr: "صورة وسائط تجريبية لموقع إنشائي",
@@ -1311,7 +1346,7 @@ async function main() {
   console.log(`✓ Clients (${clients.size})`);
 
   await seedServices();
-  console.log("✓ Services (9)");
+  console.log("✓ Services (12 real + unpublished legacy demos)");
 
   await seedProjects(categoryIds, IDS.clients);
   console.log("✓ Projects (8) with ProjectImages");

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { HeroImage } from "@/components/public/media/HeroImage";
+import { resolveHeroImageUrl } from "@/lib/media/public-assets";
 import { cn } from "@/components/public/theme/utils";
 
 type HeroBackgroundProps = {
@@ -12,6 +13,10 @@ type HeroBackgroundProps = {
   children?: ReactNode;
 };
 
+/**
+ * Cinematic architectural media plane.
+ * Overlays stay in ~0.28–0.52 opacity so the building remains visible.
+ */
 export function HeroBackground({
   imageUrl,
   videoUrl,
@@ -20,8 +25,10 @@ export function HeroBackground({
   overlay = true,
   children,
 }: HeroBackgroundProps) {
+  const src = resolveHeroImageUrl(imageUrl);
+
   return (
-    <div className={cn("absolute inset-0", className)}>
+    <div className={cn("absolute inset-0 bg-navy", className)}>
       {videoUrl ? (
         <video
           className="h-full w-full object-cover object-center"
@@ -29,22 +36,35 @@ export function HeroBackground({
           muted
           loop
           playsInline
-          poster={imageUrl ?? undefined}
+          poster={src}
           aria-hidden={alt ? undefined : true}
           aria-label={alt || undefined}
         >
           <source src={videoUrl} />
         </video>
-      ) : imageUrl ? (
-        <HeroImage src={imageUrl} alt={alt} />
       ) : (
-        <div className="h-full w-full bg-gradient-to-br from-navy via-background to-surface" />
+        <HeroImage src={src} alt={alt} />
       )}
 
       {overlay ? (
         <>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/20 to-transparent" />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{ backgroundColor: "rgba(5, 10, 15, 0.28)" }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(5, 10, 15, 0.52) 0%, rgba(5, 10, 15, 0.18) 38%, rgba(5, 10, 15, 0.05) 70%, transparent 100%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-r from-[rgba(5,10,15,0.32)] via-[rgba(5,10,15,0.08)] to-transparent rtl:bg-gradient-to-l"
+          />
         </>
       ) : null}
 

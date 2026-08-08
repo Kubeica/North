@@ -16,31 +16,33 @@ type ServicesFeaturedProps = {
   services: Service[];
 };
 
-/** Premium featured service grid — CMS-driven, no hardcoded services. */
+/** Balanced 3-column service grid — equal cards, no orphan full-bleed row. */
 export async function ServicesFeatured({
   locale,
   services,
 }: ServicesFeaturedProps) {
   const t = await getTranslations({ locale, namespace: "services" });
+  const total = services.length;
 
   return (
     <Section tone="surface" id="featured-services" padded={false}>
-      <Container className="nm-section">
+      <Container className="nm-section pt-8 md:pt-10">
         <Reveal>
           <SectionTitle
             title={t("featuredTitle")}
             description={t("featuredSubtitle")}
-            className="mb-12"
+            className="mb-8 md:mb-10"
           />
         </Reveal>
 
-        {services.length === 0 ? (
+        {total === 0 ? (
           <Paragraph className="text-muted-foreground">{t("empty")}</Paragraph>
         ) : (
-          <Stagger className="grid gap-6 md:grid-cols-2">
+          <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-5">
             {services.map((service) => {
               const name = localized(service, locale, "name");
               const description = localized(service, locale, "description");
+
               return (
                 <StaggerItem key={service.id}>
                   <ServiceCardSurface
@@ -49,7 +51,9 @@ export async function ServicesFeatured({
                     description={description}
                     imageUrl={service.imageUrl}
                     detailsLabel={t("details")}
-                    variant="featured"
+                    variant="default"
+                    locale={locale}
+                    seed={service.slug}
                   />
                 </StaggerItem>
               );

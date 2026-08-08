@@ -10,6 +10,7 @@ import {
   fieldClassName,
   textareaClassName,
 } from "@/components/admin/FormSection";
+import { MediaPicker } from "@/components/admin/MediaPicker";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { createService, updateService } from "@/app/actions/services";
 import type { ActionResult } from "@/lib/admin/action";
@@ -126,14 +127,12 @@ export function ServiceForm({ mode, initial }: ServiceFormProps) {
             placeholder="e.g. building"
           />
         </Field>
-        <Field label="Image URL" name="imageUrl" error={errors.imageUrl} full>
-          <input
-            id="imageUrl"
-            name="imageUrl"
-            defaultValue={values.imageUrl ?? ""}
-            className={fieldClassName}
-          />
-        </Field>
+        <MediaPicker
+          name="imageUrl"
+          label="Image"
+          defaultValue={values.imageUrl ?? ""}
+          error={errors.imageUrl}
+        />
         <Field label="Sort order" name="sortOrder" error={errors.sortOrder}>
           <input
             id="sortOrder"

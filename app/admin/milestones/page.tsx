@@ -125,9 +125,10 @@ export default async function AdminMilestonesPage({
                   </TableCell>
                   <TableCell>
                     <RowActions
+                      id={milestone.id}
                       editHref={`/admin/milestones/${milestone.id}/edit`}
                       archiveLabel="Delete"
-                      onArchive={() => deleteCompanyMilestone(milestone.id)}
+                      archiveAction={deleteCompanyMilestone}
                     />
                   </TableCell>
                 </TableRow>

@@ -19,14 +19,17 @@ export function StatisticCard({
   return (
     <div
       className={cn(
-        align === "center" ? "text-center" : "text-center md:text-start",
+        "border-s border-gold/50 ps-4",
+        align === "center" ? "text-center" : "text-start",
         className,
       )}
     >
-      <p className="text-3xl font-semibold tracking-tight text-gold sm:text-4xl">
+      <p className="font-semibold tracking-tight text-foreground text-[clamp(2.25rem,4vw,3.25rem)] leading-none">
         {value}
       </p>
-      <Caption className="mt-2">{label}</Caption>
+      <Caption className="mt-3 max-w-[14ch] text-muted-foreground">
+        {label}
+      </Caption>
     </div>
   );
 }

@@ -15,12 +15,18 @@ import { AboutJsonLd } from "@/components/seo/AboutJsonLd";
 import {
   getCompanyMilestones,
   getCompanyProfile,
+  getPublicSiteSeo,
   getStatistics,
   getTeamMembers,
 } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import { localized } from "@/lib/i18n/get-localized";
+import { resolveHeroImageUrl } from "@/lib/media/public-assets";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import {
+  localizedSiteSeo,
+  pickCmsOrFallback,
+} from "@/lib/seo/site-defaults";
 
 /** ISR — CMS content can lag up to 60s; improves TTFB vs force-dynamic. */
 export const revalidate = 60;
@@ -32,22 +38,26 @@ type AboutPageProps = {
 export async function generateMetadata({ params }: AboutPageProps) {
   const { locale: localeParam } = await params;
   const locale = localeParam as Locale;
-  const t = await getTranslations({ locale, namespace: "about" });
-  const company = await getCompanyProfile();
+  const [t, company, seoDefaults] = await Promise.all([
+    getTranslations({ locale, namespace: "about" }),
+    getCompanyProfile(),
+    getPublicSiteSeo(),
+  ]);
   const siteName = company
     ? localized(company, locale, "name")
-    : "Northern Meteor Construction";
+    : "Northern Meteor";
+  const cms = localizedSiteSeo(seoDefaults, locale);
   const description =
     t("seoDescription") ||
     (company ? localized(company, locale, "shortDescription") : "") ||
-    t("subtitle");
+    pickCmsOrFallback(cms.description, t("subtitle"));
 
   return buildPageMetadata({
     title: t("title"),
     description,
     locale,
     path: `/${locale}/about`,
-    imageUrl: company?.heroImageUrl,
+    imageUrl: resolveHeroImageUrl(company?.heroImageUrl),
     siteName,
   });
 }
@@ -89,7 +99,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         locale={locale}
         title={t("title")}
         description={t("seoDescription")}
-        imageUrl={company?.heroImageUrl}
+        imageUrl={resolveHeroImageUrl(company?.heroImageUrl)}
         breadcrumb={[
           { name: tNav("home"), path: `/${locale}` },
           { name: t("title"), path: `/${locale}/about` },
@@ -100,7 +110,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         title={t("title")}
         description={heroDescription}
         eyebrow={brandName}
-        imageUrl={company?.heroImageUrl}
+        imageUrl={resolveHeroImageUrl(company?.heroImageUrl)}
         imageAlt={`${brandName} — ${t("title")}`}
         breadcrumb={breadcrumbItems}
         breadcrumbLabel={tA11y("breadcrumb")}

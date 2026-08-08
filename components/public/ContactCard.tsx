@@ -27,49 +27,53 @@ export function ContactCard({
   return (
     <div
       className={cn(
-        "border border-border/60 bg-surface/40 p-6 md:p-8",
+        "border border-border/45 bg-surface/35 p-5 md:p-6",
         className,
       )}
     >
       {title ? (
-        <Heading as="h3" size="h4" className="mb-5 text-gold">
+        <Heading
+          as="h3"
+          size="h4"
+          className="mb-4 text-xs tracking-[0.18em] text-gold uppercase"
+        >
           {title}
         </Heading>
       ) : null}
 
-      <ul className="space-y-4">
+      <ul className="space-y-3.5">
         {address ? (
-          <li className="flex gap-3">
+          <li className="flex gap-3.5">
             <MapPin className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-            <Paragraph className="text-sm">{address}</Paragraph>
+            <Paragraph className="text-sm leading-relaxed">{address}</Paragraph>
           </li>
         ) : null}
         {phone ? (
-          <li className="flex gap-3">
+          <li className="flex gap-3.5">
             <Phone className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
             <a
               href={`tel:${phone.replace(/\s/g, "")}`}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-gold"
             >
               {phone}
             </a>
           </li>
         ) : null}
         {email ? (
-          <li className="flex gap-3">
+          <li className="flex gap-3.5">
             <Mail className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
             <a
               href={`mailto:${email}`}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm break-all text-muted-foreground transition-colors hover:text-gold"
             >
               {email}
             </a>
           </li>
         ) : null}
         {hours ? (
-          <li className="flex gap-3">
+          <li className="flex gap-3.5">
             <Clock className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-            <Paragraph className="text-sm">{hours}</Paragraph>
+            <Paragraph className="text-sm leading-relaxed">{hours}</Paragraph>
           </li>
         ) : null}
       </ul>

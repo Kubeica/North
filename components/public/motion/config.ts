@@ -26,23 +26,24 @@ export const scaleFrom = 0.96;
 
 export const viewportOnce = {
   once: true,
-  margin: "-10% 0px",
+  margin: "0px 0px -8% 0px",
 } as const;
 
 export const staggerContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.06,
     },
   },
 } as const;
 
+/** Keep items readable before/without animation (no empty opacity:0 blocks). */
 export const staggerItem = {
-  hidden: { opacity: 0, y: fadeUpOffset },
+  hidden: { opacity: 1, y: 0 },
   show: {
     opacity: 1,
     y: 0,
-    transition: transition("base"),
+    transition: transition("fast"),
   },
 } as const;

@@ -53,20 +53,28 @@ export async function ProjectsFeaturedShowcase({
         </Reveal>
 
         <Reveal delay={0.06}>
-          <article className="grid overflow-hidden border border-border/50 bg-background/30 lg:grid-cols-12">
+          <article className="grid overflow-hidden bg-background/25 ring-1 ring-border/40 lg:grid-cols-12">
             <div className="group relative lg:col-span-7">
               <ProjectCover
                 src={project.coverImageUrl}
                 alt={title}
-                fallbackLabel={title}
+                seed={project.slug}
                 sizes="(max-width: 1024px) 100vw, 58vw"
-                className="aspect-[16/10] lg:aspect-auto lg:min-h-[22rem] lg:h-full"
+                className="aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[26rem]"
                 priority
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(5,10,15,0.3)] via-transparent to-transparent"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 end-0 hidden w-28 bg-gradient-to-l from-[rgba(5,10,15,0.4)] to-transparent lg:block rtl:bg-gradient-to-r"
               />
             </div>
 
-            <div className="flex flex-col justify-center p-6 sm:p-8 lg:col-span-5 lg:p-10">
-              <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="flex flex-col justify-center p-6 sm:p-8 lg:col-span-5 lg:p-10 xl:p-12">
+              <div className="mb-5 flex flex-wrap items-center gap-2">
                 <Caption className="tracking-[0.16em] text-gold uppercase">
                   {t("featured")}
                 </Caption>
@@ -76,12 +84,12 @@ export async function ProjectsFeaturedShowcase({
                 />
               </div>
 
-              <Heading as="h3" size="h2" className="text-balance">
+              <Heading as="h3" size="h2" className="max-w-[18ch] text-balance">
                 {title}
               </Heading>
 
               {summary ? (
-                <Lead className="mt-4 max-w-xl text-base">{summary}</Lead>
+                <Lead className="mt-4 max-w-md text-base">{summary}</Lead>
               ) : null}
 
               <ProjectMeta
@@ -108,7 +116,7 @@ export async function ProjectsFeaturedShowcase({
                 ]}
               />
 
-              <div className="mt-8">
+              <div className="mt-9">
                 <PublicButton href={`/projects/${project.slug}`}>
                   {tCta("learnMore")}
                 </PublicButton>

@@ -27,23 +27,36 @@ export async function ContactTeaser({
   const address = company ? localized(company, locale, "address") : "";
   const phone = company?.phone ?? "";
   const email = company?.email ?? "";
+  const hasMapCoords =
+    company?.latitude != null &&
+    company?.longitude != null &&
+    Number.isFinite(company.latitude) &&
+    Number.isFinite(company.longitude);
 
   return (
     <Section tone="dark" id="contact-preview" padded={false}>
       <Container className="nm-section">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
+        <div
+          className={
+            hasMapCoords
+              ? "grid gap-8 lg:grid-cols-2 lg:items-start"
+              : "max-w-xl"
+          }
+        >
           <Reveal>
             <Heading as="h2" size="h2">
               {t("contactPreviewTitle")}
             </Heading>
-            <Lead className="mt-4 max-w-lg">{t("contactPreviewSubtitle")}</Lead>
-            <div className="mt-8">
+            <Lead className="mt-3 max-w-lg text-sm md:text-base">
+              {t("contactPreviewSubtitle")}
+            </Lead>
+            <div className="mt-6">
               <ContactCard
                 address={address || null}
                 phone={phone || null}
                 email={email || null}
               >
-                <div className="mt-8">
+                <div className="mt-6">
                   <PublicButton href="/contact" size="lg">
                     {tCta("sendMessage")}
                   </PublicButton>
@@ -52,15 +65,16 @@ export async function ContactTeaser({
             </div>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <MapPlaceholder
-              latitude={company?.latitude}
-              longitude={company?.longitude}
-              label={t("mapPlaceholder")}
-              unavailableLabel={t("mapUnavailable")}
-              className="h-full min-h-[280px]"
-            />
-          </Reveal>
+          {hasMapCoords ? (
+            <Reveal>
+              <MapPlaceholder
+                latitude={company?.latitude}
+                longitude={company?.longitude}
+                label={t("mapPlaceholder")}
+                unavailableLabel={t("mapUnavailable")}
+              />
+            </Reveal>
+          ) : null}
         </div>
       </Container>
     </Section>

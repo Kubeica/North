@@ -22,6 +22,7 @@ import {
 } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import { localized } from "@/lib/i18n/get-localized";
+import { resolveProjectImageUrl } from "@/lib/media/public-assets";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { formatDate } from "@/lib/utils";
 
@@ -50,14 +51,14 @@ export async function generateMetadata({ params }: ProjectDetailProps) {
     localized(project, locale, "description").slice(0, 160);
   const siteName = company
     ? localized(company, locale, "name")
-    : "Northern Meteor Construction";
+    : "Northern Meteor";
 
   return buildPageMetadata({
     title,
     description,
     locale,
     path: `/${locale}/projects/${slug}`,
-    imageUrl: project.coverImageUrl,
+    imageUrl: resolveProjectImageUrl(project.coverImageUrl, project.slug),
     siteName,
   });
 }
@@ -116,7 +117,7 @@ export default async function ProjectDetailPage({
   ];
 
   const galleryItems = project.images.map((image, index) => ({
-    src: image.url,
+    src: resolveProjectImageUrl(image.url, `${project.slug}-${index}`),
     alt:
       localized(image, locale, "alt") ||
       t("detail.galleryImageAlt", { title, index: index + 1 }),
@@ -129,13 +130,9 @@ export default async function ProjectDetailPage({
         title={title}
         description={seoDescription}
         slug={slug}
-        imageUrl={project.coverImageUrl}
-        datePublished={project.createdAt?.toISOString?.() ?? null}
-        dateCompleted={
-          project.completionDate
-            ? project.completionDate.toISOString()
-            : null
-        }
+        imageUrl={resolveProjectImageUrl(project.coverImageUrl, project.slug)}
+        datePublished={project.createdAt || null}
+        dateCompleted={project.completionDate}
         location={location || null}
         clientName={project.client?.name ?? null}
         breadcrumb={[
@@ -148,8 +145,9 @@ export default async function ProjectDetailPage({
       <PageHero
         title={title}
         description={summary || undefined}
-        imageUrl={project.coverImageUrl}
+        imageUrl={resolveProjectImageUrl(project.coverImageUrl, project.slug)}
         imageAlt={title}
+        size="tall"
         breadcrumb={[
           { label: tNav("home"), href: "/" },
           { label: t("title"), href: "/projects" },
@@ -157,7 +155,6 @@ export default async function ProjectDetailPage({
         ]}
         breadcrumbLabel={tA11y("breadcrumb")}
         rtlBreadcrumb={locale === "ar"}
-        className="min-h-[52dvh] md:min-h-[58dvh]"
       >
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <ProjectStatusBadge status={project.status} label={statusLabel} />

@@ -49,8 +49,8 @@ function safeJsonLd(data: unknown): string {
 export function JsonLd({ company, locale }: JsonLdProps) {
   const base = siteUrl();
   const name = company
-    ? localized(company, locale, "name") || "Northern Meteor Construction"
-    : "Northern Meteor Construction";
+    ? localized(company, locale, "name") || "Northern Meteor"
+    : "Northern Meteor";
   const description = company
     ? localized(company, locale, "shortDescription")
     : undefined;

@@ -121,8 +121,9 @@ export default async function AdminClientsPage({
                   </TableCell>
                   <TableCell>
                     <RowActions
+                      id={client.id}
                       editHref={`/admin/clients/${client.id}/edit`}
-                      onArchive={() => archiveClient(client.id)}
+                      archiveAction={archiveClient}
                     />
                   </TableCell>
                 </TableRow>

@@ -23,7 +23,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
       href={pathname}
       locale={otherLocale}
       className={cn(
-        "rounded-md px-2 py-1.5 text-xs font-medium tracking-wide text-muted-foreground transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+        "rounded-sm px-2 py-1.5 text-xs font-medium tracking-wide text-muted-foreground transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
         className,
       )}
       aria-label={switchLabel}

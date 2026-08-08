@@ -28,21 +28,21 @@ export async function ServicesIntro({ locale, company }: ServicesIntroProps) {
 
   return (
     <Section tone="dark" id="introduction" padded={false}>
-      <Container className="nm-section">
+      <Container className="nm-section pb-0 md:pb-2">
         <Reveal>
           <div className="max-w-3xl">
             <Caption className="tracking-[0.2em] text-gold uppercase">
               {t("introEyebrow")}
             </Caption>
-            <Heading as="h2" size="h2" className="mt-4 text-balance">
+            <Heading as="h2" size="h2" className="mt-3 text-balance">
               {t("introTitle")}
             </Heading>
-            <Lead className="mt-5">{t("introLead")}</Lead>
+            <Lead className="mt-3 text-sm md:text-base">{t("introLead")}</Lead>
             {short ? (
-              <Paragraph className="mt-5 text-muted-foreground">{short}</Paragraph>
+              <Paragraph className="mt-4 text-muted-foreground">{short}</Paragraph>
             ) : null}
             {capabilities ? (
-              <Paragraph className="mt-4 text-muted-foreground">
+              <Paragraph className="mt-3 text-muted-foreground">
                 {capabilities}
               </Paragraph>
             ) : null}

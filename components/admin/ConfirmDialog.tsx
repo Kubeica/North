@@ -63,7 +63,10 @@ export function ConfirmDialog({
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger render={<span className="inline-flex" />}>
+      <AlertDialogTrigger
+        nativeButton={false}
+        render={<span className="inline-flex" />}
+      >
         {trigger}
       </AlertDialogTrigger>
       <AlertDialogContent className="border border-border bg-surface">

@@ -23,7 +23,7 @@ export function LazyImage({
       loading={priority ? undefined : "lazy"}
       priority={priority}
       fetchPriority={fetchPriority ?? (priority ? "high" : "auto")}
-      quality={quality ?? (priority ? 80 : 75)}
+      quality={quality ?? 75}
       decoding="async"
       {...props}
     />

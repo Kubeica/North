@@ -127,11 +127,12 @@ export default async function AdminProjectsPage({
       className: "text-right",
       cell: (project) => (
         <ActionMenu
+          id={project.id}
           viewHref={`/en/projects/${project.slug}`}
           editHref={`/admin/projects/${project.id}/edit`}
-          onDuplicate={() => duplicateProject(project.id)}
-          onArchive={() => archiveProject(project.id)}
-          duplicateEditPath={(id) => `/admin/projects/${id}/edit`}
+          duplicateAction={duplicateProject}
+          archiveAction={archiveProject}
+          duplicateEditHrefTemplate="/admin/projects/{id}/edit"
         />
       ),
     },

@@ -84,6 +84,8 @@ export async function updateCompanySettings(
       parsed.data,
     );
     revalidatePath("/admin/settings");
+    revalidatePath("/", "layout");
+    revalidatePath("/[locale]", "layout");
     return actionOk({ id: profile.id }, "Company profile saved");
   } catch (error) {
     return mapDomainError(error);
@@ -113,6 +115,9 @@ export async function updateGeneralSettings(
       parsed.data,
     );
     revalidatePath("/admin/settings");
+    revalidatePath("/", "layout");
+    revalidatePath("/[locale]", "layout");
+    revalidatePath("/[locale]", "page");
     return actionOk(undefined, "General settings saved");
   } catch (error) {
     return mapDomainError(error);

@@ -1,11 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 import { cn } from "@/components/public/theme/utils";
-
-import { fadeUpOffset, transition, viewportOnce } from "./config";
 
 type RevealProps = {
   children: ReactNode;
@@ -15,27 +13,13 @@ type RevealProps = {
   once?: boolean;
 };
 
-export function Reveal({
-  children,
-  className,
-  delay = 0,
-  y = fadeUpOffset,
-  once = true,
-}: RevealProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
+/**
+ * Layout wrapper that keeps section content visible immediately.
+ * Avoids opacity:0 / translate placeholders that read as empty space in PDF/exports.
+ */
+export function Reveal({ children, className }: RevealProps) {
   return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ ...viewportOnce, once }}
-      transition={transition("base", delay)}
-    >
+    <motion.div className={cn(className)} initial={false}>
       {children}
     </motion.div>
   );

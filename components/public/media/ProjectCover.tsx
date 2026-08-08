@@ -1,4 +1,4 @@
-import { LazyImage } from "./LazyImage";
+import { ArchitecturalImage } from "@/components/public/media/ArchitecturalImage";
 import { cn } from "@/components/public/theme/utils";
 
 type ProjectCoverProps = {
@@ -8,6 +8,7 @@ type ProjectCoverProps = {
   sizes?: string;
   priority?: boolean;
   fallbackLabel?: string;
+  seed?: string;
 };
 
 export function ProjectCover({
@@ -16,29 +17,16 @@ export function ProjectCover({
   className,
   sizes = "(max-width: 768px) 100vw, 33vw",
   priority = false,
-  fallbackLabel,
+  seed,
 }: ProjectCoverProps) {
   return (
-    <div
-      className={cn(
-        "relative aspect-[4/3] overflow-hidden bg-surface-2",
-        className,
-      )}
-    >
-      {src ? (
-        <LazyImage
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center bg-gradient-to-br from-navy to-surface text-muted-foreground">
-          {fallbackLabel ?? alt}
-        </div>
-      )}
-    </div>
+    <ArchitecturalImage
+      src={src}
+      alt={alt}
+      seed={seed ?? alt}
+      sizes={sizes}
+      priority={priority}
+      className={cn("aspect-[4/3]", className)}
+    />
   );
 }

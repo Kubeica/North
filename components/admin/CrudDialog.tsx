@@ -37,7 +37,14 @@ export function CrudDialog({
 }: CrudDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      {trigger ? <DialogTrigger render={<span className="inline-flex" />}>{trigger}</DialogTrigger> : null}
+      {trigger ? (
+        <DialogTrigger
+          nativeButton={false}
+          render={<span className="inline-flex" />}
+        >
+          {trigger}
+        </DialogTrigger>
+      ) : null}
       <DialogContent
         className={cn(
           "border border-border bg-surface sm:max-w-lg",

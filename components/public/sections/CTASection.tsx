@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ComponentProps, ReactNode } from "react";
 
 import { PublicButton } from "@/components/public/buttons/PublicButton";
@@ -20,6 +21,7 @@ type CTASectionProps = {
   className?: string;
   align?: "start" | "center";
   children?: ReactNode;
+  imageUrl?: string | null;
 };
 
 export function CTASection({
@@ -28,8 +30,9 @@ export function CTASection({
   primaryAction,
   secondaryAction,
   className,
-  align = "center",
+  align = "start",
   children,
+  imageUrl,
 }: CTASectionProps) {
   return (
     <section
@@ -38,9 +41,26 @@ export function CTASection({
         className,
       )}
     >
+      {imageUrl ? (
+        <Image
+          src={imageUrl}
+          alt=""
+          fill
+          sizes="100vw"
+          loading="lazy"
+          decoding="async"
+          quality={75}
+          className="object-cover opacity-30"
+          aria-hidden
+        />
+      ) : null}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_color-mix(in_srgb,var(--gold)_12%,transparent),_transparent_55%)]"
+        className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-navy/80"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,color-mix(in_srgb,var(--gold)_10%,transparent),transparent_50%)]"
       />
       <Container
         className={cn(
@@ -49,13 +69,13 @@ export function CTASection({
         )}
       >
         <Reveal>
-          <Heading as="h2" size="h2">
+          <Heading as="h2" size="h1" className="max-w-3xl text-balance">
             {title}
           </Heading>
           {description ? (
             <Lead
               className={cn(
-                "mt-4 max-w-xl",
+                "mt-5 max-w-xl text-foreground/80",
                 align === "center" && "mx-auto",
               )}
             >
@@ -65,17 +85,22 @@ export function CTASection({
           {(primaryAction || secondaryAction) && (
             <div
               className={cn(
-                "mt-8 flex flex-wrap gap-3",
+                "mt-10 flex flex-wrap gap-3",
                 align === "center" && "items-center justify-center",
               )}
             >
               {primaryAction ? (
-                <PublicButton href={primaryAction.href}>
+                <PublicButton href={primaryAction.href} size="lg">
                   {primaryAction.label}
                 </PublicButton>
               ) : null}
               {secondaryAction ? (
-                <PublicButton href={secondaryAction.href} variant="outline">
+                <PublicButton
+                  href={secondaryAction.href}
+                  variant="outline"
+                  size="lg"
+                  className="border-gold/45 hover:border-gold"
+                >
                   {secondaryAction.label}
                 </PublicButton>
               ) : null}

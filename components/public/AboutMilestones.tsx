@@ -4,7 +4,6 @@ import { Container } from "@/components/public/layout/Container";
 import { Section } from "@/components/public/layout/Section";
 import { SectionTitle } from "@/components/public/layout/SectionTitle";
 import { Reveal } from "@/components/public/motion/Reveal";
-import { Paragraph } from "@/components/public/typography/Paragraph";
 import { Timeline } from "@/components/public/Timeline";
 import { localized } from "@/lib/i18n/get-localized";
 import type { Locale } from "@/lib/i18n/config";
@@ -23,22 +22,7 @@ export async function AboutMilestones({
   const t = await getTranslations({ locale, namespace: "about" });
 
   if (milestones.length === 0) {
-    return (
-      <Section tone="dark" id="timeline" padded={false}>
-        <Container className="nm-section">
-          <Reveal>
-            <SectionTitle
-              title={t("timelineTitle")}
-              description={t("timelineSubtitle")}
-              className="mb-8"
-            />
-            <Paragraph className="text-muted-foreground">
-              {t("timelineEmpty")}
-            </Paragraph>
-          </Reveal>
-        </Container>
-      </Section>
-    );
+    return null;
   }
 
   const steps = milestones.map((milestone) => {

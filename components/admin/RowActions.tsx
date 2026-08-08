@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Copy, Eye, MoreHorizontal, Pencil, Archive } from "lucide-react";
+import { Archive, Copy, Eye, MoreHorizontal, Pencil } from "lucide-react";
 import { toast } from "sonner";
 
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
@@ -15,22 +15,35 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { ActionResult } from "@/lib/admin/action";
 
+/** Server Action reference — pass the action itself, never a Server Component closure. */
+type IdMutation = (id: string) => Promise<ActionResult<unknown>>;
+type DuplicateMutation = (id: string) => Promise<ActionResult<{ id: string }>>;
+
 type RowActionsProps = {
+  id: string;
   viewHref?: string;
   editHref: string;
-  onArchive?: () => Promise<ActionResult<unknown>>;
-  onDuplicate?: () => Promise<ActionResult<{ id: string }>>;
+  /** Pass a `"use server"` action, e.g. `archiveService`. */
+  archiveAction?: IdMutation;
+  /** Pass a `"use server"` action, e.g. `duplicateProject`. */
+  duplicateAction?: DuplicateMutation;
   archiveLabel?: string;
-  duplicateEditPath?: (id: string) => string;
+  /** Path template with `{id}`, e.g. `/admin/projects/{id}/edit`. */
+  duplicateEditHrefTemplate?: string;
 };
 
+function resolveTemplate(template: string, id: string): string {
+  return template.replaceAll("{id}", id);
+}
+
 export function RowActions({
+  id,
   viewHref,
   editHref,
-  onArchive,
-  onDuplicate,
+  archiveAction,
+  duplicateAction,
   archiveLabel = "Archive",
-  duplicateEditPath,
+  duplicateEditHrefTemplate,
 }: RowActionsProps) {
   const router = useRouter();
 
@@ -51,7 +64,7 @@ export function RowActions({
         <span className="sr-only">Edit</span>
       </Button>
 
-      {(onDuplicate || onArchive) && (
+      {duplicateAction || archiveAction ? (
         <DropdownMenu>
           <DropdownMenuTrigger
             render={<Button variant="ghost" size="icon-sm" />}
@@ -60,17 +73,22 @@ export function RowActions({
             <span className="sr-only">More</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="min-w-40">
-            {onDuplicate ? (
+            {duplicateAction ? (
               <DropdownMenuItem
                 onClick={async () => {
-                  const result = await onDuplicate();
+                  const result = await duplicateAction(id);
                   if (!result.ok) {
                     toast.error(result.error);
                     return;
                   }
                   toast.success(result.message ?? "Duplicated");
-                  if (duplicateEditPath) {
-                    router.push(duplicateEditPath(result.data.id));
+                  if (result.data?.id && duplicateEditHrefTemplate) {
+                    router.push(
+                      resolveTemplate(
+                        duplicateEditHrefTemplate,
+                        result.data.id,
+                      ),
+                    );
                   }
                   router.refresh();
                 }}
@@ -79,7 +97,7 @@ export function RowActions({
                 Duplicate
               </DropdownMenuItem>
             ) : null}
-            {onArchive ? (
+            {archiveAction ? (
               <ConfirmDialog
                 title={`${archiveLabel}?`}
                 description="This item will be hidden from the public site. You can still find it in the admin list filters."
@@ -87,7 +105,7 @@ export function RowActions({
                 destructive
                 successMessage={`${archiveLabel}d`}
                 onConfirm={async () => {
-                  const result = await onArchive();
+                  const result = await archiveAction(id);
                   router.refresh();
                   return result;
                 }}
@@ -104,7 +122,7 @@ export function RowActions({
             ) : null}
           </DropdownMenuContent>
         </DropdownMenu>
-      )}
+      ) : null}
     </div>
   );
 }

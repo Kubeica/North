@@ -122,9 +122,10 @@ export default async function AdminServicesPage({
                   </TableCell>
                   <TableCell>
                     <RowActions
+                      id={service.id}
                       viewHref={`/en/services/${service.slug}`}
                       editHref={`/admin/services/${service.id}/edit`}
-                      onArchive={() => archiveService(service.id)}
+                      archiveAction={archiveService}
                     />
                   </TableCell>
                 </TableRow>

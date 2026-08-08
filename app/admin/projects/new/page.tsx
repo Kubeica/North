@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/admin/PageHeader";
 import { ProjectForm } from "@/components/admin/forms/ProjectForm";
 import { requirePermission } from "@/lib/auth/session";
 import { clientService } from "@/src/domain/client/service";
-import { projectService } from "@/src/domain/project/service";
+import { projectCategoryService } from "@/src/domain/project-category/service";
 
 export const metadata = { title: "New project" };
 
@@ -10,7 +10,7 @@ export default async function NewProjectPage() {
   await requirePermission("projects:write");
 
   const [categories, clients] = await Promise.all([
-    projectService.listCategories(),
+    projectCategoryService.listOptions(),
     clientService.listOptions(),
   ]);
 

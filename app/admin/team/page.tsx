@@ -119,8 +119,9 @@ export default async function AdminTeamPage({
                   </TableCell>
                   <TableCell>
                     <RowActions
+                      id={member.id}
                       editHref={`/admin/team/${member.id}/edit`}
-                      onArchive={() => archiveTeamMember(member.id)}
+                      archiveAction={archiveTeamMember}
                     />
                   </TableCell>
                 </TableRow>

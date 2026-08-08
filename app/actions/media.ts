@@ -7,6 +7,23 @@ import { mapDomainError } from "@/lib/admin/map-domain-error";
 import { requirePermission } from "@/lib/auth/session";
 import { mediaService } from "@/src/domain/media/service";
 
+export type MediaPickerItem = {
+  id: string;
+  url: string;
+  fileName: string;
+};
+
+/** Lightweight list for MediaPicker browse dialog. */
+export async function listMediaForPicker(): Promise<MediaPickerItem[]> {
+  await requirePermission("media:read");
+  const { items } = await mediaService.list({ page: 1, pageSize: 48 });
+  return items.map((item) => ({
+    id: item.id,
+    url: item.url,
+    fileName: item.fileName,
+  }));
+}
+
 export async function archiveMedia(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {

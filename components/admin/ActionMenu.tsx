@@ -15,30 +15,39 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { ActionResult } from "@/lib/admin/action";
 
+/** Server Action reference — pass the action itself, never a Server Component closure. */
+type IdMutation = (id: string) => Promise<ActionResult<{ id: string } | unknown>>;
+type DuplicateMutation = (id: string) => Promise<ActionResult<{ id: string }>>;
+
 type ActionMenuProps = {
+  id: string;
   viewHref?: string;
   editHref?: string;
-  onView?: () => void;
-  onEdit?: () => void;
-  onDuplicate?: () => Promise<ActionResult<{ id: string }> | void> | void;
-  onArchive?: () => Promise<ActionResult<unknown> | void>;
+  /** Pass a `"use server"` action, e.g. `duplicateProject`. */
+  duplicateAction?: DuplicateMutation;
+  /** Pass a `"use server"` action, e.g. `archiveProject`. */
+  archiveAction?: IdMutation;
   archiveLabel?: string;
-  duplicateEditPath?: (id: string) => string;
+  /** Path template with `{id}`, e.g. `/admin/projects/{id}/edit`. */
+  duplicateEditHrefTemplate?: string;
 };
 
-/** Dropdown of View / Edit / Duplicate / Archive actions. */
+function resolveTemplate(template: string, id: string): string {
+  return template.replaceAll("{id}", id);
+}
+
+/** Dropdown of View / Edit / Duplicate / Archive. Props must be serializable + Server Actions. */
 export function ActionMenu({
+  id,
   viewHref,
   editHref,
-  onView,
-  onEdit,
-  onDuplicate,
-  onArchive,
+  duplicateAction,
+  archiveAction,
   archiveLabel = "Archive",
-  duplicateEditPath,
+  duplicateEditHrefTemplate,
 }: ActionMenuProps) {
   const router = useRouter();
-  const hasAny = viewHref || editHref || onView || onEdit || onDuplicate || onArchive;
+  const hasAny = viewHref || editHref || duplicateAction || archiveAction;
   if (!hasAny) return null;
 
   return (
@@ -53,11 +62,6 @@ export function ActionMenu({
             <Eye className="size-4" />
             View
           </DropdownMenuItem>
-        ) : onView ? (
-          <DropdownMenuItem onClick={onView}>
-            <Eye className="size-4" />
-            View
-          </DropdownMenuItem>
         ) : null}
 
         {editHref ? (
@@ -65,27 +69,26 @@ export function ActionMenu({
             <Pencil className="size-4" />
             Edit
           </DropdownMenuItem>
-        ) : onEdit ? (
-          <DropdownMenuItem onClick={onEdit}>
-            <Pencil className="size-4" />
-            Edit
-          </DropdownMenuItem>
         ) : null}
 
-        {onDuplicate ? (
+        {duplicateAction ? (
           <DropdownMenuItem
             onClick={async () => {
-              const result = await onDuplicate();
-              if (result && !result.ok) {
+              const result = await duplicateAction(id);
+              if (!result.ok) {
                 toast.error(result.error);
                 return;
               }
-              toast.success(
-                (result && "message" in result && result.message) ||
-                  "Duplicated",
-              );
-              if (result && result.ok && result.data?.id && duplicateEditPath) {
-                router.push(duplicateEditPath(result.data.id));
+              toast.success(result.message ?? "Duplicated");
+              const newId =
+                result.data &&
+                typeof result.data === "object" &&
+                "id" in result.data &&
+                typeof result.data.id === "string"
+                  ? result.data.id
+                  : null;
+              if (newId && duplicateEditHrefTemplate) {
+                router.push(resolveTemplate(duplicateEditHrefTemplate, newId));
               }
               router.refresh();
             }}
@@ -95,7 +98,7 @@ export function ActionMenu({
           </DropdownMenuItem>
         ) : null}
 
-        {onArchive ? (
+        {archiveAction ? (
           <ConfirmDialog
             title={`${archiveLabel}?`}
             description="This item will be hidden from the public site. You can still find it in the admin list filters."
@@ -103,7 +106,7 @@ export function ActionMenu({
             destructive
             successMessage={`${archiveLabel}d`}
             onConfirm={async () => {
-              const result = await onArchive();
+              const result = await archiveAction(id);
               router.refresh();
               return result;
             }}

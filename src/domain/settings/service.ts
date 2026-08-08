@@ -26,6 +26,7 @@ export const settingsService = {
 
   async updateCompany(actor: DomainActor, input: CompanyProfileInput) {
     try {
+      const previous = await settingsRepository.getCompanyProfile();
       const profile = await runTransaction(async (tx) => {
         return settingsRepository.upsertCompanyProfile(input, tx);
       });
@@ -35,6 +36,17 @@ export const settingsService = {
         entity: "CompanyProfile",
         entityId: profile.id,
       });
+
+      const prevFavicon = previous?.faviconUrl ?? null;
+      const nextFavicon = profile.faviconUrl ?? null;
+      if (prevFavicon !== nextFavicon) {
+        await auditService.record(actor, {
+          action: AuditAction.UPDATE_FAVICON,
+          entity: "CompanyProfile",
+          entityId: profile.id,
+          metadata: { faviconUrl: nextFavicon },
+        });
+      }
 
       return profile;
     } catch {
@@ -82,6 +94,15 @@ export const settingsService = {
         metadata: {
           defaultLanguage: input.defaultLanguage,
           maintenanceMode,
+        },
+      });
+
+      await auditService.record(actor, {
+        action: AuditAction.UPDATE_SEO_SETTINGS,
+        entity: "SiteSetting",
+        metadata: {
+          seoTitleEn: input.seoTitleEn,
+          seoTitleAr: input.seoTitleAr,
         },
       });
     } catch {

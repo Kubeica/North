@@ -12,6 +12,8 @@ import {
   ImageIcon,
   UsersRound,
   Milestone,
+  BarChart3,
+  Tags,
   UserCog,
   Settings,
   ScrollText,
@@ -34,6 +36,12 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
     href: "/admin/projects",
     label: "Projects",
     icon: FolderKanban,
+    permission: "projects:read",
+  },
+  {
+    href: "/admin/project-categories",
+    label: "Categories",
+    icon: Tags,
     permission: "projects:read",
   },
   {
@@ -77,6 +85,12 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
     label: "Milestones",
     icon: Milestone,
     permission: "milestones:read",
+  },
+  {
+    href: "/admin/statistics",
+    label: "Statistics",
+    icon: BarChart3,
+    permission: "statistics:read",
   },
   {
     href: "/admin/users",

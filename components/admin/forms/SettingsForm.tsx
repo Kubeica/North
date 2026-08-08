@@ -9,14 +9,16 @@ import {
   fieldClassName,
   textareaClassName,
 } from "@/components/admin/FormSection";
+import { MediaPicker } from "@/components/admin/MediaPicker";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import {
   updateCompanySettings,
   updateGeneralSettings,
 } from "@/app/actions/settings";
 
+/** Plain serializable company fields only (no Date / Prisma class fields). */
 type CompanyValues = {
-  [key: string]: string | number | boolean | Date | null | undefined;
+  [key: string]: string | number | boolean | null | undefined;
 };
 
 type SettingsFormProps = {
@@ -256,30 +258,24 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
         </FormSection>
 
         <FormSection title="Social & brand media">
-          <Field label="Logo URL" name="logoUrl">
-            <input
-              id="logoUrl"
-              name="logoUrl"
-              defaultValue={val(company, "logoUrl")}
-              className={fieldClassName}
-            />
-          </Field>
-          <Field label="Favicon URL" name="faviconUrl">
-            <input
-              id="faviconUrl"
-              name="faviconUrl"
-              defaultValue={val(company, "faviconUrl")}
-              className={fieldClassName}
-            />
-          </Field>
-          <Field label="Hero image URL" name="heroImageUrl" full>
-            <input
-              id="heroImageUrl"
-              name="heroImageUrl"
-              defaultValue={val(company, "heroImageUrl")}
-              className={fieldClassName}
-            />
-          </Field>
+          <MediaPicker
+            name="logoUrl"
+            label="Logo"
+            defaultValue={val(company, "logoUrl")}
+            error={errors.logoUrl}
+          />
+          <MediaPicker
+            name="faviconUrl"
+            label="Favicon"
+            defaultValue={val(company, "faviconUrl")}
+            error={errors.faviconUrl}
+          />
+          <MediaPicker
+            name="heroImageUrl"
+            label="Hero image"
+            defaultValue={val(company, "heroImageUrl")}
+            error={errors.heroImageUrl}
+          />
           <Field label="LinkedIn" name="linkedinUrl">
             <input
               id="linkedinUrl"

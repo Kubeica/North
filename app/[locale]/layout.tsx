@@ -49,7 +49,7 @@ export default async function LocaleLayout({
       <JsonLd company={company} locale={locale} />
       <SkipLink />
       <div className="flex min-h-full flex-1 flex-col">
-        <Navbar shortName={shortName} />
+        <Navbar shortName={shortName} logoUrl={company?.logoUrl} />
         <main id="main-content" className="flex-1" tabIndex={-1}>
           {children}
         </main>

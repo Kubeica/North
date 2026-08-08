@@ -4,9 +4,9 @@ import { cn } from "@/components/public/theme/utils";
 
 const sizeClass = {
   display:
-    "text-[length:var(--nm-text-display)] font-semibold leading-[1.1] tracking-tight",
-  h1: "text-[length:var(--nm-text-h1)] font-semibold leading-[1.15] tracking-tight",
-  h2: "text-[length:var(--nm-text-h2)] font-semibold leading-[1.2] tracking-tight",
+    "text-[length:var(--nm-text-display)] font-bold leading-[1.08] tracking-tight",
+  h1: "text-[length:var(--nm-text-h1)] font-bold leading-[1.12] tracking-tight",
+  h2: "text-[length:var(--nm-text-h2)] font-semibold leading-[1.18] tracking-tight",
   h3: "text-[length:var(--nm-text-h3)] font-semibold leading-[1.3] tracking-tight",
   h4: "text-[length:var(--nm-text-h4)] font-semibold leading-[1.35] tracking-tight",
 } as const;

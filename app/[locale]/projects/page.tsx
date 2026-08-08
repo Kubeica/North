@@ -18,6 +18,7 @@ import { ProjectsJsonLd } from "@/components/seo/ProjectsJsonLd";
 import { Link } from "@/i18n/navigation";
 import {
   getCompanyProfile,
+  getPublicSiteSeo,
   getFeaturedProjects,
   getProjectCategories,
   getProjectLocations,
@@ -26,7 +27,12 @@ import {
 } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import { localized } from "@/lib/i18n/get-localized";
+import { resolveHeroImageUrl } from "@/lib/media/public-assets";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import {
+  localizedSiteSeo,
+  pickCmsOrFallback,
+} from "@/lib/seo/site-defaults";
 
 /** ISR — CMS content can lag up to 60s. */
 export const revalidate = 60;
@@ -46,18 +52,24 @@ type ProjectsPageProps = {
 export async function generateMetadata({ params }: ProjectsPageProps) {
   const { locale: localeParam } = await params;
   const locale = localeParam as Locale;
-  const t = await getTranslations({ locale, namespace: "projects" });
-  const company = await getCompanyProfile();
+  const [t, company, seoDefaults] = await Promise.all([
+    getTranslations({ locale, namespace: "projects" }),
+    getCompanyProfile(),
+    getPublicSiteSeo(),
+  ]);
   const siteName = company
     ? localized(company, locale, "name")
-    : "Northern Meteor Construction";
+    : "Northern Meteor";
+  const cms = localizedSiteSeo(seoDefaults, locale);
 
   return buildPageMetadata({
     title: t("title"),
-    description: t("seoDescription") || t("subtitle"),
+    description:
+      t("seoDescription") ||
+      pickCmsOrFallback(cms.description, t("subtitle")),
     locale,
     path: `/${locale}/projects`,
-    imageUrl: company?.heroImageUrl,
+    imageUrl: resolveHeroImageUrl(company?.heroImageUrl),
     siteName,
   });
 }
@@ -136,7 +148,7 @@ export default async function ProjectsPage({
         locale={locale}
         title={t("title")}
         description={t("seoDescription")}
-        imageUrl={company?.heroImageUrl}
+        imageUrl={resolveHeroImageUrl(company?.heroImageUrl)}
         breadcrumb={[
           { name: tNav("home"), path: `/${locale}` },
           { name: t("title"), path: `/${locale}/projects` },
@@ -148,9 +160,7 @@ export default async function ProjectsPage({
             localized(project, locale, "title"),
           slug: project.slug,
           imageUrl: project.coverImageUrl,
-          dateCompleted: project.completionDate
-            ? project.completionDate.toISOString()
-            : null,
+          dateCompleted: project.completionDate,
         }))}
       />
 
@@ -158,7 +168,7 @@ export default async function ProjectsPage({
         title={t("title")}
         description={heroDescription}
         eyebrow={brandName}
-        imageUrl={company?.heroImageUrl}
+        imageUrl={resolveHeroImageUrl(company?.heroImageUrl)}
         imageAlt={`${brandName} — ${t("title")}`}
         breadcrumb={[
           { label: tNav("home"), href: "/" },

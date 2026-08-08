@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/admin/PageHeader";
 import { ProjectForm } from "@/components/admin/forms/ProjectForm";
 import { requirePermission } from "@/lib/auth/session";
 import { clientService } from "@/src/domain/client/service";
+import { projectCategoryService } from "@/src/domain/project-category/service";
 import { NotFoundError } from "@/src/domain/shared/errors";
 import { projectService } from "@/src/domain/project/service";
 
@@ -28,7 +29,7 @@ export default async function EditProjectPage({
   try {
     const [loaded, categories, clients] = await Promise.all([
       projectService.getById(id),
-      projectService.listCategories(),
+      projectCategoryService.listOptions(),
       clientService.listOptions(),
     ]);
     project = { loaded, categories, clients };

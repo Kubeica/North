@@ -1,11 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 import { cn } from "@/components/public/theme/utils";
-
-import { fadeUpOffset, transition } from "./config";
 
 type FadeUpProps = {
   children: ReactNode;
@@ -14,25 +12,12 @@ type FadeUpProps = {
   y?: number;
 };
 
-export function FadeUp({
-  children,
-  className,
-  delay = 0,
-  y = fadeUpOffset,
-}: FadeUpProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
+/**
+ * Keep content visible immediately — no opacity:0 empty regions in PDF/SSR.
+ */
+export function FadeUp({ children, className }: FadeUpProps) {
   return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0, y }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={transition("base", delay)}
-    >
+    <motion.div className={cn(className)} initial={false}>
       {children}
     </motion.div>
   );

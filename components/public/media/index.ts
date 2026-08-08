@@ -1,3 +1,4 @@
+export { ArchitecturalImage } from "./ArchitecturalImage";
 export { GalleryImage } from "./GalleryImage";
 export { HeroImage } from "./HeroImage";
 export { LazyImage } from "./LazyImage";

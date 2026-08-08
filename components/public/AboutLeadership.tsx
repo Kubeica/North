@@ -5,7 +5,6 @@ import { Section } from "@/components/public/layout/Section";
 import { SectionTitle } from "@/components/public/layout/SectionTitle";
 import { Reveal } from "@/components/public/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/public/motion/Stagger";
-import { Paragraph } from "@/components/public/typography/Paragraph";
 import { TeamMemberCard } from "@/components/public/TeamMemberCard";
 import { localized } from "@/lib/i18n/get-localized";
 import type { Locale } from "@/lib/i18n/config";
@@ -21,7 +20,10 @@ export async function AboutLeadership({
   members,
 }: AboutLeadershipProps) {
   const t = await getTranslations({ locale, namespace: "about" });
-  const tTeam = await getTranslations({ locale, namespace: "team" });
+
+  if (members.length === 0) {
+    return null;
+  }
 
   return (
     <Section tone="surface" id="leadership" padded={false}>
@@ -34,24 +36,20 @@ export async function AboutLeadership({
           />
         </Reveal>
 
-        {members.length === 0 ? (
-          <Paragraph className="text-muted-foreground">{tTeam("empty")}</Paragraph>
-        ) : (
-          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {members.map((member) => (
-              <StaggerItem key={member.id}>
-                <TeamMemberCard
-                  name={localized(member, locale, "name")}
-                  position={localized(member, locale, "position")}
-                  bio={localized(member, locale, "bio") || null}
-                  imageUrl={member.imageUrl}
-                  linkedInUrl={member.linkedin}
-                  email={member.email}
-                />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        )}
+        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {members.map((member) => (
+            <StaggerItem key={member.id}>
+              <TeamMemberCard
+                name={localized(member, locale, "name")}
+                position={localized(member, locale, "position")}
+                bio={localized(member, locale, "bio") || null}
+                imageUrl={member.imageUrl}
+                linkedInUrl={member.linkedin}
+                email={member.email}
+              />
+            </StaggerItem>
+          ))}
+        </Stagger>
       </Container>
     </Section>
   );

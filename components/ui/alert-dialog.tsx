@@ -10,9 +10,22 @@ function AlertDialog({ ...props }: AlertDialogPrimitive.Root.Props) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
 }
 
-function AlertDialogTrigger({ ...props }: AlertDialogPrimitive.Trigger.Props) {
+function AlertDialogTrigger({
+  nativeButton,
+  render,
+  ...props
+}: AlertDialogPrimitive.Trigger.Props) {
+  // Base UI defaults to a native <button>; disable when `render` swaps the host.
+  const resolvedNativeButton =
+    nativeButton ?? (render != null ? false : undefined);
+
   return (
-    <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />
+    <AlertDialogPrimitive.Trigger
+      data-slot="alert-dialog-trigger"
+      nativeButton={resolvedNativeButton}
+      render={render}
+      {...props}
+    />
   )
 }
 
@@ -165,6 +178,7 @@ function AlertDialogCancel({
     <AlertDialogPrimitive.Close
       data-slot="alert-dialog-cancel"
       className={cn(className)}
+      nativeButton={false}
       render={<Button variant={variant} size={size} />}
       {...props}
     />

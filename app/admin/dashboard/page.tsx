@@ -275,7 +275,7 @@ export default async function AdminDashboardPage() {
               action: log.action,
               entity: log.entity,
               userName: log.user?.name ?? "System",
-              createdAt: log.createdAt,
+              createdAt: log.createdAt.toISOString(),
             }))}
           />
         </DashboardCard>

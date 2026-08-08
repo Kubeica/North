@@ -14,6 +14,7 @@ type TimelineProps = {
   numbered?: boolean;
 };
 
+/** Compact engineering workflow — 3×2 desktop, single column mobile. */
 export function Timeline({
   steps,
   className,
@@ -22,16 +23,21 @@ export function Timeline({
   if (steps.length === 0) return null;
 
   return (
-    <ol className={cn("grid gap-8 sm:grid-cols-2 lg:grid-cols-4", className)}>
+    <ol
+      className={cn(
+        "relative grid gap-6 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-3",
+        className,
+      )}
+    >
       {steps.map((step, index) => (
-        <Reveal key={index} delay={index * 0.07}>
-          <li className="relative">
+        <Reveal key={index}>
+          <li className="relative border-t border-gold/35 pt-4">
             {numbered ? (
-              <span className="font-mono text-sm text-gold/80">
+              <span className="font-mono text-sm tracking-[0.18em] text-gold">
                 {String(index + 1).padStart(2, "0")}
               </span>
             ) : null}
-            <p className="mt-3 text-base font-medium leading-snug text-foreground">
+            <p className="mt-2 text-base font-semibold leading-snug text-foreground">
               {step.title}
             </p>
             {step.description ? (

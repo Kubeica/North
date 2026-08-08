@@ -1,10 +1,10 @@
 {
   "brand": {
-    "name": "Northern Meteor Construction",
-    "nameAr": "شركة النيزك الشمالي للمقاولات العامة",
-    "nameEn": "Northern Meteor Construction",
+    "name": "Northern Meteor",
+    "nameAr": "النيزك الشمالي",
+    "nameEn": "Northern Meteor",
     "short": "Northern Meteor",
-    "tagline": "We Build Today What Will Stand Tomorrow"
+    "tagline": "General Contracting, Construction, Engineering & Design"
   },
   "nav": {
     "home": "Home",
@@ -41,50 +41,54 @@
     "emailUs": "Email Us"
   },
   "home": {
-    "heroTitle": "We Build Today What Will Stand Tomorrow",
-    "heroSubtitle": "General contracting, engineering, and construction delivery built on quality, reliability, and disciplined project management.",
+    "heroTitle": "From design and planning to construction and handover",
+    "heroHighlight": "General Contracting",
+    "heroSubtitle": "Construction, engineering, design, and project execution — practical, reliable solutions for residential, commercial, and industrial projects.",
     "introEyebrow": "Who we are",
-    "introTitle": "A serious partner for complex construction",
+    "introTitle": "Integrated contracting for residential, commercial, and industrial projects",
     "scrollHint": "Scroll",
-    "featuredProjects": "Featured Projects",
-    "featuredProjectsSubtitle": "Selected sample portfolio entries that demonstrate scope, clarity, and delivery standards.",
-    "ourServices": "Featured Services",
-    "ourServicesSubtitle": "Capabilities spanning contracting, civil works, infrastructure, and project controls.",
+    "featuredProjects": "Our Featured Projects",
+    "featuredProjectsSubtitle": "Published projects will appear here once added in the admin.",
+    "ourServices": "Our Services",
+    "ourServicesSubtitle": "Contracting, building, design, and related construction services for residential, commercial, and industrial projects.",
     "trustedClients": "Clients & Partners",
-    "trustedClientsSubtitle": "Sample partners shown for demonstration — replace with your approved client list.",
+    "trustedClientsEyebrow": "Partners",
+    "trustedClientsSubtitle": "Client partners will appear here once published.",
     "statisticsTitle": "By the Numbers",
-    "statisticsSubtitle": "Editable company metrics managed from the CMS.",
+    "statisticsSubtitle": "Verified company metrics will appear here once published.",
+    "whyUsEyebrow": "Approach",
     "whyUsTitle": "Why Northern Meteor",
-    "whyUsSubtitle": "Six principles that guide how we plan, build, and hand over.",
+    "whyUsSubtitle": "Principles that guide how we plan, build, and hand over.",
     "whyUs": {
-      "quality": { "title": "Quality", "body": "Materials, workmanship, and inspection discipline that protect long-term performance." },
-      "safety": { "title": "Safety", "body": "Site practices that prioritize people, compliance, and controlled operations." },
-      "reliability": { "title": "Reliability", "body": "Clear commitments, transparent reporting, and dependable follow-through." },
-      "onTime": { "title": "On-Time Delivery", "body": "Schedules managed with realistic planning and proactive risk control." },
-      "team": { "title": "Experienced Team", "body": "Engineers and site leaders with multi-discipline construction fluency." },
-      "solutions": { "title": "Integrated Solutions", "body": "From consultation through handover — one accountable delivery chain." }
+      "quality": { "title": "Quality", "body": "Quality execution that protects long-term performance." },
+      "safety": { "title": "Safety", "body": "Safety as a core part of delivery across project stages." },
+      "reliability": { "title": "Reliability", "body": "Practical, dependable solutions clients can trust." },
+      "onTime": { "title": "On-Time Delivery", "body": "Commitment to schedules through precise planning." },
+      "team": { "title": "Clear Coordination", "body": "Coordinated delivery from design and planning through construction." },
+      "solutions": { "title": "Integrated Solutions", "body": "From design and planning through execution and final handover." }
     },
-    "processTitle": "How We Deliver",
-    "processSubtitle": "A clear methodology from first conversation to final handover.",
+    "processEyebrow": "Methodology",
+    "processTitle": "From Planning to Execution",
+    "processSubtitle": "A clear path from first conversation to final handover.",
     "process": {
       "consultation": "Consultation",
       "planning": "Planning",
-      "engineering": "Engineering",
+      "engineering": "Design",
       "execution": "Execution",
-      "quality": "Quality Control",
+      "quality": "Quality Inspection",
       "handover": "Handover"
     },
-    "contactPreviewTitle": "Let's discuss your project",
-    "contactPreviewSubtitle": "Reach our team or send a message — we respond with clarity and care.",
+    "contactPreviewTitle": "Discuss your project",
+    "contactPreviewSubtitle": "Call us or send a project inquiry — we are ready to discuss your requirements.",
     "mapPlaceholder": "Map location",
     "mapUnavailable": "Map preview available once coordinates are configured in settings.",
     "ctaTitle": "Let's Build Your Next Project Together",
-    "ctaSubtitle": "Share your requirements and our team will respond promptly."
+    "ctaSubtitle": "Share your requirements and we will respond promptly."
   },
   "about": {
     "title": "About Us",
-    "subtitle": "A disciplined general contractor built for complex delivery, accountable leadership, and structures that endure.",
-    "seoDescription": "Learn about Northern Meteor Construction — our company, leadership, engineering capabilities, safety culture, and commitment to long-term reliability.",
+    "subtitle": "Northern Meteor for General Contracting & Trading — contracting, building, design, and integrated project solutions.",
+    "seoDescription": "About Northern Meteor for General Contracting & Trading — quality execution, precise planning, schedule commitment, and safety from design through handover.",
     "breadcrumb": "Breadcrumb",
     "vision": "Vision",
     "mission": "Mission",
@@ -97,7 +101,7 @@
     "whyUs": "Why Us",
     "whoWeAre": {
       "eyebrow": "Who we are",
-      "title": "Engineering credibility, delivered with discipline"
+      "title": "Practical, reliable construction solutions"
     },
     "visionMissionTitle": "Vision, Mission & Philosophy",
     "visionMissionSubtitle": "The principles that shape how we plan, build, and hand over.",
@@ -134,9 +138,9 @@
       }
     },
     "leadershipTitle": "Leadership",
-    "leadershipSubtitle": "Experienced professionals accountable for delivery standards across every engagement.",
+    "leadershipSubtitle": "Team members will appear here once published.",
     "capabilitiesTitle": "Capabilities",
-    "capabilitiesSubtitle": "Multi-discipline construction capacity spanning buildings, infrastructure, and project controls.",
+    "capabilitiesSubtitle": "Contracting, building, design, and related construction services for residential, commercial, and industrial projects.",
     "capabilityItems": {
       "commercial": {
         "title": "Commercial",
@@ -204,17 +208,17 @@
   },
   "services": {
     "title": "Services",
-    "subtitle": "Full-service engineering and construction capability across buildings, infrastructure, and project delivery.",
-    "seoDescription": "Explore Northern Meteor Construction services — general contracting, civil works, infrastructure, MEP, project management, and disciplined delivery systems.",
+    "subtitle": "General contracting, building construction, design, and related construction services.",
+    "seoDescription": "Explore Northern Meteor services — general contracting, building construction, architectural and engineering design, residential, commercial and industrial construction, renovation, finishing, and project execution.",
     "empty": "No services are published yet.",
     "details": "Service details",
     "introEyebrow": "Capabilities",
-    "introTitle": "Engineering and construction under one accountable delivery chain",
-    "introLead": "Northern Meteor provides integrated contracting capacity — from planning and engineering coordination through execution, quality assurance, and handover.",
+    "introTitle": "Contracting, construction, engineering, and design",
+    "introLead": "Northern Meteor provides integrated contracting solutions — from design and planning through construction and final handover.",
     "featuredTitle": "Featured Services",
-    "featuredSubtitle": "Published service lines managed from the CMS — each representing a core delivery capability.",
-    "disciplinesTitle": "Engineering Disciplines",
-    "disciplinesSubtitle": "Multi-discipline coverage spanning commercial, industrial, civil, and infrastructure environments.",
+    "featuredSubtitle": "Published service lines managed from the CMS.",
+    "disciplinesTitle": "Service Areas",
+    "disciplinesSubtitle": "Coverage across residential, commercial, and industrial construction environments.",
     "methodology": {
       "title": "Work Methodology",
       "subtitle": "A controlled sequence from planning through delivery — designed for clarity, quality, and schedule discipline.",
@@ -282,8 +286,8 @@
   "projects": {
     "title": "Projects",
     "subtitle": "A portfolio that demonstrates scale, discipline, and delivery across complex construction environments.",
-    "seoDescription": "Explore Northern Meteor Construction projects — featured works, sectors, locations, and delivery status across our published portfolio.",
-    "empty": "No projects match your filters.",
+    "seoDescription": "Explore Northern Meteor projects — published works, sectors, and locations across the portfolio.",
+    "empty": "No projects are published yet. Real projects will appear here once added in Admin.",
     "featured": "Featured",
     "statusLabel": "Status",
     "status": {
@@ -368,19 +372,19 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Reach Northern Meteor Construction — we are ready to discuss your project.",
-    "seoDescription": "Contact Northern Meteor Construction for project inquiries, quote requests, and partnership discussions. Phone, email, office location, and quote form.",
+    "subtitle": "Discuss your project with Northern Meteor — we are ready to talk.",
+    "seoDescription": "Contact Northern Meteor for project inquiries and quote requests. Phone, office location in Erbil, Iraq, and quote form.",
     "formTitle": "Send a message",
     "success": "Thank you. Your message has been sent.",
     "error": "Something went wrong. Please try again.",
     "rateLimited": "Too many requests. Please wait and try again.",
     "infoTitle": "Contact information",
-    "infoSubtitle": "Reach our team by phone, email, or visit the office during business hours.",
+    "infoSubtitle": "Reach us by phone or visit the office.",
     "mapTitle": "Office location",
     "mapSubtitle": "Find us using the map coordinates managed in the CMS.",
     "hoursValue": "Sunday – Thursday · 8:00 AM – 5:00 PM",
-    "ctaTitle": "Ready to start the conversation?",
-    "ctaSubtitle": "Share your requirements and our team will respond with clarity and structure.",
+    "ctaTitle": "Discuss your project",
+    "ctaSubtitle": "Share your requirements and we will respond with clarity.",
     "fields": {
       "name": "Full name",
       "email": "Email",
@@ -392,7 +396,7 @@
     "placeholders": {
       "name": "Your name",
       "email": "you@example.com",
-      "phone": "+966 …",
+      "phone": "+964 …",
       "company": "Company name (optional)",
       "subject": "How can we help?",
       "message": "Tell us about your project or inquiry"
@@ -426,7 +430,7 @@
         "company": "Company or organization",
         "name": "Your full name",
         "email": "you@example.com",
-        "phone": "+966 …",
+        "phone": "+964 …",
         "projectType": "e.g. Commercial fit-out",
         "budget": "Approximate budget (optional)",
         "location": "City or site location",
@@ -492,7 +496,7 @@
   },
   "auth": {
     "loginTitle": "Sign in to CMS",
-    "loginSubtitle": "Northern Meteor Construction administration",
+    "loginSubtitle": "Northern Meteor administration",
     "email": "Email",
     "password": "Password",
     "signIn": "Sign in",
@@ -669,15 +673,15 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "company": "Northern Meteor Construction",
+    "company": "Northern Meteor",
     "quickLinks": "Quick links",
     "contact": "Contact",
     "followUs": "Follow us"
   },
   "seo": {
-    "homeTitle": "Northern Meteor Construction",
-    "homeDescription": "Northern Meteor Construction — We Build Today What Will Stand Tomorrow.",
-    "defaultDescription": "General contracting and construction services by Northern Meteor Construction."
+    "homeTitle": "Northern Meteor | General Contracting & Trading",
+    "homeDescription": "Northern Meteor for General Contracting & Trading — contracting, building, design, and integrated solutions in Erbil, Iraq.",
+    "defaultDescription": "General contracting, construction, engineering, and design services by Northern Meteor."
   },
   "common": {
     "loading": "Loading…",

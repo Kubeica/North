@@ -30,7 +30,7 @@ type ProjectsFilterProps = {
 const STATUSES = ["PLANNED", "IN_PROGRESS", "COMPLETED", "ON_HOLD"] as const;
 
 const fieldClass =
-  "w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-gold/50 focus-visible:ring-2 focus-visible:ring-gold";
+  "w-full rounded-sm border border-border bg-surface/60 px-3 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-gold/60 focus-visible:ring-2 focus-visible:ring-gold";
 
 export function ProjectsFilter({
   categories,
@@ -69,7 +69,7 @@ export function ProjectsFilter({
   return (
     <form
       action={apply}
-      className="grid gap-4 rounded-md border border-border/60 bg-surface/30 p-4 sm:grid-cols-2 lg:grid-cols-6 lg:items-end"
+      className="grid gap-4 border border-border/60 bg-surface/20 p-4 sm:grid-cols-2 lg:grid-cols-6 lg:items-end"
       aria-label={t("filtersLabel")}
       aria-busy={pending}
     >

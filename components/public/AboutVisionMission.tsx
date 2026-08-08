@@ -23,9 +23,8 @@ export async function AboutVisionMission({
 
   const vision = company ? localized(company, locale, "vision") : null;
   const mission = company ? localized(company, locale, "mission") : null;
-  const philosophy = t("philosophy.body");
 
-  if (!vision && !mission && !philosophy) return null;
+  if (!vision && !mission) return null;
 
   return (
     <Section tone="surface" id="vision-mission" padded={false}>
@@ -38,7 +37,13 @@ export async function AboutVisionMission({
           />
         </Reveal>
 
-        <Stagger className="grid gap-10 md:grid-cols-3">
+        <Stagger
+          className={
+            vision && mission
+              ? "grid gap-10 md:grid-cols-2"
+              : "grid gap-10 md:grid-cols-1 md:max-w-2xl"
+          }
+        >
           {vision ? (
             <StaggerItem>
               <FeatureCard title={t("vision")} description={vision} />
@@ -49,12 +54,6 @@ export async function AboutVisionMission({
               <FeatureCard title={t("mission")} description={mission} />
             </StaggerItem>
           ) : null}
-          <StaggerItem>
-            <FeatureCard
-              title={t("philosophy.title")}
-              description={philosophy}
-            />
-          </StaggerItem>
         </Stagger>
       </Container>
     </Section>

@@ -12,10 +12,15 @@ import { QuoteRequestForm } from "@/components/public/QuoteRequestForm";
 import { CTASection } from "@/components/public/sections/CTASection";
 import { WhyUs } from "@/components/public/WhyUs";
 import { ContactJsonLd } from "@/components/seo/ContactJsonLd";
-import { getCompanyProfile } from "@/lib/data";
+import { getCompanyProfile, getPublicSiteSeo } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import { localized } from "@/lib/i18n/get-localized";
+import { resolveHeroImageUrl } from "@/lib/media/public-assets";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import {
+  localizedSiteSeo,
+  pickCmsOrFallback,
+} from "@/lib/seo/site-defaults";
 
 /** ISR — company profile can lag up to 60s. */
 export const revalidate = 60;
@@ -27,22 +32,26 @@ type ContactPageProps = {
 export async function generateMetadata({ params }: ContactPageProps) {
   const { locale: localeParam } = await params;
   const locale = localeParam as Locale;
-  const t = await getTranslations({ locale, namespace: "contact" });
-  const company = await getCompanyProfile();
+  const [t, company, seoDefaults] = await Promise.all([
+    getTranslations({ locale, namespace: "contact" }),
+    getCompanyProfile(),
+    getPublicSiteSeo(),
+  ]);
   const siteName = company
     ? localized(company, locale, "name")
-    : "Northern Meteor Construction";
+    : "Northern Meteor";
+  const cms = localizedSiteSeo(seoDefaults, locale);
   const description =
     t("seoDescription") ||
     (company ? localized(company, locale, "shortDescription") : "") ||
-    t("subtitle");
+    pickCmsOrFallback(cms.description, t("subtitle"));
 
   return buildPageMetadata({
     title: t("title"),
     description,
     locale,
     path: `/${locale}/contact`,
-    imageUrl: company?.heroImageUrl,
+    imageUrl: resolveHeroImageUrl(company?.heroImageUrl),
     siteName,
   });
 }
@@ -69,10 +78,15 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const address = company ? localized(company, locale, "address") : "";
   const phone = company?.phone ?? "";
   const email = company?.email ?? "";
-  const hours = t("hoursValue");
   const heroDescription =
     (company ? localized(company, locale, "shortDescription") : "") ||
     t("subtitle");
+
+  const hasMapCoords =
+    company?.latitude != null &&
+    company?.longitude != null &&
+    Number.isFinite(company.latitude) &&
+    Number.isFinite(company.longitude);
 
   const breadcrumbItems = [
     { label: tNav("home"), href: "/" },
@@ -100,7 +114,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
         title={t("title")}
         description={heroDescription}
         eyebrow={brandName}
-        imageUrl={company?.heroImageUrl}
+        imageUrl={resolveHeroImageUrl(company?.heroImageUrl)}
         imageAlt={`${brandName} — ${t("title")}`}
         breadcrumb={breadcrumbItems}
         breadcrumbLabel={tA11y("breadcrumb")}
@@ -108,54 +122,58 @@ export default async function ContactPage({ params }: ContactPageProps) {
       />
 
       <Section id="contact-info" padded={false}>
-        <Container className="nm-section">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <Reveal>
-              <SectionTitle
-                title={t("infoTitle")}
-                description={t("infoSubtitle")}
-                className="mb-8"
-              />
+        <Container className="nm-section py-8 md:py-10">
+          <Reveal>
+            <SectionTitle
+              title={t("infoTitle")}
+              description={t("infoSubtitle")}
+              className="mb-5 max-w-2xl"
+            />
+            <div className="max-w-xl">
               <ContactCard
                 address={address || null}
                 phone={phone || null}
                 email={email || null}
-                hours={hours}
               />
-            </Reveal>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
 
-            <Reveal delay={0.08}>
+      <Section tone="surface" id="request-quote" padded={false}>
+        <Container className="nm-section py-8 md:py-10">
+          <Reveal>
+            <SectionTitle
+              title={t("quote.title")}
+              description={t("quote.subtitle")}
+              className="mb-5 max-w-2xl"
+            />
+            <div className="bg-background/45 p-5 ring-1 ring-border/45 md:p-8">
+              <QuoteRequestForm />
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {hasMapCoords ? (
+        <Section id="map" padded={false}>
+          <Container className="nm-section py-8 md:py-10">
+            <Reveal>
               <SectionTitle
                 title={t("mapTitle")}
                 description={t("mapSubtitle")}
-                className="mb-8"
+                className="mb-5 max-w-2xl"
               />
               <MapPlaceholder
                 latitude={company?.latitude}
                 longitude={company?.longitude}
                 label={tHome("mapPlaceholder")}
                 unavailableLabel={tHome("mapUnavailable")}
-                className="min-h-[320px]"
               />
             </Reveal>
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="surface" id="request-quote" padded={false}>
-        <Container className="nm-section">
-          <Reveal>
-            <SectionTitle
-              title={t("quote.title")}
-              description={t("quote.subtitle")}
-              className="mb-10"
-            />
-            <div className="border border-border/60 bg-background/40 p-6 md:p-10">
-              <QuoteRequestForm />
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      ) : null}
 
       <WhyUs locale={locale} />
 
