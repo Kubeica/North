@@ -15,7 +15,8 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:validate": "prisma validate",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "admin:provision": "tsx scripts/provision-admin.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

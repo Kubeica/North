@@ -65,6 +65,26 @@ Expose only the app port (or put a reverse proxy in front and do not publish Pos
 
 Avoid `prisma db seed` on production.
 
+## First production ADMIN (required)
+
+Do **not** use `npm run db:seed` or any demo credentials. Provision the first ADMIN with the idempotent CLI (uses `hashPassword` + `userRepository`, role `ADMIN`, active):
+
+```bash
+# After the app image is rebuilt/redeployed with this script:
+docker compose -f docker-compose.production.yml --env-file .env.production exec \
+  -e ADMIN_EMAIL='your-admin@example.com' \
+  -e ADMIN_PASSWORD='use-a-long-unique-password' \
+  -e ADMIN_NAME='Site Admin' \
+  app npm run admin:provision
+```
+
+- Pass credentials only via `-e` (or a one-shot env file you delete afterward). Do not bake them into `docker-compose.production.yml`.
+- Exit `0` + `status=created` on first run; `status=exists` if that email is already an active ADMIN (no duplicate, password unchanged).
+- Exit `2` + `status=exists_conflict` if the email exists but is not an active ADMIN.
+- The password is never printed. Sign in at `/admin/login` — ADMIN has full `can()` permissions including `/admin`.
+
+Rebuild the app image once so `scripts/`, `lib/`, `src/`, and `tsconfig.json` are present in the runner stage.
+
 ## Database migrations
 
 ```bash
