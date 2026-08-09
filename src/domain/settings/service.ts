@@ -49,7 +49,9 @@ export const settingsService = {
       }
 
       return profile;
-    } catch {
+    } catch (error) {
+      if (error instanceof DomainError) throw error;
+      console.error("[settings] updateCompany failed:", error);
       throw new DomainError("Failed to save company profile");
     }
   },
@@ -105,7 +107,9 @@ export const settingsService = {
           seoTitleAr: input.seoTitleAr,
         },
       });
-    } catch {
+    } catch (error) {
+      if (error instanceof DomainError) throw error;
+      console.error("[settings] updateGeneralSettings failed:", error);
       throw new DomainError("Failed to save settings");
     }
   },

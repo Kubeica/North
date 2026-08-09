@@ -9,6 +9,9 @@ import { settingsService } from "@/src/domain/settings/service";
 
 export const metadata = { title: "Settings" };
 
+/** Always read fresh company/settings after saves (auth already dynamic; be explicit). */
+export const dynamic = "force-dynamic";
+
 export default async function AdminSettingsPage() {
   const user = await requireSession();
   if (!can(user.role, "settings:read")) redirect("/admin/dashboard");
@@ -27,6 +30,7 @@ export default async function AdminSettingsPage() {
         description="Company profile, social links, SEO defaults, and general site options."
       />
       <SettingsForm
+        key={company?.updatedAt?.toISOString() ?? "company-new"}
         company={
           company
             ? {

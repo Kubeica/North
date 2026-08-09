@@ -1,28 +1,18 @@
 import { z } from "zod";
 
+import {
+  mediaUrlSchema,
+  optionalCuid,
+  optionalMediaUrl,
+  optionalString,
+} from "@/src/domain/shared/optional-fields";
+
 export const projectStatusSchema = z.enum([
   "PLANNED",
   "IN_PROGRESS",
   "COMPLETED",
   "ON_HOLD",
 ]);
-
-const optionalUrl = z
-  .string()
-  .trim()
-  .url("Invalid URL")
-  .optional()
-  .or(z.literal(""))
-  .transform((value) => (value ? value : undefined));
-
-const optionalString = (max: number) =>
-  z
-    .string()
-    .trim()
-    .max(max)
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined));
 
 export const projectBaseSchema = z.object({
   slug: z
@@ -47,19 +37,9 @@ export const projectBaseSchema = z.object({
     .max(20000),
   locationAr: optionalString(200),
   locationEn: optionalString(200),
-  coverImageUrl: optionalUrl,
-  clientId: z
-    .string()
-    .cuid()
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined)),
-  categoryId: z
-    .string()
-    .cuid()
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined)),
+  coverImageUrl: optionalMediaUrl(),
+  clientId: optionalCuid(),
+  categoryId: optionalCuid(),
   status: projectStatusSchema.default("PLANNED"),
   startDate: z.coerce.date().optional().nullable(),
   completionDate: z.coerce.date().optional().nullable(),
@@ -73,6 +53,8 @@ export const projectBaseSchema = z.object({
   scopeEn: optionalString(5000),
   isDemo: z.boolean().default(true),
 });
+
+export const projectGalleryUrlsSchema = z.array(mediaUrlSchema).max(40);
 
 export const projectCreateSchema = projectBaseSchema;
 

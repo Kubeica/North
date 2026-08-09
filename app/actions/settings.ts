@@ -11,12 +11,27 @@ import {
   type ActionResult,
 } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
-import { requirePermission } from "@/lib/auth/session";
+import { assertPermission } from "@/lib/auth/session";
 import { settingsService } from "@/src/domain/settings/service";
 import {
   companyProfileSchema,
   generalSettingsSchema,
 } from "@/src/domain/settings/validation";
+
+async function requireSettingsWrite() {
+  try {
+    return await assertPermission("settings:write");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    if (message === "UNAUTHORIZED") {
+      return actionError("Please sign in again to save settings");
+    }
+    if (message === "FORBIDDEN") {
+      return actionError("You do not have permission to update settings");
+    }
+    throw error;
+  }
+}
 
 function formToCompanyPayload(formData: FormData) {
   const num = (key: string) => {
@@ -72,22 +87,28 @@ function formToCompanyPayload(formData: FormData) {
 export async function updateCompanySettings(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("settings:write");
-  const parsed = companyProfileSchema.safeParse(formToCompanyPayload(formData));
+  const auth = await requireSettingsWrite();
+  if (!("id" in auth)) return auth;
+
+  const payload = formToCompanyPayload(formData);
+  const parsed = companyProfileSchema.safeParse(payload);
   if (!parsed.success) {
     return actionError("Validation failed", zodFieldErrors(parsed.error.issues));
   }
 
   try {
     const profile = await settingsService.updateCompany(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/settings");
     revalidatePath("/", "layout");
     revalidatePath("/[locale]", "layout");
+    revalidatePath("/[locale]/about", "page");
+    revalidatePath("/[locale]/contact", "page");
     return actionOk({ id: profile.id }, "Company profile saved");
   } catch (error) {
+    console.error("[settings] updateCompanySettings failed:", error);
     return mapDomainError(error);
   }
 }
@@ -95,7 +116,8 @@ export async function updateCompanySettings(
 export async function updateGeneralSettings(
   formData: FormData,
 ): Promise<ActionResult> {
-  const user = await requirePermission("settings:write");
+  const auth = await requireSettingsWrite();
+  if (!("id" in auth)) return auth;
 
   const parsed = generalSettingsSchema.safeParse({
     defaultLanguage: String(formData.get("defaultLanguage") ?? "en"),
@@ -111,7 +133,7 @@ export async function updateGeneralSettings(
 
   try {
     await settingsService.updateGeneralSettings(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/settings");
@@ -120,6 +142,7 @@ export async function updateGeneralSettings(
     revalidatePath("/[locale]", "page");
     return actionOk(undefined, "General settings saved");
   } catch (error) {
+    console.error("[settings] updateGeneralSettings failed:", error);
     return mapDomainError(error);
   }
 }

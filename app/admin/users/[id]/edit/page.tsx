@@ -29,6 +29,7 @@ export default async function EditUserPage({ params }: { params: Params }) {
       <PageHeader title="Edit user" description={user.email} />
       <UserForm
         mode="edit"
+        isSelf={current.id === user.id}
         initial={{
           id: user.id,
           name: user.name,

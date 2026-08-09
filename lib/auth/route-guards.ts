@@ -8,6 +8,8 @@ export const ADMIN_ROUTE_PERMISSIONS: ReadonlyArray<{
   prefix: string;
   permission: Permission;
 }> = [
+  // Longer / more specific prefixes first where needed
+  { prefix: "/admin/project-categories", permission: "projects:read" },
   { prefix: "/admin/projects", permission: "projects:read" },
   { prefix: "/admin/services", permission: "services:read" },
   { prefix: "/admin/clients", permission: "clients:read" },
@@ -16,6 +18,7 @@ export const ADMIN_ROUTE_PERMISSIONS: ReadonlyArray<{
   { prefix: "/admin/media", permission: "media:read" },
   { prefix: "/admin/team", permission: "team:read" },
   { prefix: "/admin/milestones", permission: "milestones:read" },
+  { prefix: "/admin/statistics", permission: "statistics:read" },
   { prefix: "/admin/users", permission: "users:read" },
   { prefix: "/admin/settings", permission: "settings:read" },
   { prefix: "/admin/audit-logs", permission: "audit:read" },

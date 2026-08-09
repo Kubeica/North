@@ -77,6 +77,10 @@ export function ImageUploader({
       }
       setUrlValue(data.url);
       toast.success("Uploaded");
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Upload failed",
+      );
     } finally {
       setUploading(false);
       if (inputRef.current) inputRef.current.value = "";
@@ -100,7 +104,7 @@ export function ImageUploader({
               <input
                 ref={inputRef}
                 type="file"
-                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                accept="image/jpeg,image/png,image/webp,image/gif"
                 className="hidden"
                 onChange={(e) => void onUpload(e.target.files)}
               />

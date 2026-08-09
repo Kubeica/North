@@ -17,9 +17,11 @@ import type { PublicUser } from "@/types";
 type UserFormProps = {
   mode: "create" | "edit";
   initial?: Pick<PublicUser, "id" | "name" | "email" | "role" | "active">;
+  /** When editing your own account, Active cannot be turned off. */
+  isSelf?: boolean;
 };
 
-export function UserForm({ mode, initial }: UserFormProps) {
+export function UserForm({ mode, initial, isSelf = false }: UserFormProps) {
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,22 +29,28 @@ export function UserForm({ mode, initial }: UserFormProps) {
   function onSubmit(formData: FormData) {
     startTransition(async () => {
       setErrors({});
-      const result: ActionResult<PublicUser> =
-        mode === "create"
-          ? await createUser(formData)
-          : await updateUser(formData);
+      try {
+        const result: ActionResult<PublicUser> =
+          mode === "create"
+            ? await createUser(formData)
+            : await updateUser(formData);
 
-      if (!result.ok) {
-        if (result.fieldErrors) setErrors(result.fieldErrors);
-        toast.error(result.error);
-        return;
-      }
+        if (!result.ok) {
+          if (result.fieldErrors) setErrors(result.fieldErrors);
+          toast.error(result.error);
+          return;
+        }
 
-      toast.success(result.message ?? "Saved");
-      if (mode === "create") {
-        router.push(`/admin/users/${result.data.id}/edit`);
-      } else {
-        router.refresh();
+        toast.success(result.message ?? "Saved");
+        if (mode === "create") {
+          router.push(`/admin/users/${result.data.id}/edit`);
+        } else {
+          router.refresh();
+        }
+      } catch (error) {
+        toast.error(
+          error instanceof Error ? error.message : "Failed to save user",
+        );
       }
     });
   }
@@ -99,15 +107,24 @@ export function UserForm({ mode, initial }: UserFormProps) {
             <option value="ADMIN">Admin</option>
           </select>
         </Field>
+        {isSelf ? (
+          <input type="hidden" name="active" value="true" />
+        ) : null}
         <label className="flex items-center gap-2 text-sm sm:col-span-2">
           <input
             type="checkbox"
-            name="active"
+            name={isSelf ? undefined : "active"}
             value="true"
             defaultChecked={initial?.active ?? true}
+            disabled={isSelf}
             className="size-4 accent-[var(--gold)]"
           />
           Active
+          {isSelf ? (
+            <span className="text-muted-foreground">
+              (you cannot deactivate yourself)
+            </span>
+          ) : null}
         </label>
       </FormSection>
 

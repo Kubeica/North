@@ -53,22 +53,28 @@ export function ProjectCategoryForm({
   function onSubmit(formData: FormData) {
     startTransition(async () => {
       setErrors({});
-      const result: ActionResult<{ id: string }> =
-        mode === "create"
-          ? await createProjectCategory(formData)
-          : await updateProjectCategory(formData);
+      try {
+        const result: ActionResult<{ id: string }> =
+          mode === "create"
+            ? await createProjectCategory(formData)
+            : await updateProjectCategory(formData);
 
-      if (!result.ok) {
-        if (result.fieldErrors) setErrors(result.fieldErrors);
-        toast.error(result.error);
-        return;
-      }
+        if (!result.ok) {
+          if (result.fieldErrors) setErrors(result.fieldErrors);
+          toast.error(result.error);
+          return;
+        }
 
-      toast.success(result.message ?? "Saved");
-      if (mode === "create") {
-        router.push(`/admin/project-categories/${result.data.id}/edit`);
-      } else {
-        router.refresh();
+        toast.success(result.message ?? "Saved");
+        if (mode === "create") {
+          router.push(`/admin/project-categories/${result.data.id}/edit`);
+        } else {
+          router.refresh();
+        }
+      } catch (error) {
+        toast.error(
+          error instanceof Error ? error.message : "Failed to save category",
+        );
       }
     });
   }

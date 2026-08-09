@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Archive, CheckCheck, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   archiveMessage,
@@ -27,8 +28,19 @@ export function MessageActions({ id, status }: MessageActionsProps) {
           size="icon-sm"
           title="Mark read"
           onClick={async () => {
-            await markMessageRead(id);
-            router.refresh();
+            try {
+              const result = await markMessageRead(id);
+              if (!result.ok) {
+                toast.error(result.error);
+                return;
+              }
+              toast.success(result.message ?? "Marked as read");
+              router.refresh();
+            } catch (error) {
+              toast.error(
+                error instanceof Error ? error.message : "Failed to mark read",
+              );
+            }
           }}
         >
           <CheckCheck />

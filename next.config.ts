@@ -62,6 +62,15 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion", "date-fns"],
+    /**
+     * Default Server Action body limit is 1MB. Contact quote requests accept
+     * attachments up to STORAGE_MAX_FILE_SIZE_MB (default 5 MiB). Use 6mb so
+     * multipart overhead still reaches app-level validation (which enforces
+     * the real file-size cap). Do not remove this limit.
+     */
+    serverActions: {
+      bodySizeLimit: "6mb",
+    },
   },
   async headers() {
     return [

@@ -37,14 +37,15 @@ COPY --from=builder /app/scripts ./scripts
 COPY --from=builder /app/lib ./lib
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+# nextjs must own .next so runtime can write fetch-cache / ISR artifacts
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/next.config.ts ./next.config.ts
 COPY --from=builder /app/i18n ./i18n
 COPY --from=builder /app/messages ./messages
 
-# Persistent uploads volume target (local storage provider)
-RUN mkdir -p /app/public/uploads \
-  && chown -R nextjs:nodejs /app/public/uploads
+# Writable runtime dirs only (do not chown all of /app). Keep USER=nextjs (non-root).
+RUN mkdir -p /app/public/uploads /app/.next/cache \
+  && chown -R nextjs:nodejs /app/public/uploads /app/.next
 
 USER nextjs
 EXPOSE 3000

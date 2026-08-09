@@ -1,34 +1,9 @@
 import { z } from "zod";
 
-const optionalUrl = z
-  .string()
-  .trim()
-  .optional()
-  .or(z.literal(""))
-  .refine(
-    (value) =>
-      !value ||
-      value.startsWith("/") ||
-      (() => {
-        try {
-          const parsed = new URL(value);
-          return parsed.protocol === "http:" || parsed.protocol === "https:";
-        } catch {
-          return false;
-        }
-      })(),
-    { message: "Invalid URL" },
-  )
-  .transform((value) => (value ? value : undefined));
-
-const optionalString = (max: number) =>
-  z
-    .string()
-    .trim()
-    .max(max)
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined));
+import {
+  optionalMediaUrl,
+  optionalString,
+} from "@/src/domain/shared/optional-fields";
 
 export const serviceBaseSchema = z.object({
   slug: z
@@ -50,7 +25,7 @@ export const serviceBaseSchema = z.object({
     .min(1, "English description is required")
     .max(10000),
   icon: optionalString(80),
-  imageUrl: optionalUrl,
+  imageUrl: optionalMediaUrl(),
   sortOrder: z.coerce.number().int().min(0).default(0),
   published: z.boolean().default(true),
   isDemo: z.boolean().default(true),

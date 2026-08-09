@@ -12,10 +12,15 @@ import {
   type ActionResult,
 } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
-import { requirePermission } from "@/lib/auth/session";
+import {
+  isActionError,
+  requireActionPermission,
+} from "@/lib/admin/require-action-permission";
+import { revalidatePublicCms } from "@/lib/admin/revalidate-public";
 import { projectService } from "@/src/domain/project/service";
 import {
   projectCreateSchema,
+  projectGalleryUrlsSchema,
   projectUpdateSchema,
 } from "@/src/domain/project/validation";
 
@@ -25,6 +30,16 @@ function parseGalleryUrls(formData: FormData): string[] {
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
+}
+
+function parseValidatedGallery(formData: FormData): ActionResult<string[]> {
+  const parsed = projectGalleryUrlsSchema.safeParse(parseGalleryUrls(formData));
+  if (!parsed.success) {
+    return actionError("Validation failed", {
+      galleryUrls: parsed.error.issues[0]?.message ?? "Invalid gallery URL",
+    });
+  }
+  return actionOk(parsed.data);
 }
 
 function formToProjectPayload(formData: FormData) {
@@ -63,23 +78,29 @@ function formToProjectPayload(formData: FormData) {
 export async function createProject(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("projects:write");
+  const auth = await requireActionPermission("projects:write");
+  if (isActionError(auth)) return auth;
+
   const parsed = projectCreateSchema.safeParse(formToProjectPayload(formData));
   if (!parsed.success) {
     return actionError("Validation failed", zodFieldErrors(parsed.error.issues));
   }
 
+  const gallery = parseValidatedGallery(formData);
+  if (!gallery.ok) return gallery;
+
   try {
     const project = await projectService.create(
-      { userId: user.id },
+      { userId: auth.id },
       {
         ...parsed.data,
-        galleryUrls: parseGalleryUrls(formData),
+        galleryUrls: gallery.data,
       },
     );
 
     revalidatePath("/admin/projects");
     revalidatePath("/admin/dashboard");
+    revalidatePublicCms({ projects: true, home: true });
     return actionOk({ id: project.id }, "Project created");
   } catch (error) {
     return mapDomainError(error);
@@ -95,7 +116,9 @@ export async function createProjectAndRedirect(formData: FormData) {
 export async function updateProject(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("projects:write");
+  const auth = await requireActionPermission("projects:write");
+  if (isActionError(auth)) return auth;
+
   const id = String(formData.get("id") ?? "");
   const parsed = projectUpdateSchema.safeParse({
     id,
@@ -105,18 +128,22 @@ export async function updateProject(
     return actionError("Validation failed", zodFieldErrors(parsed.error.issues));
   }
 
+  const gallery = parseValidatedGallery(formData);
+  if (!gallery.ok) return gallery;
+
   try {
     const project = await projectService.update(
-      { userId: user.id },
+      { userId: auth.id },
       {
         ...parsed.data,
-        galleryUrls: parseGalleryUrls(formData),
+        galleryUrls: gallery.data,
       },
     );
 
     revalidatePath("/admin/projects");
     revalidatePath(`/admin/projects/${project.id}/edit`);
     revalidatePath("/admin/dashboard");
+    revalidatePublicCms({ projects: true, home: true });
     return actionOk({ id: project.id }, "Project saved");
   } catch (error) {
     return mapDomainError(error);
@@ -126,12 +153,14 @@ export async function updateProject(
 export async function archiveProject(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("projects:write");
+  const auth = await requireActionPermission("projects:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const project = await projectService.archive({ userId: user.id }, id);
+    const project = await projectService.archive({ userId: auth.id }, id);
     revalidatePath("/admin/projects");
     revalidatePath("/admin/dashboard");
+    revalidatePublicCms({ projects: true, home: true });
     return actionOk({ id: project.id }, "Project archived");
   } catch (error) {
     return mapDomainError(error);
@@ -141,11 +170,13 @@ export async function archiveProject(
 export async function duplicateProject(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("projects:write");
+  const auth = await requireActionPermission("projects:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const project = await projectService.duplicate({ userId: user.id }, id);
+    const project = await projectService.duplicate({ userId: auth.id }, id);
     revalidatePath("/admin/projects");
+    revalidatePublicCms({ projects: true });
     return actionOk({ id: project.id }, "Project duplicated");
   } catch (error) {
     return mapDomainError(error);

@@ -4,12 +4,19 @@ import { revalidatePath } from "next/cache";
 
 import { actionOk, type ActionResult } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
+import {
+  isActionError,
+  requireActionPermission,
+} from "@/lib/admin/require-action-permission";
 import { AuditAction } from "@/lib/audit/actions";
-import { requirePermission } from "@/lib/auth/session";
 import { getClientIp } from "@/lib/security/client-ip";
 import { quoteRateLimitConfig } from "@/lib/security/env-limits";
 import { checkRateLimit } from "@/lib/security/rate-limit";
 import { auditService } from "@/src/domain/audit/service";
+import {
+  isAllowedMediaSize,
+  mediaMaxBytesLimit,
+} from "@/src/domain/media/validation";
 import { getQuoteAttachmentProvider } from "@/src/domain/quote-request/attachment";
 import { quoteRequestService } from "@/src/domain/quote-request/service";
 import { quoteRequestSubmitSchema } from "@/src/domain/quote-request/validation";
@@ -70,15 +77,39 @@ export async function submitQuoteRequest(
     }
 
     // Attachment architecture — stub provider does not persist files yet.
+    // Enforce STORAGE_MAX_FILE_SIZE_MB before the provider sees the file.
     const file = formData.get("attachment");
     if (file instanceof File && file.size > 0) {
+      if (!isAllowedMediaSize(file.size)) {
+        const maxMb = Math.floor(mediaMaxBytesLimit() / (1024 * 1024));
+        return {
+          ok: false,
+          error: "validation",
+          fieldErrors: {
+            attachment: `File must be ${maxMb} MB or smaller`,
+          },
+        };
+      }
+
       const provider = getQuoteAttachmentProvider();
-      await provider.store({
+      const stored = await provider.store({
         fileName: file.name,
         contentType: file.type || "application/octet-stream",
         size: file.size,
       });
-      // attachmentUrl remains unset until a real provider is wired.
+      // Stub provider does not persist files — fail visibly instead of
+      // accepting the quote while silently dropping the attachment.
+      if (stored.deferred || !stored.attachmentUrl) {
+        return {
+          ok: false,
+          error: "validation",
+          fieldErrors: {
+            attachment:
+              "File attachments are not available yet. Remove the file and submit again, or contact us another way.",
+          },
+        };
+      }
+      raw.attachmentUrl = stored.attachmentUrl;
     }
 
     await quoteRequestService.submit(parsed.data);
@@ -96,11 +127,12 @@ export async function updateQuoteRequestStatus(
   id: string,
   status: QuoteRequestStatus,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("quotes:write");
+  const auth = await requireActionPermission("quotes:write");
+  if (isActionError(auth)) return auth;
 
   try {
     const request = await quoteRequestService.updateStatus(
-      { userId: user.id },
+      { userId: auth.id },
       { id, status },
     );
     revalidatePath("/admin/quote-requests");
@@ -116,11 +148,12 @@ export async function updateQuoteRequestNotes(
   id: string,
   notes: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("quotes:write");
+  const auth = await requireActionPermission("quotes:write");
+  if (isActionError(auth)) return auth;
 
   try {
     const request = await quoteRequestService.updateNotes(
-      { userId: user.id },
+      { userId: auth.id },
       { id, notes },
     );
     revalidatePath("/admin/quote-requests");
@@ -134,10 +167,11 @@ export async function updateQuoteRequestNotes(
 export async function archiveQuoteRequest(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("quotes:write");
+  const auth = await requireActionPermission("quotes:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const request = await quoteRequestService.archive({ userId: user.id }, id);
+    const request = await quoteRequestService.archive({ userId: auth.id }, id);
     revalidatePath("/admin/quote-requests");
     revalidatePath(`/admin/quote-requests/${id}`);
     revalidatePath("/admin/dashboard");
@@ -150,10 +184,11 @@ export async function archiveQuoteRequest(
 export async function deleteQuoteRequest(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("quotes:write");
+  const auth = await requireActionPermission("quotes:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const result = await quoteRequestService.delete({ userId: user.id }, id);
+    const result = await quoteRequestService.delete({ userId: auth.id }, id);
     revalidatePath("/admin/quote-requests");
     revalidatePath("/admin/dashboard");
     return actionOk(result, "Quote request deleted");
@@ -167,7 +202,8 @@ export async function exportQuoteRequestsCsv(input?: {
   q?: string;
   status?: string;
 }): Promise<ActionResult<{ csv: string; filename: string; count: number }>> {
-  const user = await requirePermission("quotes:read");
+  const auth = await requireActionPermission("quotes:read");
+  if (isActionError(auth)) return auth;
 
   try {
     const result = await quoteRequestService.exportCsv({
@@ -176,7 +212,7 @@ export async function exportQuoteRequestsCsv(input?: {
     });
 
     await auditService.record(
-      { userId: user.id },
+      { userId: auth.id },
       {
         action: AuditAction.EXPORT_QUOTE_REQUESTS,
         entity: "QuoteRequest",

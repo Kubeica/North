@@ -69,7 +69,7 @@ export function MediaLibrary({ items }: MediaLibraryProps) {
         <input
           ref={inputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,application/pdf"
+          accept="image/jpeg,image/png,image/webp,image/gif,application/pdf"
           multiple
           className="hidden"
           onChange={(e) => void onUpload(e.target.files)}
@@ -84,7 +84,7 @@ export function MediaLibrary({ items }: MediaLibraryProps) {
           {uploading ? "Uploading…" : "Upload files"}
         </Button>
         <p className="text-sm text-muted-foreground">
-          JPEG, PNG, WebP, GIF, SVG, PDF · max 10 MB
+          JPEG, PNG, WebP, GIF, PDF · max 5 MB
         </p>
       </div>
 

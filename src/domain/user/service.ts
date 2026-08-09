@@ -54,6 +54,10 @@ export const userService = {
     const existing = await userRepository.findById(id);
     if (!existing) throw new NotFoundError("User not found");
 
+    if (actor.userId === id && rest.active === false) {
+      throw new ForbiddenError("You cannot deactivate your own account");
+    }
+
     try {
       const passwordHash = password ? await hashPassword(password) : undefined;
       const user = await userRepository.update(id, {

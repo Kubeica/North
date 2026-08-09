@@ -1,42 +1,11 @@
 import { z } from "zod";
 
-const optionalUrl = z
-  .string()
-  .trim()
-  .optional()
-  .or(z.literal(""))
-  .refine(
-    (value) =>
-      !value ||
-      value.startsWith("/") ||
-      (() => {
-        try {
-          const parsed = new URL(value);
-          return parsed.protocol === "http:" || parsed.protocol === "https:";
-        } catch {
-          return false;
-        }
-      })(),
-    { message: "Invalid URL" },
-  )
-  .transform((value) => (value ? value : undefined));
-
-const optionalEmail = z
-  .string()
-  .trim()
-  .email("Invalid email")
-  .optional()
-  .or(z.literal(""))
-  .transform((value) => (value ? value : undefined));
-
-const optionalString = (max: number) =>
-  z
-    .string()
-    .trim()
-    .max(max)
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined));
+import {
+  optionalEmail,
+  optionalHttpUrl,
+  optionalMediaUrl,
+  optionalString,
+} from "@/src/domain/shared/optional-fields";
 
 export const teamMemberBaseSchema = z.object({
   nameAr: z.string().trim().min(1, "Arabic name is required").max(160),
@@ -45,9 +14,9 @@ export const teamMemberBaseSchema = z.object({
   positionEn: z.string().trim().min(1, "English position is required").max(160),
   bioAr: optionalString(5000),
   bioEn: optionalString(5000),
-  imageUrl: optionalUrl,
-  linkedin: optionalUrl,
-  email: optionalEmail,
+  imageUrl: optionalMediaUrl(),
+  linkedin: optionalHttpUrl(),
+  email: optionalEmail(),
   sortOrder: z.coerce.number().int().min(0).default(0),
   published: z.boolean().default(true),
   isDemo: z.boolean().default(true),

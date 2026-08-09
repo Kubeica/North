@@ -11,7 +11,10 @@ import {
   type ActionResult,
 } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
-import { requirePermission } from "@/lib/auth/session";
+import {
+  isActionError,
+  requireActionPermission,
+} from "@/lib/admin/require-action-permission";
 import { userCreateSchema, userUpdateSchema } from "@/lib/validation/user";
 import { userService } from "@/src/domain/user/service";
 import type { PublicUser } from "@/types";
@@ -19,7 +22,9 @@ import type { PublicUser } from "@/types";
 export async function createUser(
   formData: FormData,
 ): Promise<ActionResult<PublicUser>> {
-  const actor = await requirePermission("users:write");
+  const auth = await requireActionPermission("users:write");
+  if (isActionError(auth)) return auth;
+
   const parsed = userCreateSchema.safeParse({
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
@@ -33,7 +38,7 @@ export async function createUser(
   }
 
   try {
-    const user = await userService.create({ userId: actor.id }, parsed.data);
+    const user = await userService.create({ userId: auth.id }, parsed.data);
     revalidatePath("/admin/users");
     return actionOk(user, "User created");
   } catch (error) {
@@ -50,7 +55,9 @@ export async function createUserAndRedirect(formData: FormData) {
 export async function updateUser(
   formData: FormData,
 ): Promise<ActionResult<PublicUser>> {
-  const actor = await requirePermission("users:write");
+  const auth = await requireActionPermission("users:write");
+  if (isActionError(auth)) return auth;
+
   const parsed = userUpdateSchema.safeParse({
     id: String(formData.get("id") ?? ""),
     name: formData.get("name") ? String(formData.get("name")) : undefined,
@@ -65,7 +72,7 @@ export async function updateUser(
   }
 
   try {
-    const user = await userService.update({ userId: actor.id }, parsed.data);
+    const user = await userService.update({ userId: auth.id }, parsed.data);
     revalidatePath("/admin/users");
     revalidatePath(`/admin/users/${user.id}/edit`);
     return actionOk(user, "User saved");
@@ -77,10 +84,11 @@ export async function updateUser(
 export async function deactivateUser(
   id: string,
 ): Promise<ActionResult<PublicUser>> {
-  const actor = await requirePermission("users:write");
+  const auth = await requireActionPermission("users:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const user = await userService.deactivate({ userId: actor.id }, id);
+    const user = await userService.deactivate({ userId: auth.id }, id);
     revalidatePath("/admin/users");
     return actionOk(user, "User deactivated");
   } catch (error) {

@@ -1,13 +1,6 @@
 import { z } from "zod";
 
-const optionalString = (max: number) =>
-  z
-    .string()
-    .trim()
-    .max(max)
-    .optional()
-    .or(z.literal(""))
-    .transform((value) => (value ? value : undefined));
+import { optionalString } from "@/src/domain/shared/optional-fields";
 
 export const companyMilestoneBaseSchema = z.object({
   year: z.coerce

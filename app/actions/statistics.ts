@@ -10,7 +10,11 @@ import {
   type ActionResult,
 } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
-import { requirePermission } from "@/lib/auth/session";
+import {
+  isActionError,
+  requireActionPermission,
+} from "@/lib/admin/require-action-permission";
+import { revalidatePublicCms } from "@/lib/admin/revalidate-public";
 import { statisticService } from "@/src/domain/statistic/service";
 import {
   statisticCreateSchema,
@@ -30,7 +34,9 @@ function formToStatisticPayload(formData: FormData) {
 export async function createStatistic(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("statistics:write");
+  const auth = await requireActionPermission("statistics:write");
+  if (isActionError(auth)) return auth;
+
   const parsed = statisticCreateSchema.safeParse(
     formToStatisticPayload(formData),
   );
@@ -40,12 +46,12 @@ export async function createStatistic(
 
   try {
     const statistic = await statisticService.create(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/statistics");
     revalidatePath("/admin/dashboard");
-    revalidatePath("/[locale]", "page");
+    revalidatePublicCms({ home: true });
     return actionOk({ id: statistic.id }, "Statistic created");
   } catch (error) {
     return mapDomainError(error);
@@ -55,7 +61,9 @@ export async function createStatistic(
 export async function updateStatistic(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("statistics:write");
+  const auth = await requireActionPermission("statistics:write");
+  if (isActionError(auth)) return auth;
+
   const id = String(formData.get("id") ?? "");
   const parsed = statisticUpdateSchema.safeParse({
     id,
@@ -67,13 +75,13 @@ export async function updateStatistic(
 
   try {
     const statistic = await statisticService.update(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/statistics");
     revalidatePath(`/admin/statistics/${statistic.id}/edit`);
     revalidatePath("/admin/dashboard");
-    revalidatePath("/[locale]", "page");
+    revalidatePublicCms({ home: true });
     return actionOk({ id: statistic.id }, "Statistic saved");
   } catch (error) {
     return mapDomainError(error);
@@ -83,13 +91,14 @@ export async function updateStatistic(
 export async function archiveStatistic(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("statistics:write");
+  const auth = await requireActionPermission("statistics:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const statistic = await statisticService.archive({ userId: user.id }, id);
+    const statistic = await statisticService.archive({ userId: auth.id }, id);
     revalidatePath("/admin/statistics");
     revalidatePath("/admin/dashboard");
-    revalidatePath("/[locale]", "page");
+    revalidatePublicCms({ home: true });
     return actionOk({ id: statistic.id }, "Statistic archived");
   } catch (error) {
     return mapDomainError(error);

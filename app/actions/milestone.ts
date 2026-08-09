@@ -12,7 +12,11 @@ import {
   type ActionResult,
 } from "@/lib/admin/action";
 import { mapDomainError } from "@/lib/admin/map-domain-error";
-import { requirePermission } from "@/lib/auth/session";
+import {
+  isActionError,
+  requireActionPermission,
+} from "@/lib/admin/require-action-permission";
+import { revalidatePublicCms } from "@/lib/admin/revalidate-public";
 import { milestoneService } from "@/src/domain/milestone/service";
 import {
   companyMilestoneCreateSchema,
@@ -34,7 +38,9 @@ function formToMilestonePayload(formData: FormData) {
 export async function createCompanyMilestone(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("milestones:write");
+  const auth = await requireActionPermission("milestones:write");
+  if (isActionError(auth)) return auth;
+
   const parsed = companyMilestoneCreateSchema.safeParse(
     formToMilestonePayload(formData),
   );
@@ -44,11 +50,11 @@ export async function createCompanyMilestone(
 
   try {
     const milestone = await milestoneService.create(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/milestones");
-    revalidatePath("/[locale]/about", "page");
+    revalidatePublicCms({ about: true });
     return actionOk({ id: milestone.id }, "Milestone created");
   } catch (error) {
     return mapDomainError(error);
@@ -64,7 +70,9 @@ export async function createCompanyMilestoneAndRedirect(formData: FormData) {
 export async function updateCompanyMilestone(
   formData: FormData,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("milestones:write");
+  const auth = await requireActionPermission("milestones:write");
+  if (isActionError(auth)) return auth;
+
   const id = String(formData.get("id") ?? "");
   const parsed = companyMilestoneUpdateSchema.safeParse({
     id,
@@ -76,12 +84,12 @@ export async function updateCompanyMilestone(
 
   try {
     const milestone = await milestoneService.update(
-      { userId: user.id },
+      { userId: auth.id },
       parsed.data,
     );
     revalidatePath("/admin/milestones");
     revalidatePath(`/admin/milestones/${milestone.id}/edit`);
-    revalidatePath("/[locale]/about", "page");
+    revalidatePublicCms({ about: true });
     return actionOk({ id: milestone.id }, "Milestone saved");
   } catch (error) {
     return mapDomainError(error);
@@ -91,12 +99,13 @@ export async function updateCompanyMilestone(
 export async function deleteCompanyMilestone(
   id: string,
 ): Promise<ActionResult<{ id: string }>> {
-  const user = await requirePermission("milestones:write");
+  const auth = await requireActionPermission("milestones:write");
+  if (isActionError(auth)) return auth;
 
   try {
-    const milestone = await milestoneService.delete({ userId: user.id }, id);
+    const milestone = await milestoneService.delete({ userId: auth.id }, id);
     revalidatePath("/admin/milestones");
-    revalidatePath("/[locale]/about", "page");
+    revalidatePublicCms({ about: true });
     return actionOk({ id: milestone.id }, "Milestone deleted");
   } catch (error) {
     return mapDomainError(error);

@@ -246,8 +246,16 @@ export function QuoteRequestForm() {
           name="attachment"
           type="file"
           accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-          className="block w-full text-sm text-muted-foreground file:me-3 file:border-0 file:bg-surface-2 file:px-3 file:py-2 file:text-sm file:text-foreground"
-          aria-describedby={`${formId}-attachment-hint`}
+          className={cn(
+            "block w-full text-sm text-muted-foreground file:me-3 file:border-0 file:bg-surface-2 file:px-3 file:py-2 file:text-sm file:text-foreground",
+            state.fieldErrors?.attachment && "border border-destructive",
+          )}
+          aria-invalid={state.fieldErrors?.attachment ? true : undefined}
+          aria-describedby={
+            state.fieldErrors?.attachment
+              ? `${formId}-attachment-error`
+              : `${formId}-attachment-hint`
+          }
         />
         <p
           id={`${formId}-attachment-hint`}
@@ -255,6 +263,15 @@ export function QuoteRequestForm() {
         >
           {tQuote("attachmentHint")}
         </p>
+        {state.fieldErrors?.attachment ? (
+          <p
+            id={`${formId}-attachment-error`}
+            className="text-xs text-destructive"
+            role="alert"
+          >
+            {state.fieldErrors.attachment}
+          </p>
+        ) : null}
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

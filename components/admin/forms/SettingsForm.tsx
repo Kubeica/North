@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import {
@@ -39,35 +40,71 @@ function val(company: CompanyValues | null, key: string) {
 }
 
 export function SettingsForm({ company, settings }: SettingsFormProps) {
-  const [, startTransition] = useTransition();
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formError, setFormError] = useState<string | null>(null);
 
-  function onCompanySubmit(formData: FormData) {
-    startTransition(async () => {
-      setErrors({});
+  async function onCompanySubmit(formData: FormData) {
+    setErrors({});
+    setFormError(null);
+    try {
       const result = await updateCompanySettings(formData);
       if (!result.ok) {
         if (result.fieldErrors) setErrors(result.fieldErrors);
+        setFormError(result.error);
         toast.error(result.error);
         return;
       }
       toast.success(result.message ?? "Saved");
-    });
+      // Uncontrolled defaultValue inputs only pick up server data after remount.
+      router.refresh();
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Failed to save company profile";
+      setFormError(message);
+      toast.error(message);
+    }
   }
 
-  function onGeneralSubmit(formData: FormData) {
-    startTransition(async () => {
+  async function onGeneralSubmit(formData: FormData) {
+    setFormError(null);
+    try {
       const result = await updateGeneralSettings(formData);
       if (!result.ok) {
+        setFormError(result.error);
         toast.error(result.error);
         return;
       }
       toast.success(result.message ?? "Saved");
-    });
+      router.refresh();
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Failed to save settings";
+      setFormError(message);
+      toast.error(message);
+    }
   }
 
   return (
     <div className="space-y-8">
+      {formError ? (
+        <p
+          className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          role="alert"
+        >
+          {formError}
+          {Object.keys(errors).length > 0 ? (
+            <span className="mt-1 block text-xs opacity-90">
+              Check highlighted fields below.
+            </span>
+          ) : null}
+        </p>
+      ) : null}
+
       <form action={onCompanySubmit} className="space-y-4">
         <FormSection title="Company profile">
           <Field label="Name (EN)" name="nameEn" error={errors.nameEn}>
@@ -239,7 +276,7 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
               className={fieldClassName}
             />
           </Field>
-          <Field label="Latitude" name="latitude">
+          <Field label="Latitude" name="latitude" error={errors.latitude}>
             <input
               id="latitude"
               name="latitude"
@@ -247,7 +284,7 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
               className={fieldClassName}
             />
           </Field>
-          <Field label="Longitude" name="longitude">
+          <Field label="Longitude" name="longitude" error={errors.longitude}>
             <input
               id="longitude"
               name="longitude"
@@ -276,7 +313,7 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
             defaultValue={val(company, "heroImageUrl")}
             error={errors.heroImageUrl}
           />
-          <Field label="LinkedIn" name="linkedinUrl">
+          <Field label="LinkedIn" name="linkedinUrl" error={errors.linkedinUrl}>
             <input
               id="linkedinUrl"
               name="linkedinUrl"
@@ -284,7 +321,7 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
               className={fieldClassName}
             />
           </Field>
-          <Field label="Facebook" name="facebookUrl">
+          <Field label="Facebook" name="facebookUrl" error={errors.facebookUrl}>
             <input
               id="facebookUrl"
               name="facebookUrl"
@@ -292,7 +329,11 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
               className={fieldClassName}
             />
           </Field>
-          <Field label="Instagram" name="instagramUrl">
+          <Field
+            label="Instagram"
+            name="instagramUrl"
+            error={errors.instagramUrl}
+          >
             <input
               id="instagramUrl"
               name="instagramUrl"
@@ -300,7 +341,7 @@ export function SettingsForm({ company, settings }: SettingsFormProps) {
               className={fieldClassName}
             />
           </Field>
-          <Field label="YouTube" name="youtubeUrl">
+          <Field label="YouTube" name="youtubeUrl" error={errors.youtubeUrl}>
             <input
               id="youtubeUrl"
               name="youtubeUrl"
